@@ -30,7 +30,7 @@ next
 	^sucessor! !
 
 
-!I class methodsFor: '--** private fileout/in **--' stamp: 'JB 3/30/2023 13:45:52'!
+!I class methodsFor: '--** private fileout/in **--' stamp: 'jb 3/30/2023 21:48:30'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -50,10 +50,10 @@ DenotativeObject subclass: #II
 II class
 	instanceVariableNames: 'sucessor predecessor'!
 
-!II class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:05:49'!
+!II class methodsFor: 'operations' stamp: 'jb 3/30/2023 20:51:04'!
 * aNumber 
-	aNumber  = I ifTrue:  [aNumber *self] . 
-	^aNumber predecessor  * (self + self)! !
+	(aNumber  = I) ifTrue:  [^self] . 
+	^self + (self* aNumber predecessor)! !
 
 !II class methodsFor: 'operations' stamp: 'JB 3/30/2023 12:59:32'!
 + aNumber
@@ -85,13 +85,18 @@ setPredecessor:aNumber
 	predecessor:= aNumber ! !
 
 
-!II class methodsFor: 'peano' stamp: 'JB 3/30/2023 13:01:06'!
+!II class methodsFor: 'peano' stamp: 'jb 3/30/2023 21:41:19'!
 next 
-	sucessor ifNil: [sucessor:= self cloneNamed: self name , 'I'.  sucessor  setPredecessor: self ].
+	"cambiamos clonedName por createChildNamed y lo que hace es no repetir código
+	Esto trae problemas porque cada self crea un child y nosotros queremos que el prototipo sea II. 
+	Delegación: No es decirle al prototipo que ejecute, sino decirle prestame el método y yo lo ejecuto.
+	"
+
+	sucessor ifNil: [sucessor:= "self" II createChildNamed: self name , 'I'.  sucessor  setPredecessor: self ].
 	^sucessor! !
 
 
-!II class methodsFor: '--** private fileout/in **--' stamp: 'JB 3/30/2023 13:45:52'!
+!II class methodsFor: '--** private fileout/in **--' stamp: 'jb 3/30/2023 21:48:30'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
@@ -100,7 +105,7 @@ initializeCollaboratorsFromFile
 
 
 !classDefinition: #III category: 'Naturales'!
-DenotativeObject subclass: #III
+II subclass: #III
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -110,59 +115,25 @@ DenotativeObject subclass: #III
 
 !classDefinition: 'III class' category: 'Naturales'!
 III class
-	instanceVariableNames: 'sucessor predecessor'!
+	instanceVariableNames: ''!
 
-!III class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:15'!
-* aNumber 
-	aNumber  = I ifTrue:  [aNumber *self] . 
-	^aNumber predecessor  * (self + self)! !
-
-!III class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:15'!
-+ aNumber
-	^self predecessor + aNumber next ! !
-
-!III class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:15'!
-- aNumber 
-	aNumber = I ifTrue: [^self predecessor ].
-	^self predecessor  - aNumber  predecessor ! !
-
-!III class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:15'!
-/ divisor
-	
-	self  > divisor ifTrue: [self - divisor = I ifTrue:  [^I]. ^I + ((self - divisor) / divisor)].
-	^I! !
-
-!III class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:15'!
-> aNumber
- 	aNumber  = I ifTrue:  [^true]. 
-	^self predecessor  > aNumber  predecessor ! !
-
-!III class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:15'!
-predecessor 
-	^predecessor! !
+!III class methodsFor: 'as yet unclassified' stamp: 'jb 3/30/2023 21:44:44'!
+next
+	sucessor ifNil: [sucessor:= "self" II createChildNamed:  'IV'.  sucessor  setPredecessor: self ].
+	^sucessor
+	! !
 
 
-!III class methodsFor: 'private' stamp: 'JB 3/30/2023 13:40:15'!
-setPredecessor:aNumber
-	predecessor:= aNumber ! !
-
-
-!III class methodsFor: 'peano' stamp: 'JB 3/30/2023 13:40:15'!
-next 
-	sucessor ifNil: [sucessor:= self cloneNamed: self name , 'I'.  sucessor  setPredecessor: self ].
-	^sucessor! !
-
-
-!III class methodsFor: '--** private fileout/in **--' stamp: 'JB 3/30/2023 13:45:52'!
+!III class methodsFor: '--** private fileout/in **--' stamp: 'jb 3/30/2023 21:48:30'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
-	sucessor := IIII.
+	sucessor := IV.
 	predecessor := II.! !
 
 
-!classDefinition: #IIII category: 'Naturales'!
-DenotativeObject subclass: #IIII
+!classDefinition: #IV category: 'Naturales'!
+II subclass: #IV
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -170,59 +141,134 @@ DenotativeObject subclass: #IIII
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'IIII class' category: 'Naturales'!
-IIII class
-	instanceVariableNames: 'sucessor predecessor'!
+!classDefinition: 'IV class' category: 'Naturales'!
+IV class
+	instanceVariableNames: ''!
 
-!IIII class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:15'!
-* aNumber 
-	aNumber  = I ifTrue:  [aNumber *self] . 
-	^aNumber predecessor  * (self + self)! !
-
-!IIII class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:15'!
-+ aNumber
-	^self predecessor + aNumber next ! !
-
-!IIII class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:15'!
-- aNumber 
-	aNumber = I ifTrue: [^self predecessor ].
-	^self predecessor  - aNumber  predecessor ! !
-
-!IIII class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:16'!
-/ divisor
-	
-	self  > divisor ifTrue: [self - divisor = I ifTrue:  [^I]. ^I + ((self - divisor) / divisor)].
-	^I! !
-
-!IIII class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:16'!
-> aNumber
- 	aNumber  = I ifTrue:  [^true]. 
-	^self predecessor  > aNumber  predecessor ! !
-
-!IIII class methodsFor: 'operations' stamp: 'JB 3/30/2023 13:40:16'!
-predecessor 
-	^predecessor! !
-
-
-!IIII class methodsFor: 'private' stamp: 'JB 3/30/2023 13:40:16'!
-setPredecessor:aNumber
-	predecessor:= aNumber ! !
-
-
-!IIII class methodsFor: 'peano' stamp: 'JB 3/30/2023 13:40:16'!
+!IV class methodsFor: 'as yet unclassified' stamp: 'jb 3/30/2023 21:47:00'!
 next 
-	sucessor ifNil: [sucessor:= self cloneNamed: self name , 'I'.  sucessor  setPredecessor: self ].
+	sucessor ifNil:  [ sucessor:= "self" II createChildNamed: 'V'.  sucessor  setPredecessor: self].
 	^sucessor! !
 
 
-!IIII class methodsFor: '--** private fileout/in **--' stamp: 'JB 3/30/2023 13:45:52'!
+!IV class methodsFor: '--** private fileout/in **--' stamp: 'jb 3/30/2023 21:48:30'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	sucessor := V.
+	predecessor := III.! !
+
+
+!classDefinition: #V category: 'Naturales'!
+II subclass: #V
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'V class' category: 'Naturales'!
+V class
+	instanceVariableNames: ''!
+
+!V class methodsFor: '--** private fileout/in **--' stamp: 'jb 3/30/2023 21:48:30'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	sucessor := VI.
+	predecessor := IV.! !
+
+
+!classDefinition: #VI category: 'Naturales'!
+II subclass: #VI
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'VI class' category: 'Naturales'!
+VI class
+	instanceVariableNames: ''!
+
+!VI class methodsFor: '--** private fileout/in **--' stamp: 'jb 3/30/2023 21:48:30'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	sucessor := VII.
+	predecessor := V.! !
+
+
+!classDefinition: #VII category: 'Naturales'!
+II subclass: #VII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'VII class' category: 'Naturales'!
+VII class
+	instanceVariableNames: ''!
+
+!VII class methodsFor: '--** private fileout/in **--' stamp: 'jb 3/30/2023 21:48:30'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	sucessor := VIII.
+	predecessor := VI.! !
+
+
+!classDefinition: #VIII category: 'Naturales'!
+II subclass: #VIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'VIII class' category: 'Naturales'!
+VIII class
+	instanceVariableNames: ''!
+
+!VIII class methodsFor: '--** private fileout/in **--' stamp: 'jb 3/30/2023 21:48:30'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	sucessor := VIIII.
+	predecessor := VII.! !
+
+
+!classDefinition: #VIIII category: 'Naturales'!
+II subclass: #VIIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Naturales'!
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'VIIII class' category: 'Naturales'!
+VIIII class
+	instanceVariableNames: ''!
+
+!VIIII class methodsFor: '--** private fileout/in **--' stamp: 'jb 3/30/2023 21:48:30'!
 initializeCollaboratorsFromFile
 	"Auto generated method for loading purposes - Do not modify it"
 
 	sucessor := nil.
-	predecessor := III.! !
+	predecessor := VIII.! !
 
 I initializeAfterFileIn!
 II initializeAfterFileIn!
 III initializeAfterFileIn!
-IIII initializeAfterFileIn!
+IV initializeAfterFileIn!
+V initializeAfterFileIn!
+VI initializeAfterFileIn!
+VII initializeAfterFileIn!
+VIII initializeAfterFileIn!
+VIIII initializeAfterFileIn!
