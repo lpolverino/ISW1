@@ -308,26 +308,12 @@ setPositives
 	
 	! !
 
-!NumeroTest methodsFor: 'setup' stamp: 'LP 4/20/2023 11:59:49'!
+!NumeroTest methodsFor: 'setup' stamp: 'LP 4/20/2023 12:18:36'!
 setUp
 
-	"zero := Entero with: 0.
-	one := Entero with: 1.
-	two := Entero with: 2.
-	three:= Entero with: 3.
-	four := Entero with: 4.
-	five := Entero with: 5.
-	eight := Entero with: 8.
-	negativeOne := Entero with: -1.
-	negativeTwo := Entero with: -2."
 	self setIntegers.
 	self setFractions.
 	
-	"oneHalf := one / two.
-	oneFifth := one / five.
-	twoFifth := two / five.
-	twoTwentyfifth := two / (Entero with: 25).
-	fiveHalfs := five / two."
 	! !
 
 
