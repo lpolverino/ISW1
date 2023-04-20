@@ -514,13 +514,19 @@ Entero class
 negativeFibonacciErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
-!Entero class methodsFor: 'instance creation' stamp: 'JB 4/20/2023 09:58:25'!
+!Entero class methodsFor: 'instance creation' stamp: 'JB 4/20/2023 10:41:45'!
 with: aValue 
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
 	
-	^aValue adaptToEntero 
+	"^aValue adaptToEntero"
+	(aValue =1) ifTrue:[^Uno new].
+	(aValue  = 0) ifTrue: [^Cero new].
+	(aValue <0) ifTrue: [^(EnteroNegativo new) initalizeWith:aValue ].
+	
+	^EnteroPositvo new initalizeWith: aValue 
+	 
 	
 	! !
 
