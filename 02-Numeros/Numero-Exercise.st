@@ -266,8 +266,9 @@ test42SignIsCorrectlyAssignedToFractionWithNegativeDivisor
 	self assert: oneHalf negated equals: (one / negativeTwo)! !
 
 
-!NumeroTest methodsFor: 'setup' stamp: 'LP 4/19/2023 20:36:59'!
+!NumeroTest methodsFor: 'setup' stamp: 'JB 4/20/2023 10:09:46'!
 setUp
+
 
 	zero := Entero with: 0.
 	one := Entero with: 1.
@@ -375,21 +376,16 @@ Numero subclass: #Entero
 	
 ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'LP 4/19/2023 23:48:27'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'JB 4/20/2023 09:41:36'!
 - aSubtrahend 
 	
-	^(aSubtrahend  subtractToAnInteger: self) negated .
+	^aSubtrahend  subtractToAnInteger: self.
 	! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'jb 4/16/2023 20:42:38'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'JB 4/20/2023 09:59:43'!
 / aDivisor 
 	^aDivisor divideTheInteger: self	
-
-	"
-		(aDivisor  = (Entero with:0) ) ifTrue:  [ ^self error: self class canNotDivideByZeroErrorDescription ].
-		""	
-	((value mod:  aDivisor  integerValue) =0)   ifTrue:  [^self  // aDivisor].
-"! !
+! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 21:55'!
 // aDivisor 
@@ -439,11 +435,11 @@ printOn: aStream
 	aStream print: value ! !
 
 
-!Entero methodsFor: 'auxiliar' stamp: 'jb 4/16/2023 20:42:43'!
+!Entero methodsFor: 'auxiliar' stamp: 'JB 4/20/2023 10:00:16'!
 divideTheFraction: aFractionToDivide
 			
 
-^( aFractionToDivide  numerator ) / (aFractionToDivide  denominator  * self)
+	^( aFractionToDivide  numerator ) / (aFractionToDivide  denominator  * self)
 ! !
 
 !Entero methodsFor: 'auxiliar' stamp: 'jb 4/16/2023 20:42:48'!
@@ -465,15 +461,15 @@ multiplyToAnInteger: anIntegerMultiplier
 	^self class with: anIntegerMultiplier integerValue	 * value 
 ! !
 
-!Entero methodsFor: 'auxiliar' stamp: 'LP 4/19/2023 23:50:35'!
-subtractToAFraction: aFractionSubtrahend 
-		^Fraccion  with: (aFractionSubtrahend  denominator *self ) - aFractionSubtrahend  numerator  over: aFractionSubtrahend  denominator . 
+!Entero methodsFor: 'auxiliar' stamp: 'JB 4/20/2023 09:45:57'!
+subtractToAFraction: aFractionToSubstract 
+		^Fraccion  with: aFractionToSubstract   numerator - (aFractionToSubstract   denominator *self )   over: aFractionToSubstract   denominator . 
 	! !
 
-!Entero methodsFor: 'auxiliar' stamp: 'LP 4/20/2023 00:12:07'!
+!Entero methodsFor: 'auxiliar' stamp: 'JB 4/20/2023 09:41:58'!
 subtractToAnInteger: anIntegerSubtrahend 
 		
-	^ self class with: value - anIntegerSubtrahend integerValue.! !
+	^ self class with: anIntegerSubtrahend integerValue- value.! !
 
 !Entero methodsFor: 'auxiliar' stamp: 'LP 4/19/2023 23:58:18'!
 sumToAFraction: aFractionAdder
@@ -482,14 +478,10 @@ sumToAFraction: aFractionAdder
 
 ! !
 
-!Entero methodsFor: 'auxiliar' stamp: 'LP 4/20/2023 00:08:44'!
-sumToAnInteger: anAdder
-"sumToanInterger:anIntergerToAdd/Adder
-	^anAdder IntergerValue + value
-	
-	^Entero with: value + anAdder integerValue
-"
-	^Entero with:anAdder integerValue + value
+!Entero methodsFor: 'auxiliar' stamp: 'JB 4/20/2023 09:39:00'!
+sumToAnInteger: anIntegerAdder
+
+	^self class with: anIntegerAdder integerValue + value
 ! !
 
 
@@ -522,20 +514,15 @@ Entero class
 negativeFibonacciErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
-!Entero class methodsFor: 'instance creation' stamp: 'LP 4/19/2023 22:25:54'!
+!Entero class methodsFor: 'instance creation' stamp: 'JB 4/20/2023 09:58:25'!
 with: aValue 
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
-	(aValue=1) ifTrue:[^Uno new initalizeWith:1].
-	(aValue = 0) ifTrue: [^Cero new initalizeWith:0].
-	(aValue<0) ifTrue: [^(EnteroNegativo new) initalizeWith:aValue ].
 	
-	^EnteroPositvo new initalizeWith: aValue
+	^aValue adaptToEntero 
 	
-	"initalizeWith: aValue 
-	
-	value := aValue"! !
+	! !
 
 
 !classDefinition: #Cero category: 'Numero-Exercise'!
@@ -549,24 +536,13 @@ Entero subclass: #Cero
 fibonacci
 	^Uno new! !
 
-!Cero methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 10:22:18'!
-isZero
-	
-	^true! !
+!Cero methodsFor: 'as yet unclassified' stamp: 'JB 4/20/2023 10:05:21'!
+initialize
+	value:=0! !
 
 !Cero methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 21:34:41'!
 makeFraccionWith:aDividend
 	^self error: self class canNotDivideByZeroErrorDescription ! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Cero class' category: 'Numero-Exercise'!
-Cero class
-	instanceVariableNames: ''!
-
-!Cero class methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 19:48:42'!
-xxx
-	^self new initialize. ! !
 
 
 !classDefinition: #EnteroNegativo category: 'Numero-Exercise'!
@@ -579,20 +555,6 @@ Entero subclass: #EnteroNegativo
 !EnteroNegativo methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 20:32:28'!
 fibonacci
 	^self error: Entero negativeFibonacciErrorDescription! !
-
-!EnteroNegativo methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 10:01:14'!
-isNegative
-	^true! !
-
-!EnteroNegativo methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 10:01:52'!
-isOne
-	
-	^false! !
-
-!EnteroNegativo methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 10:02:10'!
-isZero
-	
-	^false! !
 
 !EnteroNegativo methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 21:34:41'!
 makeFraccionWith: aDividend
@@ -620,12 +582,7 @@ getResultOfDividing:aNumerator
 
 	^Fraccion new initializeWith: aNumerator over: self ! !
 
-!EnteroPositvo methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 20:22:09'!
-initalizeWith: aValue 
-	
-	value := aValue! !
-
-!EnteroPositvo methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 21:48:39'!
+!EnteroPositvo methodsFor: 'as yet unclassified' stamp: 'JB 4/20/2023 09:52:18'!
 makeFraccionWith: aDividend
 	
 	| greatestCommonDivisor numerator denominator |
@@ -635,9 +592,7 @@ makeFraccionWith: aDividend
 	denominator := self // greatestCommonDivisor.
 	
 	^denominator getResultOfDividing: numerator.
-	"denominator isOne ifTrue: [ ^numerator ].
-
-	^self new initializeWith: numerator over: denominator"! !
+	! !
 
 
 !classDefinition: #Uno category: 'Numero-Exercise'!
@@ -656,29 +611,13 @@ getResultOfDividing: aNumerator
 
  	^aNumerator ! !
 
-!Uno methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 19:47:45'!
+!Uno methodsFor: 'as yet unclassified' stamp: 'JB 4/20/2023 10:04:55'!
 initialize
-	value :=1! !
-
-!Uno methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 10:21:59'!
-isOne
-	
-	^true
-	! !
+	value  := 1! !
 
 !Uno methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 21:34:41'!
 makeFraccionWith: aDividend
 	 ^aDividend! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Uno class' category: 'Numero-Exercise'!
-Uno class
-	instanceVariableNames: ''!
-
-!Uno class methodsFor: 'as yet unclassified' stamp: 'LP 4/19/2023 19:46:29'!
-xxx
-	^self new initialize ! !
 
 
 !classDefinition: #Fraccion category: 'Numero-Exercise'!
@@ -699,9 +638,9 @@ Numero subclass: #Fraccion
 	^ anAdder sumToAFraction: self. 
 ! !
 
-!Fraccion methodsFor: 'arithmetic operations' stamp: 'LP 4/19/2023 23:53:01'!
+!Fraccion methodsFor: 'arithmetic operations' stamp: 'JB 4/20/2023 09:46:19'!
 - aSubtrahend 
-	^(aSubtrahend subtractToAFraction:self ) negated.
+	^aSubtrahend subtractToAFraction:self .
 
 ! !
 
@@ -788,23 +727,23 @@ multiplyToAFraction:  aFractionMultiplier
 multiplyToAnInteger:  anIntegerMultiplier 
 	^ Fraccion  with: anIntegerMultiplier  * numerator  over: denominator ! !
 
-!Fraccion methodsFor: 'auxiliar' stamp: 'LP 4/19/2023 23:53:01'!
+!Fraccion methodsFor: 'auxiliar' stamp: 'JB 4/20/2023 09:47:43'!
 subtractToAFraction: aFractionSubtrahend 
 	
 
 	| newNumerator newDenominator |
 	
 	
-	newNumerator := (numerator * aFractionSubtrahend denominator) - (denominator * aFractionSubtrahend numerator).
+	newNumerator :=  (denominator * aFractionSubtrahend numerator) - (numerator * aFractionSubtrahend denominator).
 	newDenominator := denominator * aFractionSubtrahend denominator.
 	
 	^newNumerator / newDenominator ! !
 
-!Fraccion methodsFor: 'auxiliar' stamp: 'LP 4/19/2023 23:53:28'!
+!Fraccion methodsFor: 'auxiliar' stamp: 'JB 4/20/2023 09:46:59'!
 subtractToAnInteger: anIntegerSustrahend
 
 			
-		^Fraccion  with: ( self numerator - (self denominator  * anIntegerSustrahend  )   )  over: (self denominator) .
+		^Fraccion  with: (   (self denominator  * anIntegerSustrahend  ) -  self numerator )  over: (self denominator) .
 	 
 	! !
 
