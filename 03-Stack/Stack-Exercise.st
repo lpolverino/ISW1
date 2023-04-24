@@ -1,3 +1,19 @@
+!classDefinition: #PrefixEmpty category: 'Stack-Exercise'!
+Error subclass: #PrefixEmpty
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+
+!classDefinition: #PrefixWithWhiteSpaces category: 'Stack-Exercise'!
+Error subclass: #PrefixWithWhiteSpaces
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+
 !classDefinition: #OOStackTest category: 'Stack-Exercise'!
 TestCase subclass: #OOStackTest
 	instanceVariableNames: ''
@@ -139,7 +155,7 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 !classDefinition: #SentenceFinderByPrefixTest category: 'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
-	instanceVariableNames: 'stack finder stackEmpty stackError stackErrorCopy stackWithOneElement stackWithManyElement stackWithOneElementCopy stackWithManyElementCopy emptyColection stringsWithabcdef'
+	instanceVariableNames: 'stack finder stackEmpty stackError stackErrorCopy stackWithOneElement stackWithManyElement stackWithOneElementCopy stackWithManyElementCopy emptyColection stringsWithabcdef multiElementCollection pairCollection singleCollection'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
@@ -153,13 +169,33 @@ setUp
 	
 	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LP 4/23/2023 21:43:08'!
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'JB 4/24/2023 11:36:27'!
 setUpColections
 	
 	emptyColection := OrderedCollection new.
 
 	stringsWithabcdef := (OrderedCollection new) add:'abcdef'.
-	! !
+		
+	multiElementCollection := OrderedCollection new.
+	multiElementCollection add:'abcdef'.
+	multiElementCollection add:'abcdd'.
+	multiElementCollection add:'abcde'.
+	multiElementCollection add:'abcd'.
+	multiElementCollection add:'abc'.
+	
+	
+	
+	
+	pairCollection := OrderedCollection new.
+	pairCollection add:'abcdef'.
+	pairCollection add:'abcde'.
+	
+	
+	
+	
+	singleCollection := OrderedCollection new.
+	singleCollection add:'Jorge'.
+! !
 
 !SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LP 4/23/2023 21:54:02'!
 setUpStackError
@@ -242,86 +278,61 @@ test01filteringAnEmptyStackReturnsAnEmptyCollectionAndKeepsTheEmptyStack
 	
 	self assertIfFilteringWith:'algo' to:stack returns: emptyColection andCheckIfTheStackIsTheSameWIth:stackEmpty .! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 08:52:32'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 11:17:49'!
 test02filteringAStackWithANonStringElementRaisesAnErrorAndKeepsTheStackIntact
 	
 	self
-		should: [ finder filter:stackError byPrefix:'' ]
+		should: [ finder filter:stackError byPrefix:'algo' ]
 			raise: Error - MessageNotUnderstood 
 			withExceptionDo: [ :anError |
 				self assert: anError messageText = SentenceFinderByPrefix elementIsNotString.
 				self assert: (self thisStack:stackError isEqualTo:stackErrorCopy).]
 	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 08:54:11'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 11:36:47'!
 test03filteringAOneElementStackWithAValidPrefixReturnsAValidCollectionAndKeepsTheStackIntact
 
-	|colectionWithOneString|.
-	
-	colectionWithOneString := OrderedCollection new.
-	colectionWithOneString add:'Jorge'.
-	
-	self assertIfFilteringWith:'Jor' to:stackWithOneElement returns: colectionWithOneString andCheckIfTheStackIsTheSameWIth:stackWithOneElementCopy .! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 08:55:46'!
+	self assertIfFilteringWith:'Jor' to:stackWithOneElement returns: singleCollection andCheckIfTheStackIsTheSameWIth:stackWithOneElementCopy .! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 10:00:13'!
 test04filteringAMultiElementStackWithACommonPrefixReturnsAValidCollectionAndKeepsTheStackIntact
 
-	|abcColection|
-	
-	abcColection := OrderedCollection new.
-	abcColection add:'abcdef'.
-	abcColection add:'abcdd'.
-	abcColection add:'abcde'.
-	abcColection add:'abcd'.
-	abcColection add:'abc'.
-	
-	self assertIfFilteringWith: 'abc' to:stackWithManyElement returns: abcColection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .
+
+	self assertIfFilteringWith: 'abc' to:stackWithManyElement returns: multiElementCollection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .
 	
 	! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LP 4/23/2023 23:07:44'!
-test05UnStackFiltradoConUnPrefijoDeUnaSolaSentenciaDevuelveUnaColeccionCorrecta
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 11:03:34'!
+test05filteringAStackWithAWhiteSpacedStringShouldRaiseAnErrorAndKeepTheStackIntact	
+	self
+		should: [ finder filter:stackWithManyElement byPrefix:'abc def' ]
+			raise: Error - MessageNotUnderstood 
+			withExceptionDo: [ :anError |
+				self assert: anError messageText = SentenceFinderByPrefix  prefixHasWhiteSpaceErrorDescription .
+				self assert: (self thisStack:stackWithManyElement  isEqualTo:stackWithManyElementCopy ).]
+	! !
 
-	|abcColection|
-	
-	abcColection := OrderedCollection new.
-	abcColection add:'abcdef'.
-	
-	self assertIfFilteringWith:'abcdef' to:stackWithManyElement returns: abcColection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .
-! !
-
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 08:57:24'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 11:29:40'!
 test06filteringAMultiElementStackWithANonExistingPrefixReturnsAnEmptyCollectionAndKeepsTheStackIntact
-"¿es necesario?"
-	
-	"self assert:(finder filter:stackWithManyElement byPrefix:'jorge' ) equals:emptyColection .
-	self assert: (self thisStack:stackWithManyElement isEqualTo:stackWithManyElementCopy).	"
+
 	
 	self assertIfFilteringWith:'jorge' to:stackWithManyElement returns: emptyColection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .! !
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 09:06:32'!
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 11:31:56'!
 test07filteringAMultiElementStackWithACommonPrefixOfAPairOfElementsReturnsAValidCollectionAndKeepsTheStackIntact
 
-	|abcColection|
-	
-	abcColection := OrderedCollection new.
-	abcColection add:'abcdef'.
-	abcColection add:'abcde'.
+	self assertIfFilteringWith:'abcde'  to:stackWithManyElement returns: pairCollection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .! !
 
-	self assertIfFilteringWith:'abcde'  to:stackWithManyElement returns: abcColection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .! !
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'JB 4/24/2023 10:38:27'!
+test08filteringWithAEmptyStringShouldRaiseAnErrorAndKeepTheStackIntact
 
-!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LP 4/23/2023 23:09:15'!
-test08UnStackDondeTodosLosElementosCompartenUnPrefijoMenosUnoDevuelveUnaColeccionCorrecta
-
-	|abcColection|
-	
-	abcColection := OrderedCollection new.
-	abcColection add:'abcdef'.
-	abcColection add:'abcdd'.
-	abcColection add:'abcde'.
-	abcColection add:'abcd'.
-
-	self assertIfFilteringWith:'abcd'  to:stackWithManyElement returns: abcColection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .
+	self
+		should: [ finder filter:stackWithManyElement byPrefix:'' ]
+			raise: Error - MessageNotUnderstood 
+			withExceptionDo: [ :anError |
+				self assert: anError messageText = SentenceFinderByPrefix  prefixIsEmptyErrorDescription .
+				self assert: (self thisStack:stackWithManyElement  isEqualTo:stackWithManyElementCopy ).]
 	! !
 
 
@@ -361,7 +372,7 @@ thisStack:aStack isEqualTo:aStackToCompare
 
 !classDefinition: #OONode category: 'Stack-Exercise'!
 Object subclass: #OONode
-	instanceVariableNames: 'value next'
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
@@ -386,6 +397,14 @@ OONode subclass: #OOAbsentNode
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
+!OOAbsentNode methodsFor: 'accesing' stamp: 'JB 4/24/2023 11:46:56'!
+canGetNext: aStack
+	^ aStack cannotAccesEmptyElement ! !
+
+!OOAbsentNode methodsFor: 'accesing' stamp: 'JB 4/24/2023 11:46:46'!
+canGetValue: aStack
+	^ aStack cannotAccesEmptyElement ! !
+
 !OOAbsentNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:42:40'!
 getNextNodeFailIfAbsent: stack
 	^ stack accesingEmptyElement! !
@@ -401,10 +420,18 @@ isEmpty
 
 !classDefinition: #OOLinkNode category: 'Stack-Exercise'!
 OONode subclass: #OOLinkNode
-	instanceVariableNames: ''
+	instanceVariableNames: 'value next'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!OOLinkNode methodsFor: 'accesing' stamp: 'JB 4/24/2023 11:51:58'!
+canGetNext:aStack
+	^aStack  getNextLinkNode: self ! !
+
+!OOLinkNode methodsFor: 'accesing' stamp: 'JB 4/24/2023 11:52:08'!
+canGetValue:aStack
+	^aStack getValueLinkNode: self ! !
 
 !OOLinkNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:36:46'!
 getNextNodeFailIfAbsent: stack
@@ -417,6 +444,14 @@ getValueFailIfAbsent: stack
 !OOLinkNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:21:58'!
 isEmpty
 	^false! !
+
+!OOLinkNode methodsFor: 'accesing' stamp: 'JB 4/24/2023 11:40:44'!
+next
+	^next ! !
+
+!OOLinkNode methodsFor: 'accesing' stamp: 'JB 4/24/2023 11:40:38'!
+value 
+	^value ! !
 
 
 !OOLinkNode methodsFor: 'initialization' stamp: 'LP 4/23/2023 23:21:47'!
@@ -451,17 +486,17 @@ isEmpty
 size
 	^lenght! !
 
-!OOStack methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:38:36'!
+!OOStack methodsFor: 'accesing' stamp: 'JB 4/24/2023 11:52:54'!
 top
 	
-	^top getValueFailIfAbsent: self! !
+	^top canGetValue: self! !
 
 
-!OOStack methodsFor: 'private' stamp: 'LP 4/23/2023 23:36:46'!
+!OOStack methodsFor: 'private' stamp: 'JB 4/24/2023 11:48:56'!
 changeTop
 	|nextTop|
 	
-	nextTop := top getNextNodeFailIfAbsent: self.
+	nextTop := top canGetNext: self.
 	top := nextTop.
 	lenght := lenght-1.
 ! !
@@ -487,9 +522,17 @@ pop
 	! !
 
 
-!OOStack methodsFor: 'initialization' stamp: 'LP 4/23/2023 23:42:40'!
-accesingEmptyElement
+!OOStack methodsFor: 'initialization' stamp: 'JB 4/24/2023 11:44:32'!
+cannotAccesEmptyElement
 	^self error: self class stackEmptyErrorDescription ! !
+
+!OOStack methodsFor: 'initialization' stamp: 'JB 4/24/2023 11:51:41'!
+getNextLinkNode: aLinkNode
+	^aLinkNode  next! !
+
+!OOStack methodsFor: 'initialization' stamp: 'JB 4/24/2023 11:51:29'!
+getValueLinkNode: aLinkNode
+	^aLinkNode  value! !
 
 !OOStack methodsFor: 'initialization' stamp: 'JB 4/24/2023 07:53:20'!
 initialize
@@ -538,6 +581,12 @@ checkIfAStackOfStrings:aStack
 			aStack push: element.
 		].! !
 
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JB 4/24/2023 12:15:08'!
+checkIfValidPrefix: aPrefixToCheck
+	(aPrefixToCheck  isEmpty ) ifTrue:  [^PrefixEmpty  signal ].
+	((self doesThisPrefixHaveWhiteSpace: aPrefixToCheck) )ifTrue:  [ ^PrefixWithWhiteSpaces  signal].
+	! !
+
 !SentenceFinderByPrefix methodsFor: 'private' stamp: 'LP 4/23/2023 19:56:21'!
 collectAllStringsIn: aStackOfStrings withPrefix:aPrefix into: aColectionToFill
 	|element|
@@ -550,13 +599,18 @@ collectAllStringsIn: aStackOfStrings withPrefix:aPrefix into: aColectionToFill
 		aStackOfStrings push: element.
 		]! !
 
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JB 4/24/2023 12:14:40'!
+doesThisPrefixHaveWhiteSpace: aPrefixToCheck
+
+	^ ((aPrefixToCheck  findString: ' ' startingAt: 1)  =  0) not! !
+
 !SentenceFinderByPrefix methodsFor: 'private' stamp: 'LP 4/23/2023 19:29:02'!
 makeExceptionAndPush: anElement into: aStack
 	aStack push: anElement.
 	^Error signal! !
 
 
-!SentenceFinderByPrefix methodsFor: 'filtering' stamp: 'LP 4/23/2023 20:31:26'!
+!SentenceFinderByPrefix methodsFor: 'filtering' stamp: 'JB 4/24/2023 11:28:56'!
 filter:aStack byPrefix:aPrefix
 
 	|stringsWithSamePrefix|
@@ -564,7 +618,14 @@ filter:aStack byPrefix:aPrefix
 	
 	[self checkIfAStackOfStrings: aStack]
 		on: Error
-		do:[^self error: self class elementIsNotString ].
+		do:[^self error: self  class  elementIsNotString ].
+		
+	[self  checkIfValidPrefix: aPrefix]
+		on: PrefixEmpty 
+		do: [^self error: self class  prefixIsEmptyErrorDescription .
+		] 
+		on: PrefixWithWhiteSpaces 
+		 do:[^self  error: self  class  prefixHasWhiteSpaceErrorDescription ].	
 		
 	self collectAllStringsIn: aStack withPrefix:aPrefix into: stringsWithSamePrefix.
 	^stringsWithSamePrefix
@@ -580,3 +641,11 @@ SentenceFinderByPrefix class
 elementIsNotString
 
 	^'An elment in the stack is not a String!!!!!!!!!!!!!!!!!!!!!!!!!!!! :('! !
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'JB 4/24/2023 09:53:50'!
+prefixHasWhiteSpaceErrorDescription
+	^'The Prefix should not have white spaces'! !
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'JB 4/24/2023 09:49:52'!
+prefixIsEmptyErrorDescription
+	^'The Prefix should not be empty'! !
