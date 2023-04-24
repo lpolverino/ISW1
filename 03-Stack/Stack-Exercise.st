@@ -1,19 +1,3 @@
-!classDefinition: #PrefixEmpty category: 'Stack-Exercise'!
-Error subclass: #PrefixEmpty
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Stack-Exercise'!
-
-
-!classDefinition: #PrefixWithWhiteSpaces category: 'Stack-Exercise'!
-Error subclass: #PrefixWithWhiteSpaces
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Stack-Exercise'!
-
-
 !classDefinition: #OOStackTest category: 'Stack-Exercise'!
 TestCase subclass: #OOStackTest
 	instanceVariableNames: ''
@@ -405,14 +389,6 @@ canGetNext: aStack
 canGetValue: aStack
 	^ aStack cannotAccesEmptyElement ! !
 
-!OOAbsentNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:42:40'!
-getNextNodeFailIfAbsent: stack
-	^ stack accesingEmptyElement! !
-
-!OOAbsentNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:42:40'!
-getValueFailIfAbsent: stack
-	^ stack accesingEmptyElement ! !
-
 !OOAbsentNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:25:47'!
 isEmpty
 	^ true! !
@@ -432,14 +408,6 @@ canGetNext:aStack
 !OOLinkNode methodsFor: 'accesing' stamp: 'JB 4/24/2023 11:52:08'!
 canGetValue:aStack
 	^aStack getValueLinkNode: self ! !
-
-!OOLinkNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:36:46'!
-getNextNodeFailIfAbsent: stack
-	^next! !
-
-!OOLinkNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:38:36'!
-getValueFailIfAbsent: stack
- 	^value! !
 
 !OOLinkNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:21:58'!
 isEmpty
@@ -581,10 +549,10 @@ checkIfAStackOfStrings:aStack
 			aStack push: element.
 		].! !
 
-!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JB 4/24/2023 12:15:08'!
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'JB 4/24/2023 13:54:31'!
 checkIfValidPrefix: aPrefixToCheck
-	(aPrefixToCheck  isEmpty ) ifTrue:  [^PrefixEmpty  signal ].
-	((self doesThisPrefixHaveWhiteSpace: aPrefixToCheck) )ifTrue:  [ ^PrefixWithWhiteSpaces  signal].
+	(aPrefixToCheck  isEmpty ) ifTrue:  [^ self error: self class prefixIsEmptyErrorDescription ].
+	((self doesThisPrefixHaveWhiteSpace: aPrefixToCheck) )ifTrue:  [ ^self error: self class prefixHasWhiteSpaceErrorDescription ].
 	! !
 
 !SentenceFinderByPrefix methodsFor: 'private' stamp: 'LP 4/23/2023 19:56:21'!
@@ -610,7 +578,7 @@ makeExceptionAndPush: anElement into: aStack
 	^Error signal! !
 
 
-!SentenceFinderByPrefix methodsFor: 'filtering' stamp: 'JB 4/24/2023 11:28:56'!
+!SentenceFinderByPrefix methodsFor: 'filtering' stamp: 'JB 4/24/2023 13:53:13'!
 filter:aStack byPrefix:aPrefix
 
 	|stringsWithSamePrefix|
@@ -619,14 +587,8 @@ filter:aStack byPrefix:aPrefix
 	[self checkIfAStackOfStrings: aStack]
 		on: Error
 		do:[^self error: self  class  elementIsNotString ].
-		
-	[self  checkIfValidPrefix: aPrefix]
-		on: PrefixEmpty 
-		do: [^self error: self class  prefixIsEmptyErrorDescription .
-		] 
-		on: PrefixWithWhiteSpaces 
-		 do:[^self  error: self  class  prefixHasWhiteSpaceErrorDescription ].	
-		
+
+	self  checkIfValidPrefix: aPrefix.		
 	self collectAllStringsIn: aStack withPrefix:aPrefix into: stringsWithSamePrefix.
 	^stringsWithSamePrefix
 ! !
