@@ -1,0 +1,39 @@
+1) Escribir el test: (especificar parte del problema):
+	-debe ser el mas sencillo que se nos ocurra (es para tener feedback inmediato)
+	-debe fallar al correrlo(sino observamos algo que ya sabiamos y devemos borrar la implementacion que hacia que pase)
+
+2)Correr todos los test:
+	- implementar la solucion mas simple que haga pasar  el/los test/s (simple significa que podemos hacer las 		chanchadas que queramos y solo preocuparnos en una solucion para los casos que estamos testeando y 		nada mas)
+	-GOTO 2 hasta que "todos los test" pasen
+
+3) pieso si puedo mejorar el codigo
+	-si -> refactorizar(cambio del diseño y no el resultado) (aveces hay que esperar, un mal diseño te condiciona). 			GOTO 2
+	-no -> GOTO 1 with new test
+
+medir cuanto te lleva escribir el test
+medir cuanto te lleva escribir la implementacion
+
+los primeros usuarios del codigo, primeros en sufrirlo
+
+HERRAMIENTA PARA DESAROLLAR CODIGO!!!!!!
+
+Estructura de test
+
+	Setup ----------------------> Exercise ----------------------------> Assert
+|Establece el contexto     | 	|Ejercitia la funcionalidad especifica que se esta testeando  |
+|inicial					| | Determina Que esta testeando					                                           |
+
+
+EJemplo calendario de fecha feriado
+
+nombrar la clase para los test es mediocre aguante testX
+nombrar los test es mediocre aguante testx for x= 1..............................
+
+consejo esperar los primeros 3 test para empezar a nombrar/ usarlo
+
+el nombre del test sintetixa el setup exercise y assert, deben de estar referidos por el caso del prueba y no el dato, deben de estar pensado en el que de lo que se esta testeando
+
+en el proceso puedo terminar con test repetido, y darnos cuenta cuando generalizamos.
+siempre refactorizas sin miedo
+
+dato de prueba vs casos de prueba (los datos no representan el caso pero podemos asumir en ciertos casos de que si)
