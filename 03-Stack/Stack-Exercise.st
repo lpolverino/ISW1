@@ -460,16 +460,6 @@ top
 	^top canGetValue: self! !
 
 
-!OOStack methodsFor: 'private' stamp: 'JB 4/24/2023 11:48:56'!
-changeTop
-	|nextTop|
-	
-	nextTop := top canGetNext: self.
-	top := nextTop.
-	lenght := lenght-1.
-! !
-
-
 !OOStack methodsFor: 'adding' stamp: 'LP 4/23/2023 23:23:47'!
 push: anElement
 	|newTop|
@@ -477,6 +467,17 @@ push: anElement
 	lenght :=lenght +1. 
 	newTop := OOLinkNode with:anElement next:top.
 	top:=newTop.! !
+
+
+!OOStack methodsFor: 'initialization' stamp: 'JB 4/24/2023 11:44:32'!
+cannotAccesEmptyElement
+	^self error: self class stackEmptyErrorDescription ! !
+
+!OOStack methodsFor: 'initialization' stamp: 'JB 4/24/2023 07:53:20'!
+initialize
+
+	lenght := 0.
+	top := OOAbsentNode new.! !
 
 
 !OOStack methodsFor: 'removing' stamp: 'JB 4/24/2023 08:02:19'!
@@ -490,23 +491,22 @@ pop
 	! !
 
 
-!OOStack methodsFor: 'initialization' stamp: 'JB 4/24/2023 11:44:32'!
-cannotAccesEmptyElement
-	^self error: self class stackEmptyErrorDescription ! !
+!OOStack methodsFor: 'private' stamp: 'JB 4/24/2023 11:48:56'!
+changeTop
+	|nextTop|
+	
+	nextTop := top canGetNext: self.
+	top := nextTop.
+	lenght := lenght-1.
+! !
 
-!OOStack methodsFor: 'initialization' stamp: 'JB 4/24/2023 11:51:41'!
+!OOStack methodsFor: 'private' stamp: 'JB 4/24/2023 11:51:41'!
 getNextLinkNode: aLinkNode
 	^aLinkNode  next! !
 
-!OOStack methodsFor: 'initialization' stamp: 'JB 4/24/2023 11:51:29'!
+!OOStack methodsFor: 'private' stamp: 'JB 4/24/2023 11:51:29'!
 getValueLinkNode: aLinkNode
 	^aLinkNode  value! !
-
-!OOStack methodsFor: 'initialization' stamp: 'JB 4/24/2023 07:53:20'!
-initialize
-
-	lenght := 0.
-	top := OOAbsentNode new.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -526,6 +526,22 @@ Object subclass: #SentenceFinderByPrefix
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefix methodsFor: 'filtering' stamp: 'JB 4/24/2023 13:53:13'!
+filter:aStack byPrefix:aPrefix
+
+	|stringsWithSamePrefix|
+	stringsWithSamePrefix := OrderedCollection new.
+	
+	[self checkIfAStackOfStrings: aStack]
+		on: Error
+		do:[^self error: self  class  elementIsNotString ].
+
+	self  checkIfValidPrefix: aPrefix.		
+	self collectAllStringsIn: aStack withPrefix:aPrefix into: stringsWithSamePrefix.
+	^stringsWithSamePrefix
+! !
+
 
 !SentenceFinderByPrefix methodsFor: 'private' stamp: 'LP 4/23/2023 19:32:25'!
 add:aElement to:aColection ifItHasAsAPrefix:aPrefix
@@ -576,22 +592,6 @@ doesThisPrefixHaveWhiteSpace: aPrefixToCheck
 makeExceptionAndPush: anElement into: aStack
 	aStack push: anElement.
 	^Error signal! !
-
-
-!SentenceFinderByPrefix methodsFor: 'filtering' stamp: 'JB 4/24/2023 13:53:13'!
-filter:aStack byPrefix:aPrefix
-
-	|stringsWithSamePrefix|
-	stringsWithSamePrefix := OrderedCollection new.
-	
-	[self checkIfAStackOfStrings: aStack]
-		on: Error
-		do:[^self error: self  class  elementIsNotString ].
-
-	self  checkIfValidPrefix: aPrefix.		
-	self collectAllStringsIn: aStack withPrefix:aPrefix into: stringsWithSamePrefix.
-	^stringsWithSamePrefix
-! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
