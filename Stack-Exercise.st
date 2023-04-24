@@ -139,10 +139,218 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 !classDefinition: #SentenceFinderByPrefixTest category: 'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'stack finder stackEmpty stackError stackErrorCopy stackWithOneElement stackWithManyElement stackWithOneElementCopy stackWithManyElementCopy emptyColection stringsWithabcdef'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LP 4/23/2023 21:40:58'!
+setUp
+	
+	finder:= SentenceFinderByPrefix  new.
+	self setUpStacks.
+	self setUpColections.
+	
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LP 4/23/2023 21:43:08'!
+setUpColections
+	
+	emptyColection := OrderedCollection new.
+
+	stringsWithabcdef := (OrderedCollection new) add:'abcdef'.
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LP 4/23/2023 21:54:02'!
+setUpStackError
+	
+	|aStack|
+	
+	aStack := OOStack new.
+	aStack push: 'Hola'.
+	aStack push: 'JOrge'.
+	aStack push: 25.
+	^aStack 
+	
+
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LP 4/23/2023 21:18:54'!
+setUpStackWithManyElement
+
+	|aStack|
+	aStack:=OOStack new.
+	aStack push: 'abc'.
+	aStack push: 'abcd'.
+	aStack push: 'abcde'.
+	aStack push: 'abcdd'.
+	aStack push: 'abcdef'.
+	^aStack
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LP 4/23/2023 21:54:12'!
+setUpStackWithOneElement
+
+	|aStack|
+	
+	aStack := OOStack new.
+	aStack push:'Jorge'.
+	^aStack
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LP 4/23/2023 21:25:49'!
+setUpStacks
+	
+	stack := OOStack new.
+	stackEmpty := OOStack new.
+	
+	self setUpStacksError.
+	self setUpStacksWithManyElement.
+	self setUpStacksWithOneElement.
+	
+	
+	
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LP 4/23/2023 21:17:35'!
+setUpStacksError
+	
+	stackError :=self  setUpStackError.
+	stackErrorCopy :=self  setUpStackError.
+	
+
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LP 4/23/2023 21:19:51'!
+setUpStacksWithManyElement
+
+	stackWithManyElement := self setUpStackWithManyElement .
+	stackWithManyElementCopy := self setUpStackWithManyElement.
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'setUp' stamp: 'LP 4/23/2023 21:22:52'!
+setUpStacksWithOneElement
+
+	stackWithOneElementCopy := self setUpStackWithOneElement.
+	stackWithOneElement := self setUpStackWithOneElement.
+
+	! !
+
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LP 4/23/2023 23:05:20'!
+test01UnStackVacioNoDevuelveNadaYMantieneElStackVacio
+	
+	self assertIfFilteringWith:'algo' to:stack returns: emptyColection andCheckIfTheStackIsTheSameWIth:stackEmpty .! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LP 4/23/2023 20:41:30'!
+test02StackConAlgunElementoNoStringDevuelveError
+	
+	self
+		should: [ finder filter:stackError byPrefix:'' ]
+			raise: Error - MessageNotUnderstood 
+			withExceptionDo: [ :anError |
+				self assert: anError messageText = SentenceFinderByPrefix elementIsNotString.
+				self assert: (self thisStack:stackError isEqualTo:stackErrorCopy).]
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LP 4/23/2023 23:10:53'!
+test03UnStackDeUnElementoFIltradoConUnPrefijoDevuelveUnaColeccionDeUnElementoCorrecta
+
+	|colectionWithOneString|.
+	
+	colectionWithOneString := OrderedCollection new.
+	colectionWithOneString add:'Jorge'.
+	
+	self assertIfFilteringWith:'Jor' to:stackWithOneElement returns: colectionWithOneString andCheckIfTheStackIsTheSameWIth:stackWithOneElementCopy .! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LP 4/23/2023 23:07:17'!
+test04UnStackPobladoFiltradoConUnPrefijoComunDevuelveUnaColeccionCorrecta
+
+	|abcColection|
+	
+	abcColection := OrderedCollection new.
+	abcColection add:'abcdef'.
+	abcColection add:'abcdd'.
+	abcColection add:'abcde'.
+	abcColection add:'abcd'.
+	abcColection add:'abc'.
+	
+	self assertIfFilteringWith: 'abc' to:stackWithManyElement returns: abcColection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .
+	
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LP 4/23/2023 23:07:44'!
+test05UnStackFiltradoConUnPrefijoDeUnaSolaSentenciaDevuelveUnaColeccionCorrecta
+
+	|abcColection|
+	
+	abcColection := OrderedCollection new.
+	abcColection add:'abcdef'.
+	
+	self assertIfFilteringWith:'abcdef' to:stackWithManyElement returns: abcColection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .
+! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LP 4/23/2023 23:08:17'!
+test06FIltrarElStackSinElementosConElPrefijoDevuelveUnaColeccionVacia
+"¿es necesario?"
+	
+	"self assert:(finder filter:stackWithManyElement byPrefix:'jorge' ) equals:emptyColection .
+	self assert: (self thisStack:stackWithManyElement isEqualTo:stackWithManyElementCopy).	"
+	
+	self assertIfFilteringWith:'jorge' to:stackWithManyElement returns: emptyColection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LP 4/23/2023 23:08:51'!
+test07UnStackFiltradoConAlgunasSentenciasConUnPrefijoDevuelveUnaColeccionCorrecta
+
+	|abcColection|
+	
+	abcColection := OrderedCollection new.
+	abcColection add:'abcdef'.
+	abcColection add:'abcde'.
+
+	self assertIfFilteringWith:'abcde'  to:stackWithManyElement returns: abcColection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'LP 4/23/2023 23:09:15'!
+test08UnStackDondeTodosLosElementosCompartenUnPrefijoMenosUnoDevuelveUnaColeccionCorrecta
+
+	|abcColection|
+	
+	abcColection := OrderedCollection new.
+	abcColection add:'abcdef'.
+	abcColection add:'abcdd'.
+	abcColection add:'abcde'.
+	abcColection add:'abcd'.
+
+	self assertIfFilteringWith:'abcd'  to:stackWithManyElement returns: abcColection andCheckIfTheStackIsTheSameWIth:stackWithManyElementCopy .
+	! !
+
+
+!SentenceFinderByPrefixTest methodsFor: 'auxiliar' stamp: 'LP 4/23/2023 23:04:04'!
+assertIfFilteringWith:aFilter to:aStack returns:aColection andCheckIfTheStackIsTheSameWIth:aStackCopy  
+
+	self assert:(finder filter:aStack byPrefix:aFilter) equals:aColection.
+	self assert: (self thisStack:aStack isEqualTo:aStackCopy).	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'auxiliar' stamp: 'LP 4/23/2023 20:23:57'!
+thisStack: aStack1 hasTheSameElementsAs:aStack2
+	|element1 element2 result|
+	
+	(aStack1 isEmpty) ifTrue:[^true]. 
+	element1 := aStack1 pop.
+	element2 := aStack2 pop.
+	result := (element1 = element2 ) and:(self thisStack:aStack1 hasTheSameElementsAs:aStack2).
+	aStack1 push: element1.
+	aStack2 push: element2.
+	^result
+	
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'auxiliar' stamp: 'LP 4/23/2023 20:23:57'!
+thisStack:aStack1 isEqualTo:aStack2
+	
+	(aStack1 size = aStack2 size) ifFalse: [^false].
+	^ self thisStack:aStack1 hasTheSameElementsAs:aStack2
+	! !
 
 
 !classDefinition: #OONode category: 'Stack-Exercise'!
@@ -152,33 +360,17 @@ Object subclass: #OONode
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OONode methodsFor: 'accesing' stamp: 'LP 4/21/2023 16:27:20'!
-getNextNodeFailIfAbsent
-	^next! !
+!OONode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:36:46'!
+getNextNodeFailIfAbsent: stack
+	^ self subclassResponsibility ! !
 
-!OONode methodsFor: 'accesing' stamp: 'LP 4/21/2023 16:26:37'!
-getValueFailIfAbsent
- 	^value! !
+!OONode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:38:36'!
+getValueFailIfAbsent: stack
+ 	^ self subclassResponsibility ! !
 
-!OONode methodsFor: 'accesing' stamp: 'LP 4/21/2023 16:25:13'!
+!OONode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:26:00'!
 isEmpty
-	^false! !
-
-
-!OONode methodsFor: 'initialization' stamp: 'LP 4/21/2023 16:06:25'!
-initializeWith:aElement pointingTo:aNode
-	next:=aNode.
-	value := aElement! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'OONode class' category: 'Stack-Exercise'!
-OONode class
-	instanceVariableNames: ''!
-
-!OONode class methodsFor: 'as yet unclassified' stamp: 'LP 4/21/2023 16:07:21'!
-with:anElement next:nextReference
-	^self new initializeWith:anElement  pointingTo:nextReference ! !
+	^self subclassResponsibility ! !
 
 
 !classDefinition: #OOAbsentNode category: 'Stack-Exercise'!
@@ -188,17 +380,53 @@ OONode subclass: #OOAbsentNode
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOAbsentNode methodsFor: 'accesing' stamp: 'LP 4/21/2023 16:27:21'!
-getNextNodeFailIfAbsent
-	^ self error: OOStack stackEmptyErrorDescription ! !
+!OOAbsentNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:42:40'!
+getNextNodeFailIfAbsent: stack
+	^ stack accesingEmptyElement! !
 
-!OOAbsentNode methodsFor: 'accesing' stamp: 'LP 4/21/2023 16:26:37'!
-getValueFailIfAbsent
-	^ self error: OOStack stackEmptyErrorDescription ! !
+!OOAbsentNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:42:40'!
+getValueFailIfAbsent: stack
+	^ stack accesingEmptyElement ! !
 
-!OOAbsentNode methodsFor: 'accesing' stamp: 'LP 4/21/2023 16:25:13'!
+!OOAbsentNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:25:47'!
 isEmpty
-	^true! !
+	^ true! !
+
+
+!classDefinition: #OOLinkNode category: 'Stack-Exercise'!
+OONode subclass: #OOLinkNode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!OOLinkNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:36:46'!
+getNextNodeFailIfAbsent: stack
+	^next! !
+
+!OOLinkNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:38:36'!
+getValueFailIfAbsent: stack
+ 	^value! !
+
+!OOLinkNode methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:21:58'!
+isEmpty
+	^false! !
+
+
+!OOLinkNode methodsFor: 'initialization' stamp: 'LP 4/23/2023 23:21:47'!
+initializeWith:aElement pointingTo:aNode
+	next:=aNode.
+	value := aElement! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'OOLinkNode class' category: 'Stack-Exercise'!
+OOLinkNode class
+	instanceVariableNames: ''!
+
+!OOLinkNode class methodsFor: 'as yet unclassified' stamp: 'LP 4/23/2023 23:20:53'!
+with:anElement next:nextReference
+	^self new initializeWith:anElement  pointingTo:nextReference ! !
 
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
@@ -217,28 +445,28 @@ isEmpty
 size
 	^lenght! !
 
-!OOStack methodsFor: 'accesing' stamp: 'LP 4/21/2023 16:29:10'!
+!OOStack methodsFor: 'accesing' stamp: 'LP 4/23/2023 23:38:36'!
 top
 	
-	^top getValueFailIfAbsent! !
+	^top getValueFailIfAbsent: self! !
 
 
-!OOStack methodsFor: 'private' stamp: 'LP 4/21/2023 16:34:26'!
+!OOStack methodsFor: 'private' stamp: 'LP 4/23/2023 23:36:46'!
 changeTop
 	|nextTop|
 	
-	nextTop := top getNextNodeFailIfAbsent.
+	nextTop := top getNextNodeFailIfAbsent: self.
 	top := nextTop.
 	lenght := lenght-1.
 ! !
 
 
-!OOStack methodsFor: 'adding' stamp: 'LP 4/21/2023 16:29:05'!
+!OOStack methodsFor: 'adding' stamp: 'LP 4/23/2023 23:23:47'!
 push: anElement
 	|newTop|
 	
 	lenght :=lenght +1. 
-	newTop := OONode with:anElement next:top.
+	newTop := OOLinkNode with:anElement next:top.
 	top:=newTop.! !
 
 
@@ -262,6 +490,10 @@ pop
 	
 	! !
 
+
+!OOStack methodsFor: 'initialization' stamp: 'LP 4/23/2023 23:42:40'!
+accesingEmptyElement
+	^self error: self class stackEmptyErrorDescription ! !
 
 !OOStack methodsFor: 'initialization' stamp: 'LP 4/21/2023 15:34:25'!
 initialize
@@ -287,3 +519,68 @@ Object subclass: #SentenceFinderByPrefix
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'LP 4/23/2023 19:32:25'!
+add:aElement to:aColection ifItHasAsAPrefix:aPrefix
+	
+	(aElement beginsWith: aPrefix) ifTrue:[aColection add: aElement]! !
+
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'LP 4/23/2023 19:32:18'!
+checkIfAStackOfStrings:aStack
+	|element|
+	
+	(aStack isEmpty) ifFalse:[ 
+		element:= aStack pop.
+		
+		(element isKindOf: String)
+		 ifFalse:[
+			^self makeExceptionAndPush: element into: aStack].
+		
+		[self checkIfAStackOfStrings: aStack]
+			on: Error
+			do:[^ self makeExceptionAndPush: element into: aStack].	
+			aStack push: element.
+		].! !
+
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'LP 4/23/2023 19:56:21'!
+collectAllStringsIn: aStackOfStrings withPrefix:aPrefix into: aColectionToFill
+	|element|
+	
+	(aStackOfStrings isEmpty) ifFalse:[ 
+		
+		element:= aStackOfStrings pop.
+		self add:element  to:aColectionToFill  ifItHasAsAPrefix: aPrefix.
+		self collectAllStringsIn: aStackOfStrings withPrefix:aPrefix into: aColectionToFill.
+		aStackOfStrings push: element.
+		]! !
+
+!SentenceFinderByPrefix methodsFor: 'private' stamp: 'LP 4/23/2023 19:29:02'!
+makeExceptionAndPush: anElement into: aStack
+	aStack push: anElement.
+	^Error signal! !
+
+
+!SentenceFinderByPrefix methodsFor: 'filtering' stamp: 'LP 4/23/2023 20:31:26'!
+filter:aStack byPrefix:aPrefix
+
+	|stringsWithSamePrefix|
+	stringsWithSamePrefix := OrderedCollection new.
+	
+	[self checkIfAStackOfStrings: aStack]
+		on: Error
+		do:[^self error: self class elementIsNotString ].
+		
+	self collectAllStringsIn: aStack withPrefix:aPrefix into: stringsWithSamePrefix.
+	^stringsWithSamePrefix
+! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
+SentenceFinderByPrefix class
+	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'LP 4/23/2023 16:30:25'!
+elementIsNotString
+
+	^'An elment in the stack is not a String!!!!!!!!!!!!!!!!!!!!!!!!!!!! :('! !
