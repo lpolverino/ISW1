@@ -1,0 +1,27 @@
+clase 18/05
+
+3 formas de resolver problemas recurrentes
+
+
+				 lenguage| genericos/dom problema| concretas/abstractas
+	---------|-----					|-------------- -|------------------------
+	1. Idioms			|       si		|		genericas			 | concretas
+	2. patterns			|	no	|		genericas        		 | abstractas / 
+	3  framework			|	si	|		dependiente			 | concretos
+
+file open, puede tener un excepcion durante el uso y no se cierra el archivo, esto puede ser solucionado GarbageCollector. Asegurarse que le archivo se cierre siempre / ensure, finnally, try,/
+idiom: solucion particular dependiente del lenguaje aproblemas recurrentes
+
+ORM conjunto de clases quese encargan de mapaer objetos en basesdedatos relacional. frmawork. Categorizados segun su madurez
+	-Generan codigos
+	-Caja blanca: para instanciarlos neceseitas subclasificar, osea si o si necesitamos conocer la implementacion
+	-caja negra: para instanciar el framework hay que instanciar sus clases
+los frameworks realizan inversion de control, el control lo tienen el framework, toman control de la ejecucion.
+
+Patrones, hay que programarlos cada vez que se usan.
+<name 1er,intention 2do> sintetixan el propoisito y objetivo del patron.
+<estructura ultima> casi todos tienen la misma estructura.
+<know uses 3ra> muestran que fue utilizado en distintos contextos exitosamente dandote seguridad.
+
+subclasificacion accidental/ error de la moraleja
+decorator agregar funcionalidad ortogonal al objeto dinamicamente/ en tiempo de ejecucion/
