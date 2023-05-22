@@ -1,0 +1,74 @@
+composite patron
+otro libro de patrones: "dising pattern smalltalk companion"
+become: swapear referencias en smalltalk para pasar de version.
+method wrappers: de envez de decorar le agrego a un metodo una segunda funcionalidad que termina llendo al meotodo original(solucion a nivel metodo no objeto).
+no hay problemas en el decorator en lenguages de prototipacion.
+decorator no usan nad definido en su superclase
+tipado dinamico estructural, los nombres  de la clase no importan sino los metodosque saben responder.
+-----------------------otro Problema------------------------------------
+
+aCustomer:
+	let firstname
+	let lastName
+
+instancia de la clase Customer
+
+textFill class:
+	def model
+	def show : aCanvas
+
+show: aCanvas:
+	-----
+	model showable
+
+aTextFill
+	model : aCustomer
+instancia de textfilll
+
+termina en messageDontUNderstand
+
+no podemos  definir el metodo agrega acomplamiento y tampoco resuleve
+tampoco podemos subclasificar por que habria que cambiar aCustomer(no polimorfico) 
+
+adaptater Patron: Traductor entre objetos que inicialmente no podrian hablar entre ellos
+
+aTextFill:
+	model referencia a aCustomerTOModelAdapter
+
+se madara al modelo el mensaje y se lo pasara al customer.
+el adapter no es polimorfica con el "decoratee", ademas no agrega funcionalidad, sino protocolos
+no tiene sentido tener una cadena de adapters
+los adapters tienen una relacion 1 a 1, por ende se pobla rapidamente. POdemos usar  la analogia de adaptador de enchufes. Configuras el adaptador mediante adaptadorUniversal como clase unica. PluggableAdapter. Redefine el messageDontUnderstand metiendo en un diccionario el message con su selector como clave y un closure como valor.
+superclases ProtoObject, ya que implementa mucho menos mensajes y termine con mensajes que no pueda cambiar.
+no agrega complejidad
+
+lazy inizialization(tecnica): inicia la variable la primera vez que se necesita. Para algo que cueste traer o tenga mucha memoria
+
+phones 
+	phones isNIl ifTrue[phones := PhonesBook phonesFor: self]
+	^phones
+
+phoneFor : aCustomer
+^ algunos telefonos
+--------------------------Otro Problema--------------------
+
+un segundo lazy inizialization genera codigo repetido. cambia en el parametro y como se inicializa
+objeto que se encargue de solucionar esto.
+Proxy pattern: sustituto, controla el acceso 
+
+phones := LazyInitProxxy initBlock:[PhonesBook phoneFor: self] (inicializacion)
+phones
+	^phones value.
+
+
+cuando enviamos phones se le envia el valor al proxy y inicializa como lo habremos configuramos.
+no agrega funcionalidad, solo contorla acceso.
+meta patron, pero hay distintos tipos de proxy,(objetos remotos, objetos por demanda para no sobrecargar la memoria)
+
+proxys polimorficos con el objeto proxeados y no polimorficos.
+para que sea polimorfico se necesita redefinir el mensaje doesNotUnderstand
+
+
+estructuralmente wrapean otro objeto, disfieren en el proposito mayormente.
+
+become para desproxear.
