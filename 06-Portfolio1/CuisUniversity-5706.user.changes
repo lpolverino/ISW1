@@ -66898,3 +66898,2599 @@ PASSED!
 PASSED!
 
 ----QUIT----(21 May 2023 18:53:32) CuisUniversity-5706.image priorSource: 11131013!
+
+----STARTUP---- (21 May 2023 23:11:48) as C:\Users\juanb\Desktop\facultad\1C23\IS1\cuisUni\windows64 - Copy\CuisUniversity-5706.image!
+
+!Portfolio methodsFor: 'adding' stamp: 'jb 5/21/2023 23:12:58'!
+addParent: aPortfolio
+	parents add: aPortfolio ! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:12:59' prior: 50684713!
+add: aFinancialElementToAdd 
+		self checkIfItCanAddThisFinancialElement:  aFinancialElementToAdd . 
+		financialElements  add: aFinancialElementToAdd. 
+		(aFinancialElementToAdd  isKindOf:  Portfolio ) ifTrue: [
+			aFinancialElementToAdd  addParent: self. 
+			]! !
+
+!methodRemoval: Portfolio #changeFather: stamp: 'jb 5/21/2023 23:12:59'!
+changeFather: aPortfolio
+	parents add: aPortfolio !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:13:01'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:13:02'!
+PASSED!
+!Portfolio methodsFor: 'adding' stamp: 'jb 5/21/2023 23:17:16' prior: 50687288!
+add: aFinancialElementToAdd 
+		self checkIfItCanAddThisFinancialElement:  aFinancialElementToAdd . 
+		financialElements  add: aFinancialElementToAdd. 
+		aFinancialElementToAdd addToPortfoliosThatHaveThisFinancialElement: self.  ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:17:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:17:19'!
+ERROR!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:17:21'!
+ERROR!
+!ReceptiveAccount methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:17:29'!
+addToPortfoliosThatHaveThisFinancialElement: aPortfolio 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:17:45' prior: 50687444!
+addToPortfoliosThatHaveThisFinancialElement: aPortfolio ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:17:49'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:17:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:17:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:17:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:17:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:17:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:17:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:17:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:17:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:17:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:17:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:17:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:17:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:17:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:17:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:17:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:17:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:17:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:17:51'!
+ERROR!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:17:54'!
+ERROR!
+!Portfolio methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:17:59'!
+addToPortfoliosThatHaveThisFinancialElement: aPortfolio 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:18:06' prior: 50687522!
+addToPortfoliosThatHaveThisFinancialElement: aPortfolio 
+	parents add: aPortfolio ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:18:09'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:18:10'!
+PASSED!
+
+!methodRemoval: Portfolio #addParent: stamp: 'jb 5/21/2023 23:18:25'!
+addParent: aPortfolio
+	parents add: aPortfolio !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jb 5/21/2023 23:19:12'!
+FinancialElement subclass: #Portfolio
+	instanceVariableNames: 'financialElements portfoliosThatHasThisPortfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:19:12' prior: 50686440!
+roots
+	|collectionOfRoots| 
+	collectionOfRoots  := OrderedCollection new. 
+ 	portfoliosThatHasThisPortfolio  ifEmpty: [
+		collectionOfRoots  add:self .
+		^collectionOfRoots 
+		].
+	portfoliosThatHasThisPortfolio  do:[:aParent|
+		collectionOfRoots  addAll:  aParent  roots. 
+		
+		]. 
+	^collectionOfRoots  ! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:19:12' prior: 50685963 overrides: 16920235!
+initialize
+financialElements  := OrderedCollection new. 
+	
+portfoliosThatHasThisPortfolio := OrderedCollection  new. 
+! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:19:12' prior: 50687528!
+addToPortfoliosThatHaveThisFinancialElement: aPortfolio 
+	portfoliosThatHasThisPortfolio add: aPortfolio ! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jb 5/21/2023 23:32:52'!
+FinancialElement subclass: #Portfolio
+	instanceVariableNames: 'financialElements portfoliosThatHasThisPortfolio portfolioHirarchy'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:32:50' prior: 50687610!
+roots
+	"
+	|collectionOfRoots| 
+	collectionOfRoots  := OrderedCollection new. 
+ 	portfoliosThatHasThisPortfolio  ifEmpty: [
+		collectionOfRoots  add:self .
+		^collectionOfRoots 
+		].
+	portfoliosThatHasThisPortfolio  do:[:aParent|
+		collectionOfRoots  addAll:  aParent  roots. 
+		
+		].  "
+	^portfolioHirarchy allRoots.  ! !
+
+!classDefinition: #PortfolioHirarchy category: 'Portfolio-Ejercicio' stamp: 'jb 5/21/2023 23:33:35'!
+Object subclass: #PortfolioHirarchy
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'initialization' stamp: 'jb 5/21/2023 23:33:27' prior: 50687624 overrides: 16920235!
+initialize
+financialElements  := OrderedCollection new. 
+	
+portfoliosThatHasThisPortfolio := OrderedCollection  new. 
+portfolioHirarchy  := PortfolioHirarchy of: self. ! !
+!PortfolioHirarchy class methodsFor: 'nil' stamp: 'jb 5/21/2023 23:34:19'!
+of: aPortfolioToStablishHirarchy
+	^self new intializeWith: aPortfolioToStablishHirarchy ! !
+
+PortfolioHirarchy subclass: #PortfolioRoot
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioRoot category: 'Portfolio-Ejercicio' stamp: 'jb 5/21/2023 23:35:30'!
+PortfolioHirarchy subclass: #PortfolioRoot
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+PortfolioHirarchy subclass: #PortfolioBranched
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioBranched category: 'Portfolio-Ejercicio' stamp: 'jb 5/21/2023 23:35:38'!
+PortfolioHirarchy subclass: #PortfolioBranched
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioHirarchy class methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:36:00' prior: 50687677!
+of: aPortfolioToStablishHirarchy
+	^PortfolioRoot new intializeWith: aPortfolioToStablishHirarchy ! !
+
+!classDefinition: 'PortfolioRoot class' category: 'Portfolio-Ejercicio' stamp: 'jb 5/21/2023 23:36:50'!
+PortfolioRoot class
+	instanceVariableNames: 'portfolio'!
+!PortfolioRoot class methodsFor: 'nil' stamp: 'jb 5/21/2023 23:36:48'!
+initializeWith: aPortfolioToStablishHirarchy
+	portfolio := aPortfolioToStablishHirarchy 
+	! !
+!PortfolioRoot class methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:38:14'!
+add: aPortfolioUpInTheHirarchy
+	^PortfolioBranched  of: portfolio  with: aPortfolioUpInTheHirarchy 
+	! !
+!PortfolioBranched class methodsFor: 'nil' stamp: 'jb 5/21/2023 23:39:04'!
+of: aPortfolioToMakeHirarchy with: aPortfolioToBeginHirarchy 
+	^ self new initializeWith: aPortfolioToMakeHirarchy  and: aPortfolioToBeginHirarchy  ! !
+
+!classDefinition: #PortfolioBranched category: 'Portfolio-Ejercicio' stamp: 'jb 5/21/2023 23:40:40'!
+PortfolioHirarchy subclass: #PortfolioBranched
+	instanceVariableNames: 'portfolioChild'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioBranched category: 'Portfolio-Ejercicio' stamp: 'jb 5/21/2023 23:40:41'!
+PortfolioHirarchy subclass: #PortfolioBranched
+	instanceVariableNames: 'portfolioChild parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioBranched methodsFor: 'nil' stamp: 'jb 5/21/2023 23:40:46'!
+initializeWith: aPortfolioToMakeHirarchy  and: aPortfolioToBeginHirarchy
+	portfolioChild := aPortfolioToMakeHirarchy  . 
+	parents := OrderedCollection  new. 
+	parents  add: aPortfolioToBeginHirarchy ! !
+!PortfolioHirarchy methodsFor: 'nil' stamp: 'jb 5/21/2023 23:42:26'!
+allRoots 
+	self subclassResponsibility ! !
+!PortfolioRoot methodsFor: 'no messages' stamp: 'jb 5/21/2023 23:43:28' overrides: 50687766!
+allRoots 
+	 ^OrderedCollection  new! !
+
+!methodRemoval: PortfolioRoot class #initializeWith: stamp: 'jb 5/21/2023 23:43:51'!
+initializeWith: aPortfolioToStablishHirarchy
+	portfolio := aPortfolioToStablishHirarchy 
+	!
+
+!classDefinition: #PortfolioRoot category: 'Portfolio-Ejercicio' stamp: 'jb 5/21/2023 23:44:07'!
+PortfolioHirarchy subclass: #PortfolioRoot
+	instanceVariableNames: 'portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioRoot methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:44:06'!
+initializeWith: aPortfolioToStablishHirarchy
+	portfolio := aPortfolioToStablishHirarchy 
+	! !
+
+!methodRemoval: PortfolioRoot class #add: stamp: 'jb 5/21/2023 23:44:17'!
+add: aPortfolioUpInTheHirarchy
+	^PortfolioBranched  of: portfolio  with: aPortfolioUpInTheHirarchy 
+	!
+!PortfolioRoot methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:44:24'!
+add: aPortfolioUpInTheHirarchy
+	^PortfolioBranched  of: portfolio  with: aPortfolioUpInTheHirarchy 
+	! !
+!PortfolioRoot class methodsFor: 'no messages' stamp: 'jb 5/21/2023 23:45:01' overrides: 50687709!
+of: aPortfolioToMakeHirarchy
+	^self new initializeWith:  aPortfolioToMakeHirarchy ! !
+!PortfolioRoot methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:45:23' prior: 50687771 overrides: 50687766!
+allRoots 
+	 ^OrderedCollection  with:  portfolio ! !
+!PortfolioBranched methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:46:14'!
+add: aPortfolioToAddToHirarchy
+	parents  add: aPortfolioToAddToHirarchy ! !
+!PortfolioBranched methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:48:15' overrides: 50687766!
+allRoots
+	|collectionOfRoots|
+	collectionOfRoots  := OrderedCollection  new. 
+	parents  do: [:aParentPortfolio|
+		collectionOfRoots  addAll:  aParentPortfolio  roots
+		]
+	^collectionOfRoots ! !
+!Portfolio methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:48:55' prior: 50687631!
+addToPortfoliosThatHaveThisFinancialElement: aPortfolio 
+	portfoliosThatHasThisPortfolio add: aPortfolio .
+	portfolioHirarchy  := portfolioHirarchy add: aPortfolio ! !
+!PortfolioBranched methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:49:07' prior: 50687820!
+add: aPortfolioToAddToHirarchy
+	parents  add: aPortfolioToAddToHirarchy. 
+	^self! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:49:13'!
+ERROR!
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:49:17'!
+ERROR!
+!PortfolioHirarchy class methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:49:55' prior: 50687709!
+of: aPortfolioToStablishHirarchy
+	^PortfolioRoot new initializeWith: aPortfolioToStablishHirarchy ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:50:00'!
+FAILURE!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:50:00'!
+FAILURE!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:50:00'!
+ERROR!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:50:00'!
+ERROR!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:50:00'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:50:00'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:50:02'!
+FAILURE!
+!PortfolioBranched methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:50:29' prior: 50687826 overrides: 50687766!
+allRoots
+	|collectionOfRoots|
+	collectionOfRoots  := OrderedCollection  new. 
+	parents  do: [:aParentPortfolio|
+		collectionOfRoots  addAll:  aParentPortfolio  roots
+		].
+	^collectionOfRoots ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:50:32'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:50:33'!
+PASSED!
+!Portfolio methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:50:54' prior: 50687835!
+addToPortfoliosThatHaveThisFinancialElement: aPortfolio 
+
+	portfolioHirarchy  := portfolioHirarchy add: aPortfolio ! !
+!Portfolio methodsFor: 'initialization' stamp: 'jb 5/21/2023 23:51:00' prior: 50687669 overrides: 16920235!
+initialize
+financialElements  := OrderedCollection new. 
+	
+
+portfolioHirarchy  := PortfolioHirarchy of: self. ! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jb 5/21/2023 23:51:13'!
+FinancialElement subclass: #Portfolio
+	instanceVariableNames: 'financialElements portfolioHirarchy'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:52:22'!
+addToPortfoliosInTheHirarchy: aPortfolio 
+
+	portfolioHirarchy  := portfolioHirarchy add: aPortfolio ! !
+!ReceptiveAccount methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:52:22'!
+addToPortfoliosInTheHirarchy: aPortfolio ! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jb 5/21/2023 23:52:22' prior: 50687367!
+add: aFinancialElementToAdd 
+		self checkIfItCanAddThisFinancialElement:  aFinancialElementToAdd . 
+		financialElements  add: aFinancialElementToAdd. 
+		aFinancialElementToAdd addToPortfoliosInTheHirarchy: self.  ! !
+
+!methodRemoval: Portfolio #addToPortfoliosThatHaveThisFinancialElement: stamp: 'jb 5/21/2023 23:52:22'!
+addToPortfoliosThatHaveThisFinancialElement: aPortfolio 
+
+	portfolioHirarchy  := portfolioHirarchy add: aPortfolio !
+
+!methodRemoval: ReceptiveAccount #addToPortfoliosThatHaveThisFinancialElement: stamp: 'jb 5/21/2023 23:52:22'!
+addToPortfoliosThatHaveThisFinancialElement: aPortfolio !
+!Portfolio methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:55:35' prior: 50686156!
+checkIfItCanAddThisFinancialElement: aFinancialElementToAdd
+	
+	
+	(self roots ) do: [:aRoot |
+		(aRoot doesAnyOfItsElementsHasAnAccountInCommonWith:  aFinancialElementToAdd ) ifTrue: [
+			self error: self class cannotAddAlreadyExistingAccount 
+		]
+	].
+	(self doesAnyOfItsElementsHasAnAccountInCommonWith:  aFinancialElementToAdd notStoppingBy: self) ifTrue: [
+			self error: self class cannotAddAlreadyExistingAccount 
+		]! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:55:36'!
+PASSED!
+!Portfolio methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:55:47' prior: 50688119!
+checkIfItCanAddThisFinancialElement: aFinancialElementToAdd
+	
+	
+	(self roots ) do: [:aRoot |
+		(aRoot doesAnyOfItsElementsHasAnAccountInCommonWith:  aFinancialElementToAdd ) ifTrue: [
+			self error: self class cannotAddAlreadyExistingAccount 
+		]
+	].! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:55:48'!
+PASSED!
+!Portfolio methodsFor: 'adding private' stamp: 'jb 5/21/2023 23:57:29' prior: 50688199!
+checkIfItCanAddThisFinancialElement: aFinancialElementToAdd
+	(portfolioHirarchy  doesAnyElementInHirarchyHaveAnAccountInCommonWith: aFinancialElementToAdd ) ifTrue:  [
+			self error: self class cannotAddAlreadyExistingAccount 
+		]
+	
+	! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:57:37'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:57:37'!
+ERROR!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:57:37'!
+ERROR!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:57:37'!
+ERROR!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:57:37'!
+ERROR!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:57:38'!
+ERROR!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:57:39'!
+ERROR!
+!PortfolioHirarchy methodsFor: 'hirarchy' stamp: 'jb 5/21/2023 23:57:47'!
+doesAnyElementInHirarchyHaveAnAccountInCommonWith: aFinancialElementToAdd 
+	self shouldBeImplemented.! !
+!PortfolioHirarchy methodsFor: 'hirarchy' stamp: 'jb 5/21/2023 23:57:52' prior: 50688351!
+doesAnyElementInHirarchyHaveAnAccountInCommonWith: aFinancialElementToAdd 
+	self subclassResponsibility ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:57:56'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:57:56'!
+ERROR!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:57:58'!
+ERROR!
+!PortfolioRoot methodsFor: 'hirarchy' stamp: 'jb 5/21/2023 23:58:06' overrides: 50688358!
+doesAnyElementInHirarchyHaveAnAccountInCommonWith: aFinancialElementToAdd 
+	self shouldBeImplemented.! !
+!PortfolioRoot methodsFor: 'hirarchy' stamp: 'jb 5/21/2023 23:58:17' prior: 50688432 overrides: 50688358!
+doesAnyElementInHirarchyHaveAnAccountInCommonWith: aFinancialElementToAdd 
+	portfolio  doesAnyOfItsElementsHasAnAccountInCommonWith:  aFinancialElementToAdd ! !
+!PortfolioRoot methodsFor: 'hirarchy' stamp: 'jb 5/21/2023 23:58:24' prior: 50688439 overrides: 50688358!
+doesAnyElementInHirarchyHaveAnAccountInCommonWith: aFinancialElementToAdd 
+	^portfolio  doesAnyOfItsElementsHasAnAccountInCommonWith:  aFinancialElementToAdd ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:58:27'!
+FAILURE!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/21/2023 23:58:27'!
+FAILURE!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/21/2023 23:58:27'!
+ERROR!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/21/2023 23:58:27'!
+ERROR!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/21/2023 23:58:27'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/21/2023 23:58:28'!
+ERROR!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/21/2023 23:58:30'!
+FAILURE!
+!PortfolioBranched methodsFor: 'as yet unclassified' stamp: 'jb 5/22/2023 00:00:59' overrides: 50688358!
+doesAnyElementInHirarchyHaveAnAccountInCommonWith: aFinancialElementToAdd 
+	^self allRoots  anySatisfy: [:aPortfolioRoot|
+		aPortfolioRoot  doesItHaveAnAccountInCommonWith:  aFinancialElementToAdd 
+		]! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 00:01:05'!
+PASSED!
+!PortfolioBranched methodsFor: 'as yet unclassified' stamp: 'jb 5/22/2023 00:02:53' prior: 50687990 overrides: 50687766!
+allRoots
+	|collectionOfRoots|
+	collectionOfRoots  := OrderedCollection  new. 
+	parents  do: [:aParentPortfolio|
+		collectionOfRoots  addAll:  aParentPortfolio  allRoots
+		].
+	^collectionOfRoots ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 00:02:58'!
+FAILURE!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 00:02:58'!
+FAILURE!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 00:02:58'!
+ERROR!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 00:02:58'!
+ERROR!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 00:02:58'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 00:02:58'!
+ERROR!
+!PortfolioBranched methodsFor: 'as yet unclassified' stamp: 'jb 5/22/2023 00:03:18' prior: 50688597 overrides: 50687766!
+allRoots
+	|collectionOfRoots|
+	collectionOfRoots  := OrderedCollection  new. 
+	parents  do: [:aParentPortfolio|
+		collectionOfRoots  addAll:  aParentPortfolio  roots 
+		].
+	^collectionOfRoots ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 00:03:22'!
+PASSED!
+!Portfolio methodsFor: 'adding private' stamp: 'jb 5/22/2023 00:03:42' prior: 50687647!
+roots
+	
+	^portfolioHirarchy allRoots.  ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 00:03:44'!
+PASSED!
+
+----QUIT----(22 May 2023 00:04:26) CuisUniversity-5706.image priorSource: 11380008!
+
+----STARTUP---- (22 May 2023 11:54:07) as C:\Users\juanb\Desktop\facultad\1C23\IS1\cuisUni\windows64 - Copy\CuisUniversity-5706.image!
+
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 11:54:17'!
+PASSED!
+!PortfolioHirarchy methodsFor: 'hirarchy' stamp: 'jb 5/22/2023 11:55:23'!
+add:aPortfolioToAddInTheHirarchy
+	self subclassResponsibility  ! !
+
+Object subclass: #PortfolioHirarchy
+	instanceVariableNames: 'portfolioInTheCenterOfTheHirarchy'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PortfolioHirarchy category: 'Portfolio-Ejercicio' stamp: 'jb 5/22/2023 11:57:13'!
+Object subclass: #PortfolioHirarchy
+	instanceVariableNames: 'portfolioInTheCenterOfTheHirarchy'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioHirarchy methodsFor: 'hirarchy' stamp: 'jb 5/22/2023 11:57:40'!
+initializeWith: aPortfolio
+	portfolioInTheCenterOfTheHirarchy  := aPortfolio ! !
+
+!methodRemoval: PortfolioRoot #initializeWith: stamp: 'jb 5/22/2023 11:58:10'!
+initializeWith: aPortfolioToStablishHirarchy
+	portfolio := aPortfolioToStablishHirarchy 
+	!
+!PortfolioRoot methodsFor: 'adding' stamp: 'jb 5/22/2023 11:58:19' prior: 50687801 overrides: 50688882!
+add: aPortfolioUpInTheHirarchy
+	^PortfolioBranched  of: portfolioInTheCenterOfTheHirarchy  with: aPortfolioUpInTheHirarchy 
+	! !
+!PortfolioRoot methodsFor: 'hirarchy' stamp: 'jb 5/22/2023 11:58:37' prior: 50687815 overrides: 50687766!
+allRoots 
+	 ^OrderedCollection  with:  portfolioInTheCenterOfTheHirarchy ! !
+!PortfolioRoot methodsFor: 'hirarchy' stamp: 'jb 5/22/2023 11:58:46' prior: 50688448 overrides: 50688358!
+doesAnyElementInHirarchyHaveAnAccountInCommonWith: aFinancialElementToAdd 
+	^portfolioInTheCenterOfTheHirarchy  doesAnyOfItsElementsHasAnAccountInCommonWith:  aFinancialElementToAdd ! !
+
+!classDefinition: #PortfolioRoot category: 'Portfolio-Ejercicio' stamp: 'jb 5/22/2023 11:58:55'!
+PortfolioHirarchy subclass: #PortfolioRoot
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PortfolioBranched methodsFor: 'initializing' stamp: 'jb 5/22/2023 11:59:21' prior: 50687757!
+initializeWith: aPortfolioToMakeHirarchy  and: aPortfolioToBeginHirarchy
+	parents := OrderedCollection  new. 
+	parents  add: aPortfolioToBeginHirarchy .
+	super initializeWith:  aPortfolioToMakeHirarchy ! !
+
+!classDefinition: #PortfolioBranched category: 'Portfolio-Ejercicio' stamp: 'jb 5/22/2023 11:59:48'!
+PortfolioHirarchy subclass: #PortfolioBranched
+	instanceVariableNames: 'parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:28:51'!
+PASSED!
+!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'jb 5/22/2023 12:32:27' prior: 50682981!
+test11|portfolio account portafolioToAdd register|
+
+portfolio := Portfolio new initialize.
+portafolioToAdd := Portfolio  new initialize. 
+account := ReceptiveAccount new.
+register :=  Deposit register: 100 on: account.
+
+portfolio add: account.
+
+self assert: ( portfolio  hasRegistered: register )! !
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:32:29'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:32:30'!
+PASSED!
+!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'jb 5/22/2023 12:32:37' prior: 50689026!
+test11|portfolio account  register|
+
+portfolio := Portfolio new initialize.
+
+account := ReceptiveAccount new.
+register :=  Deposit register: 100 on: account.
+
+portfolio add: account.
+
+self assert: ( portfolio  hasRegistered: register )! !
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:32:38'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:32:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:32:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:32:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:32:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:32:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:32:39'!
+PASSED!
+!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'jb 5/22/2023 12:33:14' prior: 50683047!
+test12|portfolio account register|
+
+portfolio := Portfolio new initialize.
+
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.register :=  Withdraw  register:  50  on:  ReceptiveAccount  new.
+
+portfolio add: account.
+
+self deny: ( portfolio  hasRegistered: register )! !
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:33:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:33:17'!
+PASSED!
+!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'jb 5/22/2023 12:33:54'!
+test19|portfolio account register|
+
+portfolio := Portfolio new initialize.
+
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.register :=  Withdraw  register:  50  on:  ReceptiveAccount  new.
+
+portfolio add: account.
+
+self deny: ( portfolio  hasRegistered: register )! !
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:33:55'!
+PASSED!
+!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'jb 5/22/2023 12:34:26' prior: 50689260!
+test19|portfolio  portfolioToAdd account register|
+
+portfolio := Portfolio new .portfolioToAdd  := Portfolio  new. 
+
+account := ReceptiveAccount new.
+Deposit register: 100 on: account.register :=  Withdraw  register:  50  on:  ReceptiveAccount  new.
+
+portfolio add: account.
+
+self deny: ( portfolio  hasRegistered: register )! !
+!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'jb 5/22/2023 12:35:17' prior: 50689341!
+test19|portfolio  portfolioToAdd account register|
+
+portfolio := Portfolio new .portfolioToAdd  := Portfolio  new. 
+
+account := ReceptiveAccount new.
+register:= Deposit register: 100 on: account.
+portfolioToAdd  add: account .
+portfolio add: portfolioToAdd .
+
+self assert: ( portfolio  hasRegistered: register )! !
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:35:19'!
+PASSED!
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:36:11'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:36:12'!
+PASSED!
+!Portfolio methodsFor: 'register' stamp: 'jb 5/22/2023 12:38:29' prior: 50678647 overrides: 50678306!
+hasRegistered: aRegister 
+|acc|
+	acc := false. 
+	 financialElements  do:[:aFinancialElement|
+		(aFinancialElement  isKindOf:ReceptiveAccount  ) ifTrue:  [
+				acc := acc or: ( aFinancialElement  hasRegistered:  aRegister)  
+			]
+		
+		].
+	 ^acc! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:38:30'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:38:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:38:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:38:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:38:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:38:31'!
+FAILURE!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:38:31'!
+FAILURE!
+!Portfolio methodsFor: 'register' stamp: 'jb 5/22/2023 12:40:24' prior: 50689503 overrides: 50678306!
+hasRegistered: aRegister 
+|acc|
+	acc := false. 
+	 financialElements  do:[:aFinancialElement|
+		(aFinancialElement  isKindOf:ReceptiveAccount  ) ifTrue:  [
+				acc := acc or: ( aFinancialElement  hasRegistered:  aRegister)  
+			]. 
+		(aFinancialElement  isKindOf:Portfolio  ) ifTrue: [
+				acc := acc or: ( aFinancialElement  hasRegistered:  aRegister)  
+			] 
+		
+		].
+	 ^acc! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:40:25'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:40:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:40:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:40:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:40:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:40:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:40:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:40:26'!
+PASSED!
+!Portfolio methodsFor: 'register' stamp: 'jb 5/22/2023 12:42:19' prior: 50689583 overrides: 50678306!
+hasRegistered: aRegister 
+	^financialElements  anySatisfy:  [:aFinancialElement|
+		aFinancialElement hasRegistered:  aRegister 
+		
+		]! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:42:21'!
+PASSED!
+!Portfolio methodsFor: 'register' stamp: 'jb 5/22/2023 12:42:26' prior: 50689664 overrides: 50678306!
+hasRegistered: aRegister 
+	^financialElements  anySatisfy:  [:aFinancialElement|
+		aFinancialElement hasRegistered:  aRegister 
+		]! !
+!Portfolio methodsFor: 'transactions' stamp: 'jb 5/22/2023 12:46:20' prior: 50687009 overrides: 50678315!
+transactions
+	|transactions|
+	transactions := OrderedCollection  new. 
+	financialElements  do: [:aFinancialElement|
+		(aFinancialElement  isKindOf:  ReceptiveAccount ) ifTrue:[
+			transactions  addAll:  aFinancialElement  transactions .	
+		
+			]
+		
+	].
+	^transactions ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:46:23'!
+PASSED!
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:46:26'!
+PASSED!
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 12:46:48'!
+test20
+
+|portfolio account register |
+
+portfolio := Portfolio new initialize .
+account := ReceptiveAccount new.
+register:=Deposit register: 100 on: account.
+
+portfolio add:account.
+
+self assert: (OrderedCollection   with: register  )equals: portfolio transactions .! !
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 12:47:41' prior: 50689889!
+test20
+
+|portfolio portfolioToAdd account register |
+portfolioToAdd := Portfolio  new. 
+portfolio := Portfolio new  .
+account := ReceptiveAccount new.
+register:=Deposit register: 100 on: account.
+
+portfolioToAdd add:account.portfolio  add: portfolioToAdd  .
+
+self assert: (OrderedCollection   with: register  )equals: portfolio transactions .! !
+
+!testRun: #PortfolioTest #test20 stamp: 'jb 5/22/2023 12:47:42'!
+FAILURE!
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 12:47:50' prior: 50689901!
+test20
+
+|portfolio portfolioToAdd account register |
+portfolioToAdd := Portfolio  new. 
+portfolio := Portfolio new .
+account := ReceptiveAccount new.
+register:=Deposit register: 100 on: account.
+
+portfolioToAdd add:account.portfolio  add: portfolioToAdd  .
+
+self assert: (OrderedCollection   with: register  )equals: portfolio transactions .! !
+!Portfolio methodsFor: 'transactions' stamp: 'jb 5/22/2023 12:48:13' prior: 50689746 overrides: 50678315!
+transactions
+	|transactions|
+	transactions := OrderedCollection  new. 
+	financialElements  do: [:aFinancialElement|
+		(aFinancialElement  isKindOf:  ReceptiveAccount ) ifTrue:[
+			transactions  addAll:  aFinancialElement  transactions .	
+		
+			].
+		(aFinancialElement  isKindOf:  Portfolio ) ifTrue:[
+			transactions  addAll:  aFinancialElement  transactions .	
+		
+			].
+	
+			
+	].
+	^transactions ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:48:16'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:48:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:48:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:48:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:48:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:48:17'!
+PASSED!
+
+!testRun: #PortfolioTest #test20 stamp: 'jb 5/22/2023 12:48:17'!
+PASSED!
+!Portfolio methodsFor: 'transactions' stamp: 'jb 5/22/2023 12:48:38' prior: 50689933 overrides: 50678315!
+transactions
+	|transactions|
+	transactions := OrderedCollection  new. 
+	financialElements  do: [:aFinancialElement|
+		transactions  addAll:  aFinancialElement  transactions 
+	
+			
+	].
+	^transactions ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+
+!testRun: #PortfolioTest #test20 stamp: 'jb 5/22/2023 12:48:39'!
+PASSED!
+!Portfolio methodsFor: 'transactions' stamp: 'jb 5/22/2023 12:53:51' prior: 50690018 overrides: 50678315!
+transactions
+	|transactions|
+	transactions := OrderedCollection  new. 
+	financialElements  do: [:aFinancialElement|
+		transactions  addAll:  aFinancialElement  transactions			
+	].
+	^transactions ! !
+
+!testRun: #PortfolioTest #test00PortofolioShouldStartWithBalanceIn0 stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test01addFirstAccountMakePortfolioBalanceEqualsToTheAccountBalance stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test02addAccountSHouldAddHisBalance stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test03addFirstAPortafolioMakeTheBalanceEqualsToTheAddedPoratafolioBalance stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test04addAPortafolioSHouldAddHisBalance stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test05addAAccountAlreadyInThePortfolioAccountsProducesError stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test11 stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test12 stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test13 stamp: 'jb 5/22/2023 12:53:52'!
+PASSED!
+
+!testRun: #PortfolioTest #test14 stamp: 'jb 5/22/2023 12:53:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test15 stamp: 'jb 5/22/2023 12:53:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test16 stamp: 'jb 5/22/2023 12:53:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test17 stamp: 'jb 5/22/2023 12:53:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test18 stamp: 'jb 5/22/2023 12:53:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test19 stamp: 'jb 5/22/2023 12:53:53'!
+PASSED!
+
+!testRun: #PortfolioTest #test20 stamp: 'jb 5/22/2023 12:53:53'!
+PASSED!
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 13:15:25'!
+test30
+
+| portfolioRoot      portfolioFather  portfolioChild account |portfolioRoot  := Portfolio new. 
+ 
+portfolioFather  := Portfolio  new.
+portfolioChild := Portfolio new  .
+
+account := ReceptiveAccount new.Deposit register: 100 on: account.
+
+portfolioRoot add:account.
+
+portfolioRoot  add: portfolioFather . 
+portfolioFather  add: portfolioChild . 
+
+
+self  should: [portfolioChild  add: account ] 
+	raise:  Error
+	withExceptionDo: [:anError|
+		self assert:  anError  messageText  equals: Portfolio  cannotAddAlreadyExistingAccount  
+		].
+	
+	
+
+
+! !
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 13:15:30'!
+test30BLA
+
+| portfolioRoot      portfolioFather  portfolioChild account |portfolioRoot  := Portfolio new. 
+ 
+portfolioFather  := Portfolio  new.
+portfolioChild := Portfolio new  .
+
+account := ReceptiveAccount new.Deposit register: 100 on: account.
+
+portfolioRoot add:account.
+
+portfolioRoot  add: portfolioFather . 
+portfolioFather  add: portfolioChild . 
+
+
+self  should: [portfolioChild  add: account ] 
+	raise:  Error
+	withExceptionDo: [:anError|
+		self assert:  anError  messageText  equals: Portfolio  cannotAddAlreadyExistingAccount  
+		].
+	
+	
+
+
+! !
+
+!methodRemoval: PortfolioTest #test30BLA stamp: 'jb 5/22/2023 13:15:34'!
+test30BLA
+
+| portfolioRoot      portfolioFather  portfolioChild account |portfolioRoot  := Portfolio new. 
+ 
+portfolioFather  := Portfolio  new.
+portfolioChild := Portfolio new  .
+
+account := ReceptiveAccount new.Deposit register: 100 on: account.
+
+portfolioRoot add:account.
+
+portfolioRoot  add: portfolioFather . 
+portfolioFather  add: portfolioChild . 
+
+
+self  should: [portfolioChild  add: account ] 
+	raise:  Error
+	withExceptionDo: [:anError|
+		self assert:  anError  messageText  equals: Portfolio  cannotAddAlreadyExistingAccount  
+		].
+	
+	
+
+
+!
+
+!methodRemoval: PortfolioTest #test30 stamp: 'jb 5/22/2023 13:15:36'!
+test30
+
+| portfolioRoot      portfolioFather  portfolioChild account |portfolioRoot  := Portfolio new. 
+ 
+portfolioFather  := Portfolio  new.
+portfolioChild := Portfolio new  .
+
+account := ReceptiveAccount new.Deposit register: 100 on: account.
+
+portfolioRoot add:account.
+
+portfolioRoot  add: portfolioFather . 
+portfolioFather  add: portfolioChild . 
+
+
+self  should: [portfolioChild  add: account ] 
+	raise:  Error
+	withExceptionDo: [:anError|
+		self assert:  anError  messageText  equals: Portfolio  cannotAddAlreadyExistingAccount  
+		].
+	
+	
+
+
+!
+
+----QUIT----(22 May 2023 13:17:20) CuisUniversity-5706.image priorSource: 11429149!
