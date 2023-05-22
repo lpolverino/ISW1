@@ -1,34 +1,20 @@
 !classDefinition: #PortfolioTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #PortfolioTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'emptyPortfolio accountWith100DepositRegister depositOf100InAccount portfolioWith100DepositAccount portfolioWithPortfolioWith100DepositAccount'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!PortfolioTest methodsFor: 'expect' stamp: 'lp 5/22/2023 16:01:33'!
+!PortfolioTest methodsFor: 'expect' stamp: 'jb 5/22/2023 16:51:05'!
 expectForAPortafolioWithAnAccountAndBalance100AfterAdding: aBlock ThisBalance: aExpectedBalance
+aBlock  value: portfolioWith100DepositAccount .
+self assert:aExpectedBalance equals: portfolioWith100DepositAccount balance.! !
 
-|portfolio account |
-
-portfolio := Portfolio new initialize .
-account := ReceptiveAccount new.
-Deposit register: 100 on: account.
-portfolio add:account.
-aBlock  value: portfolio .
-self assert:aExpectedBalance equals: portfolio balance.! !
-
-!PortfolioTest methodsFor: 'expect' stamp: 'lp 5/22/2023 16:02:18'!
+!PortfolioTest methodsFor: 'expect' stamp: 'jb 5/22/2023 16:51:27'!
 expectForAPortfolioWithBalanceOf100AfterDoing: aBlock ThisBalance: expectedBalance
-|portfolio account portafolioToAdd|
-portafolioToAdd := Portfolio new initialize .
-account := ReceptiveAccount new.
-Deposit register: 100 on: account.
-portafolioToAdd add: account.
 
-portfolio := Portfolio new initialize.
-portfolio add: portafolioToAdd .
-aBlock  value:portfolio .
-self assert:expectedBalance equals: portfolio balance.! !
+aBlock  value:portfolioWithPortfolioWith100DepositAccount .
+self assert:expectedBalance equals: portfolioWithPortfolioWith100DepositAccount balance.! !
 
 
 !PortfolioTest methodsFor: 'error auxiliar' stamp: 'lp 5/22/2023 13:41:00'!
@@ -79,6 +65,11 @@ self shouldFailWhenAdding: account toPortfolio: portfolioChild .
 ! !
 
 
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 16:37:44'!
+createAPortfolioWith100DepositAccount
+
+	^ Portfolio new add: portfolioWith100DepositAccount! !
+
 !PortfolioTest methodsFor: 'balance Test' stamp: 'lp 5/22/2023 15:01:35'!
 test00PortofolioShouldStartWithBalanceIn0
 
@@ -116,102 +107,41 @@ portfolio add: secondPortafolioToAdd .
 ]  ThisBalance: 200.
 ! !
 
-!PortfolioTest methodsFor: 'balance Test' stamp: 'lp 5/22/2023 15:10:10'!
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 16:33:17'!
 test05addAAccountAlreadyInThePortfolioAccountsProducesError
-|portfolio account    |
-
-
-portfolio := Portfolio new initialize.
-account := ReceptiveAccount new.
-Deposit register: 100 on: account.
-portfolio add: account.
-
-self shouldFailWhenAdding: account toPortfolio: portfolio .
-
+self shouldFailWhenAdding: accountWith100DepositRegister toPortfolio: portfolioWith100DepositAccount .
 ! !
 
-!PortfolioTest methodsFor: 'balance Test' stamp: 'lp 5/22/2023 15:10:25'!
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 16:34:06'!
 test06addAAccountAlreadyInThePortfolioInnerPortafolioProducesError
-|portfolio account innerPortafolio |
+|portfolio |
 portfolio := Portfolio new initialize.
-innerPortafolio:= Portfolio new initialize .
-account := ReceptiveAccount new.
-Deposit register: 100 on: account.
-
-innerPortafolio add: account.
-portfolio add: innerPortafolio .
-self shouldFailWhenAdding: account toPortfolio: portfolio .
+portfolio add: portfolioWith100DepositAccount .
+self shouldFailWhenAdding: accountWith100DepositRegister toPortfolio: portfolio .
 ! !
 
-!PortfolioTest methodsFor: 'balance Test' stamp: 'lp 5/22/2023 13:42:49'!
-test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError
-|portfolio account innerPortafolio portafolioInInnerPortafolio |
-
-
-portfolio := Portfolio new initialize.
-innerPortafolio:= Portfolio new initialize .
-portafolioInInnerPortafolio := Portfolio new initialize .
-account := ReceptiveAccount new.
-Deposit register: 100 on: account.
-portafolioInInnerPortafolio add: account.
-innerPortafolio add: portafolioInInnerPortafolio.
-portfolio add: innerPortafolio .self shouldFailWhenAdding: account toPortfolio: portfolio .
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 16:37:44'!
+test07addAAccountAlreadyInThePortfolioInnerPortafoliosProducesError|portfolio |
+portfolio := Portfolio new initialize.portfolio add: (self createAPortfolioWith100DepositAccount ) .self shouldFailWhenAdding: accountWith100DepositRegister toPortfolio: portfolio .
 ! !
 
-!PortfolioTest methodsFor: 'balance Test' stamp: 'lp 5/22/2023 13:44:05'!
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 16:38:29'!
 test08addAPortafolioWIthAAlreadyExistingAccountInTheReceptorPortfolioAccounts
-|portfolio account portfolioToAdd|
-
-
-portfolio := Portfolio new initialize.
-portfolioToAdd := Portfolio  new initialize. 
-
-account := ReceptiveAccount new.
-Deposit register: 100 on: account.
-
-portfolio add: account.
-portfolioToAdd add:  account .
-self shouldFailWhenAdding: portfolioToAdd toPortfolio: portfolio .
+self shouldFailWhenAdding: (self createAPortfolioWith100DepositAccount )  toPortfolio: portfolioWith100DepositAccount .
 
 ! !
 
-!PortfolioTest methodsFor: 'balance Test' stamp: 'lp 5/22/2023 13:44:40'!
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 16:43:57'!
 test09addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInmeidatePortfolios
-|portfolio account portfolioToAdd innerPortfolio|
-
-
-portfolio := Portfolio new initialize.
-portfolioToAdd := Portfolio  new initialize. 
-innerPortfolio := Portfolio  new initialize. 
-
-account := ReceptiveAccount new.
-Deposit register: 100 on: account.
-
-innerPortfolio add:  account.
-portfolio add: innerPortfolio .
-portfolioToAdd add: account .
-self shouldFailWhenAdding: portfolioToAdd toPortfolio: portfolio .
+self shouldFailWhenAdding: portfolioWith100DepositAccount toPortfolio: portfolioWithPortfolioWith100DepositAccount .
 
 ! !
 
-!PortfolioTest methodsFor: 'balance Test' stamp: 'lp 5/22/2023 13:45:11'!
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 16:46:13'!
 test10addAPortafolioWIthAAlreadyExistingAccountInThePortfolioReceptorInnerPortfolios
-|portfolio account portfolioToAdd innerPortfolio innerPortfolioInTheInnerPortfolio|
-
-
-portfolio := Portfolio new initialize.
-portfolioToAdd := Portfolio  new initialize. 
-innerPortfolio := Portfolio  new initialize. 
-innerPortfolioInTheInnerPortfolio:= Portfolio new initialize .
-
-account := ReceptiveAccount new.
-Deposit register: 100 on: account.
-
-innerPortfolioInTheInnerPortfolio add: account.
-innerPortfolio  add:  innerPortfolioInTheInnerPortfolio .
-portfolio add: innerPortfolio .
-portfolioToAdd add: account .
-
+|portfolio portfolioToAdd |
+portfolio := Portfolio new add: portfolioWithPortfolioWith100DepositAccount .
+portfolioToAdd  := self createAPortfolioWith100DepositAccount  .
 self shouldFailWhenAdding: portfolioToAdd toPortfolio: portfolio .
 ! !
 
@@ -222,10 +152,10 @@ self shouldFailWhenAddingAnAccountToAPortfolioWhoHasAnPortfolioWithTheSameAccoun
 
 ! !
 
-!PortfolioTest methodsFor: 'balance Test' stamp: 'lp 5/22/2023 15:24:57'!
+!PortfolioTest methodsFor: 'balance Test' stamp: 'jb 5/22/2023 16:46:59'!
 test14cannotAddAnAccounttoAPortfolioWhenThereAreManyPortfoliosWhoHasAddedThePortfolioAndOneHasTheAccount
 self shouldFailWhenAddingAnAccountToAPortfolioWhoHasAnPortfolioWithTheSameAccountAndAlsoIsChildOf:[:portfolioChild |
-	|portfolioFatherLeft|	portfolioFatherLeft  := Portfolio  new.	portfolioFatherLeft add: portfolioChild ]
+	|portfolioFather|	portfolioFather  := Portfolio  new.	portfolioFather add: portfolioChild ]
 	
 
 
@@ -258,68 +188,41 @@ self shouldFailWhenAddingAnAccountToAPorfolioWhoHasAAcestorAndAlsoIsPredecesorTo
 ! !
 
 
-!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'lp 5/22/2023 13:33:13'!
-test11hasRegisterInAddedAccount|portfolio account  register|
+!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'jb 5/22/2023 16:47:56'!
+test11hasRegisterInAddedAccount
 
-portfolio := Portfolio new initialize.
+self assert: ( portfolioWithPortfolioWith100DepositAccount  hasRegistered: depositOf100InAccount )! !
 
-account := ReceptiveAccount new.
-register :=  Deposit register: 100 on: account.
+!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'jb 5/22/2023 16:49:05'!
+test12hasRegisterNotInAddedAccount|register|
 
-portfolio add: account.
+register :=  Withdraw  register:  50  on:  ReceptiveAccount  new.
 
-self assert: ( portfolio  hasRegistered: register )! !
+self deny: ( portfolioWith100DepositAccount  hasRegistered: register )! !
 
-!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'lp 5/22/2023 14:44:03'!
-test12hasRegisterNotInAddedAccount|portfolio account register|
-
-portfolio := Portfolio new initialize.
-account := ReceptiveAccount new.
-Deposit register: 100 on: account.register :=  Withdraw  register:  50  on:  ReceptiveAccount  new.
-
-portfolio add: account.
-
-self deny: ( portfolio  hasRegistered: register )! !
-
-!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'lp 5/22/2023 13:33:42'!
-test19hasRegisterInAddedPortfolio|portfolio  portfolioToAdd account register|
-
-portfolio := Portfolio new .portfolioToAdd  := Portfolio  new. 
-
-account := ReceptiveAccount new.
-register:= Deposit register: 100 on: account.
-portfolioToAdd  add: account .
-portfolio add: portfolioToAdd .
-
-self assert: ( portfolio  hasRegistered: register )! !
+!PortfolioTest methodsFor: 'hasRegisteredTest' stamp: 'jb 5/22/2023 16:49:32'!
+test19hasRegisterInAddedPortfolio
+self assert: ( portfolioWithPortfolioWith100DepositAccount  hasRegistered: depositOf100InAccount )! !
 
 
-!PortfolioTest methodsFor: 'transaction' stamp: 'lp 5/22/2023 14:43:25'!
+!PortfolioTest methodsFor: 'transaction' stamp: 'jb 5/22/2023 16:49:56'!
 test17transactionsOfAddedAccounts
 
-|portfolio account register |
-portfolio := Portfolio new initialize .
-account := ReceptiveAccount new.
-register:=Deposit register: 100 on: account.
 
-portfolio add:account.
-
-self assert: (OrderedCollection   with: register  )equals: portfolio transactions .
+self assert: (OrderedCollection   with: depositOf100InAccount  )equals: portfolioWith100DepositAccount transactions .
 ! !
 
-!PortfolioTest methodsFor: 'transaction' stamp: 'lp 5/22/2023 13:46:42'!
-test20transactionsOfAddedPortfolio
+!PortfolioTest methodsFor: 'transaction' stamp: 'jb 5/22/2023 16:50:26'!
+test20transactionsOfAddedPortfolioself assert: (OrderedCollection   with: depositOf100InAccount  )equals: portfolioWithPortfolioWith100DepositAccount transactions .! !
 
-|portfolio portfolioToAdd account register |
-portfolioToAdd := Portfolio  new. 
 
-portfolio := Portfolio new .
-account := ReceptiveAccount new.
-register:=Deposit register: 100 on: account.
-
-portfolioToAdd add:account.portfolio  add: portfolioToAdd  .
-
-self assert: (OrderedCollection   with: register  )equals: portfolio transactions .! !
+!PortfolioTest methodsFor: 'setUp' stamp: 'jb 5/22/2023 16:42:39'!
+setUp
+	emptyPortfolio :=  Portfolio new.
+	accountWith100DepositRegister := ReceptiveAccount  new. 
+	depositOf100InAccount := Deposit  register: 100  on: accountWith100DepositRegister.
+	portfolioWith100DepositAccount := (Portfolio new ) add: accountWith100DepositRegister. 
+	portfolioWithPortfolioWith100DepositAccount  := Portfolio  new add: portfolioWith100DepositAccount .! !
 
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
