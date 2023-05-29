@@ -1,0 +1,27 @@
+excepciones
+	-pragmaticas: epxlicacion , sacar codigo repetido de la tecnica de error. cada mensaje me tiene que devolver si 		hizo todo bien o no. y arreglar los problemas del codigo del error.
+	*codigo de error, trae mucho codigo repetido, mezcla el metodo con el handleo del error, propenso a error.
+	*Que codigo handlear y como, parametrizable.
+	los metodos siempre deberian devolver el codigo de retorno(error), es limitante?, asi podemos eliminar esta restriccion.
+	Alguien va a tener que handlear la excepcionl, si se encuentra no continua.
+	-conceptuales, analogia con los contratos explicitos(dicen claramente las reglasa cumplir y se define que se debe hacer en los casos donde no se cumpen) implicitos(no se firman, pero se deben cumplir).
+	las excepciones son la manera de informar que no se cumple el contrato.
+	 nivel de programacion. 1) precondiciones 2) postcondiciones 3) invarinates.
+	la excepciones levantan el debugger.
+
+cosas a tener en cuneta
+
+1) como se puede handlear
+2) quien levanta la excepcion
+3) quien handlear al excepcion
+4) cuando hay que levantar la execion
+5) que tipo de excepcion levantar
+
+2*)los objetos mas abajo del arbol de ejcucion son lo que se dan cuenta que hubo un error,
+3*)los objetos mas arriba tienen mas contexto de la ejecucion y son mas apropiados para handlear las excepciones
+4*) cuando hay que levantar las excecion o mejor dicho cuando verificar las precondiciones
+	2escuelas
+		escuela C/Barkley: resposable es el objeto que envia el mensaje."comportamiento no  definido en el metodo"
+		escuela Lisp/MIT: responsable es el objeto receptor.
+
+5*) levanto un tipo de excepcion por condicion de error o levanto simpre "error". Depednde de el usuario y por ende del software que estamos haciendo. tiene o no un handler particular. Osea si sabemos si va a hacer handleada o no.
