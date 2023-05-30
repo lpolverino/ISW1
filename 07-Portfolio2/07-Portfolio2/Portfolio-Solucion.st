@@ -445,7 +445,7 @@ response := OrderedCollection with: 'Entrada por Transferencia de 100.'with:'bal
 
 self assertIfThisReport: response isTheAccountSummaryOf: accountDeposit! !
 
-!ReportTest methodsFor: 'account summary test' stamp: 'lp 5/30/2023 15:53:26'!
+!ReportTest methodsFor: 'account summary test' stamp: 'jb 5/30/2023 20:34:11'!
 test06AccountSummaryGivesMany
 |account accountToExtract accountToDeposit response |
 account := ReceptiveAccount  new.
@@ -462,7 +462,7 @@ response := OrderedCollection with:'Deposito por 100.' with:'Extraccion por 50.'
 
 
 self assert: response
-	equals: account accountSummary
+	equals: (AccountSummary  for: account  ) report 
 
 ! !
 
@@ -578,10 +578,10 @@ assertTheNetTransferOf: anAccount isEqualTo:aNetTransferValue
 
 	^ self assert: aNetTransferValue   equals: (NetTransfer  for: anAccount ) report! !
 
-!ReportTest methodsFor: 'net transfer test' stamp: 'lp 5/30/2023 17:20:39'!
+!ReportTest methodsFor: 'net transfer test' stamp: 'jb 5/30/2023 20:19:24'!
 assertTheNetTransferOf: portfolio isEqualToTheNetTransferOf: account
 
-	^ self assert: account  netTransfer  equals: portfolio netTransfer! !
+	^ self assert: (NetTransfer  for: account)  report  equals: (NetTransfer  for: portfolio) report! !
 
 !ReportTest methodsFor: 'net transfer test' stamp: 'lp 5/30/2023 17:21:49'!
 test13emptyAccountShouldGive0NetTransfer
@@ -894,61 +894,10 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'reports' stamp: 'lp 5/30/2023 15:57:34'!
-accountSummary
-|accountSummary|
-	accountSummary := OrderedCollection new.
-	accountSummary addAll: self calculateAccountSummary .
-	accountSummary add: 'balance = ', self balance asString.
-	^accountSummary ! !
-
-!Portfolio methodsFor: 'reports' stamp: 'jb 5/28/2023 12:39:06'!
-accumulate: anAccumulator andReport: aBlockWithAnAccumulatorAndAAccount  
-	^accounts inject:  anAccumulator into: [:anAcc :anAccount |
-		aBlockWithAnAccumulatorAndAAccount  value:  anAcc  value:  anAccount 
-		]  ! !
-
-!Portfolio methodsFor: 'reports' stamp: 'lp 5/30/2023 15:56:11'!
-calculateAccountSummary
-	|report|
-
-	report := OrderedCollection new.
+!Portfolio methodsFor: 'report' stamp: 'jb 5/30/2023 20:37:00'!
+reportTo: aReport 
 	accounts do: [ :anAccount |
-		report  addAll:  anAccount  calculateAccountSummary 
-		
-		] .
-	^ report.! !
-
-!Portfolio methodsFor: 'reports' stamp: 'jb 5/27/2023 16:14:11'!
-netTransfer
-^accounts inject:  0  into: [:netTransfer :anAccount |
-	netTransfer +  anAccount  netTransfer 
-	
-	]! !
-
-!Portfolio methodsFor: 'reports' stamp: 'jb 5/28/2023 12:37:16'!
-report: aBlockWithAccountAndAccumulator 
-	^accounts inject:  '' into: [:anAccountSummary :anAccount |
-		anAccountSummary  , anAccount  calculateAccountSummary 
-		
-		]  ! !
-
-!Portfolio methodsFor: 'reports' stamp: 'jb 5/28/2023 10:40:37'!
-showTree
-	^''! !
-
-
-!Portfolio methodsFor: 'report' stamp: 'lp 5/30/2023 17:13:17'!
-calculateAccountSummaryFor: anAccountSummary 
-	accounts do: [ :anAccount |
-		  anAccount  calculateAccountSummaryFor:anAccountSummary 
-		
-		] .! !
-
-!Portfolio methodsFor: 'report' stamp: 'lp 5/30/2023 17:41:17'!
-netTransferFor: aNetTransfer 
-	accounts do: [ :anAccount |
-		  anAccount  netTransferFor: aNetTransfer 
+		  anAccount  reportTo: aReport 
 		
 		] .! !
 
@@ -1036,44 +985,12 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'reports' stamp: 'lp 5/29/2023 11:56:22'!
-accountSummary
-	|response|
-	response := OrderedCollection new.
-	response addAll: self calculateAccountSummary .
-	response add:'balance = ',  self balance asString .
-	^response! !
-
-!ReceptiveAccount methodsFor: 'reports' stamp: 'lp 5/30/2023 15:45:34'!
-calculateAccountSummary
-	|response|
-	response := OrderedCollection new.
+!ReceptiveAccount methodsFor: 'report' stamp: 'jb 5/30/2023 20:24:06'!
+reportTo: anAccountSummary 
 	transactions  do: [:aTransaction | 
-		aTransaction reportAccountSummary: response.
-		].
-	^response! !
-
-!ReceptiveAccount methodsFor: 'reports' stamp: 'lp 5/30/2023 16:42:08'!
-calculateAccountSummaryFor: anAccountSummary 
-	transactions  do: [:aTransaction | 
-		aTransaction reportToAccountSummary:anAccountSummary .
+		aTransaction reportTo: anAccountSummary .
 		].
 ! !
-
-!ReceptiveAccount methodsFor: 'reports' stamp: 'lp 5/30/2023 16:08:54'!
-netTransfer
-
-^transactions  inject:0 into: 	[:response :aTransaction | 
-	aTransaction reportNetTransfer: response.
-	].! !
-
-
-!ReceptiveAccount methodsFor: 'report' stamp: 'lp 5/30/2023 17:33:41'!
-netTransferFor: aNetTransfer 
-	
-^transactions do: 	[ :aTransaction | 
-	aTransaction reportToNetTransfer: aNetTransfer .
-	].! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -1092,6 +1009,11 @@ value
 !AccountTransaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
 affectBalance: aBalance
 
+	self subclassResponsibility ! !
+
+
+!AccountTransaction methodsFor: 'report' stamp: 'jb 5/30/2023 20:39:16'!
+reportTo: aReport
 	self subclassResponsibility ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
@@ -1136,32 +1058,9 @@ affectBalance: aBalance
 	^aBalance + value ! !
 
 
-!Deposit methodsFor: 'net transfer' stamp: 'jb 5/27/2023 16:40:08'!
-affectNetTransfer: netTransfer 
-	^netTransfer ! !
-
-
-!Deposit methodsFor: 'account Summary' stamp: 'lp 5/29/2023 12:00:19'!
-affectAccountSummary: anAccountSummary 
-	anAccountSummary  add: 'Deposito por ' ,  self value asString ,'.', String crString! !
-
-!Deposit methodsFor: 'account Summary' stamp: 'lp 5/30/2023 15:47:11'!
-reportAccountSummary: response 
-	response  add: 'Deposito por ' , self  value asString ,'.'.! !
-
-
-!Deposit methodsFor: 'net Transfer' stamp: 'lp 5/30/2023 16:10:40'!
-reportNetTransfer: response 
-	^0! !
-
-
-!Deposit methodsFor: 'report' stamp: 'lp 5/30/2023 16:46:34'!
-reportToAccountSummary: anAccountSummary 
-	anAccountSummary reportThisDepositWith:value.! !
-
-!Deposit methodsFor: 'report' stamp: 'lp 5/30/2023 17:43:26'!
-reportToNetTransfer: aNetTransfer 
-	aNetTransfer reportDeposit: self.! !
+!Deposit methodsFor: 'report' stamp: 'jb 5/30/2023 20:26:11'!
+reportTo: anAccountSummary 
+	anAccountSummary reportDeposit:   self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1182,29 +1081,21 @@ AccountTransaction subclass: #TransferLegs
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
+!TransferLegs methodsFor: 'navigate' stamp: 'lp 5/29/2023 11:43:18'!
+navigate
+	self subclassResponsibility .! !
 
-!TransferLegs methodsFor: 'as yet unclassified' stamp: 'lp 5/25/2023 15:45:35'!
-affectBalance: aBalance
-	self subclassResponsibility ! !
 
-!TransferLegs methodsFor: 'as yet unclassified' stamp: 'lp 5/25/2023 15:44:54'!
-initializeWith: aTransferHead
-
-	transferHead := aTransferHead 
-	! !
-
-!TransferLegs methodsFor: 'as yet unclassified' stamp: 'lp 5/25/2023 16:23:22'!
-transferHead
-	^ transferHead ! !
-
-!TransferLegs methodsFor: 'as yet unclassified' stamp: 'jb 5/27/2023 14:34:53'!
+!TransferLegs methodsFor: 'value' stamp: 'jb 5/27/2023 14:34:53'!
 value 
 	^ transferHead  value ! !
 
 
-!TransferLegs methodsFor: 'navigate' stamp: 'lp 5/29/2023 11:43:18'!
-navigate
-	self subclassResponsibility .! !
+!TransferLegs methodsFor: 'initializing' stamp: 'lp 5/25/2023 15:44:54'!
+initializeWith: aTransferHead
+
+	transferHead := aTransferHead 
+	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1229,37 +1120,9 @@ navigate
 	^ transferHead extractedLeg ! !
 
 
-!DepositLeg methodsFor: 'as yet unclassified' stamp: 'lp 5/25/2023 15:39:10'!
-affectBalance: aBalanceAmmount
-	^ aBalanceAmmount +  transferHead value.! !
-
-
-!DepositLeg methodsFor: 'reports aux' stamp: 'jb 5/27/2023 16:37:19'!
-affectNetTransfer: netTransfer 
-	^netTransfer  + self value ! !
-
-
-!DepositLeg methodsFor: 'account summary' stamp: 'lp 5/29/2023 11:55:00'!
-affectAccountSummary: anAccountSummary 
-	^anAccountSummary add: 'Entrada por Transferencia de ' ,  self value  asString ,'.', String crString! !
-
-!DepositLeg methodsFor: 'account summary' stamp: 'lp 5/30/2023 15:52:19'!
-reportAccountSummary: response 
-	response  add: 'Entrada por Transferencia de ' , self  value asString ,'.'.! !
-
-
-!DepositLeg methodsFor: 'netTransfer' stamp: 'lp 5/30/2023 16:08:03'!
-reportNetTransfer: response 
-	^response + transferHead value! !
-
-
-!DepositLeg methodsFor: 'report' stamp: 'lp 5/30/2023 16:58:09'!
-reportToAccountSummary: anAccountSummary 
-	anAccountSummary reportDepositLegWith: transferHead value.! !
-
-!DepositLeg methodsFor: 'report' stamp: 'lp 5/30/2023 17:35:15'!
-reportToNetTransfer: aNetTransfer 
-	aNetTransfer reportDepositLegWith: transferHead value! !
+!DepositLeg methodsFor: 'report' stamp: 'jb 5/30/2023 20:27:36'!
+reportTo: anAccountSummary 
+	anAccountSummary  reportDepositTransfer:  self! !
 
 
 !classDefinition: #ExtractionLeg category: 'Portfolio-Solucion'!
@@ -1269,41 +1132,14 @@ TransferLegs subclass: #ExtractionLeg
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ExtractionLeg methodsFor: 'as yet unclassified' stamp: 'lp 5/25/2023 15:39:26'!
-affectBalance: aBalanceAmmount
-	^ aBalanceAmmount - transferHead value.! !
-
-!ExtractionLeg methodsFor: 'as yet unclassified' stamp: 'jb 5/27/2023 16:37:51'!
-affectNetTransfer: netTransfer 
-	^netTransfer  - self value .! !
-
-
-!ExtractionLeg methodsFor: 'account summary' stamp: 'lp 5/29/2023 11:55:06'!
-affectAccountSummary: anAccountSummary 
-	^anAccountSummary add: 'Salida por Transferencia de ' ,self  value asString ,'.', String crString! !
-
-!ExtractionLeg methodsFor: 'account summary' stamp: 'lp 5/30/2023 15:51:48'!
-reportAccountSummary: response 
-	response  add: 'Salida por Transferencia de ' , self  value asString ,'.'.! !
-
-
 !ExtractionLeg methodsFor: 'navigate' stamp: 'lp 5/29/2023 11:43:50'!
 navigate
 	^transferHead depositLeg ! !
 
 
-!ExtractionLeg methodsFor: 'net Transfer' stamp: 'lp 5/30/2023 16:09:48'!
-reportNetTransfer: response 
-	^ response - transferHead value.! !
-
-
-!ExtractionLeg methodsFor: 'report' stamp: 'lp 5/30/2023 16:59:49'!
-reportToAccountSummary: anAccountSummary 
-	anAccountSummary reportExtractionTransferWith: transferHead value.! !
-
-!ExtractionLeg methodsFor: 'report' stamp: 'lp 5/30/2023 17:39:04'!
-reportToNetTransfer: aNetTransfer 
-	aNetTransfer reportExtractionLegWith: transferHead value.! !
+!ExtractionLeg methodsFor: 'report' stamp: 'jb 5/30/2023 20:27:10'!
+reportTo: anAccountSummary 
+	anAccountSummary  reportExtractionTransfer:  self! !
 
 
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
@@ -1331,31 +1167,9 @@ affectBalance: aBalance
 	^aBalance - value! !
 
 
-!Withdraw methodsFor: 'net transfer' stamp: 'jb 5/27/2023 16:41:11'!
-affectNetTransfer: netTransfer 
-	^netTransfer ! !
-
-!Withdraw methodsFor: 'net transfer' stamp: 'lp 5/30/2023 16:11:05'!
-reportNetTransfer: response 
-	^0! !
-
-
-!Withdraw methodsFor: 'account summary' stamp: 'lp 5/29/2023 11:55:14'!
-affectAccountSummary: anAccountSummary 
-	^  anAccountSummary add: 'Extraccion por ' , (self) value asString ,'.', String crString! !
-
-!Withdraw methodsFor: 'account summary' stamp: 'lp 5/30/2023 15:51:11'!
-reportAccountSummary: response 
-	response  add: 'Extraccion por ' , self  value asString ,'.'.! !
-
-
-!Withdraw methodsFor: 'report' stamp: 'lp 5/30/2023 16:53:35'!
-reportToAccountSummary: anAccountSummary 
-	anAccountSummary reportThisWithdrawWith: value.! !
-
-!Withdraw methodsFor: 'report' stamp: 'lp 5/30/2023 17:44:36'!
-reportToNetTransfer: aNetTransfer 
-	aNetTransfer reportWithdraw: self! !
+!Withdraw methodsFor: 'report' stamp: 'jb 5/30/2023 20:26:44'!
+reportTo: anAccountSummary 
+	anAccountSummary  reportWithdraw:  self ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1371,103 +1185,124 @@ for: aValue
 
 !classDefinition: #Report category: 'Portfolio-Solucion'!
 Object subclass: #Report
-	instanceVariableNames: ''
+	instanceVariableNames: 'account'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
+
+!Report methodsFor: 'initializing' stamp: 'jb 5/30/2023 19:52:05'!
+initializeFor: anAccount
+	account  := anAccount ! !
+
+
+!Report methodsFor: 'report a transaction' stamp: 'jb 5/30/2023 20:09:51'!
+reportDeposit: aDeposit
+	self subclassResponsibility ! !
+
+!Report methodsFor: 'report a transaction' stamp: 'jb 5/30/2023 20:10:52'!
+reportDepositTransfer: aDepositTransfer
+	self subclassResponsibility ! !
+
+!Report methodsFor: 'report a transaction' stamp: 'jb 5/30/2023 20:10:36'!
+reportExtractionTransfer: aExtractionTransfer
+	self subclassResponsibility ! !
+
+!Report methodsFor: 'report a transaction' stamp: 'jb 5/30/2023 20:10:12'!
+reportWithdraw: aWithdraw
+	self subclassResponsibility ! !
+
+
+!Report methodsFor: 'report' stamp: 'jb 5/30/2023 20:29:58'!
+report
+	account  reportTo: self! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Report class' category: 'Portfolio-Solucion'!
+Report class
+	instanceVariableNames: ''!
+
+!Report class methodsFor: 'instance creation' stamp: 'jb 5/30/2023 20:12:37'!
+for: anAccount 
+	^self new initializeFor: anAccount 
+	! !
 
 
 !classDefinition: #AccountSummary category: 'Portfolio-Solucion'!
 Report subclass: #AccountSummary
-	instanceVariableNames: 'receptiveAccount report'
+	instanceVariableNames: 'report'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!AccountSummary methodsFor: 'initialization' stamp: 'lp 5/30/2023 16:15:49'!
+!AccountSummary methodsFor: 'initialization' stamp: 'jb 5/30/2023 19:49:56'!
 initializeFor: aReceptiveAccount 
-	receptiveAccount := aReceptiveAccount.! !
+	super initializeFor:  aReceptiveAccount  . 
+	report := OrderedCollection new.! !
 
 
-!AccountSummary methodsFor: 'report' stamp: 'lp 5/30/2023 16:45:08'!
+!AccountSummary methodsFor: 'report a transaction' stamp: 'jb 5/30/2023 19:55:08'!
+reportDeposit:aDeposit 
+	report add: 'Deposito por ', aDeposit  value asString,'.'.! !
+
+!AccountSummary methodsFor: 'report a transaction' stamp: 'jb 5/30/2023 19:56:49'!
+reportDepositTransfer: aDepositLeg
+	report add: 'Entrada por Transferencia de ', aDepositLeg  value asString,'.'.! !
+
+!AccountSummary methodsFor: 'report a transaction' stamp: 'jb 5/30/2023 19:53:58'!
+reportExtractionTransfer: aExtracionLeg 
+	report add: 'Salida por Transferencia de ', aExtracionLeg  value asString,'.'.! !
+
+!AccountSummary methodsFor: 'report a transaction' stamp: 'jb 5/30/2023 19:54:40'!
+reportWithdraw: aWithdraw 
+	report add: 'Extraccion por ', aWithdraw  value asString,'.'.! !
+
+
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 20:30:28'!
 report
-
-	report := OrderedCollection new.
-	receptiveAccount calculateAccountSummaryFor: self.
-	report add:'balance = ',  receptiveAccount balance asString .
+	report  ifEmpty: [
+		super  report .
+		].
+	
+	report add:'balance = ',  account balance asString .
 	^report
 	! !
-
-!AccountSummary methodsFor: 'report' stamp: 'lp 5/30/2023 16:59:10'!
-reportDepositLegWith: aDepositLegValue
-	report add: 'Entrada por Transferencia de ', aDepositLegValue asString,'.'.! !
-
-!AccountSummary methodsFor: 'report' stamp: 'lp 5/30/2023 16:59:49'!
-reportExtractionTransferWith: aExtracionLegValue 
-	report add: 'Salida por Transferencia de ', aExtracionLegValue asString,'.'.! !
-
-!AccountSummary methodsFor: 'report' stamp: 'lp 5/30/2023 16:47:52'!
-reportThisDepositWith: aValue 
-	report add: 'Deposito por ', aValue asString,'.'.! !
-
-!AccountSummary methodsFor: 'report' stamp: 'lp 5/30/2023 16:55:22'!
-reportThisWithdrawWith: aValue 
-	report add: 'Extraccion por ', aValue asString,'.'.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'AccountSummary class' category: 'Portfolio-Solucion'!
-AccountSummary class
-	instanceVariableNames: ''!
-
-!AccountSummary class methodsFor: 'instance creation' stamp: 'lp 5/30/2023 16:15:27'!
-for: aReceptiveAccount 
-	^self new initializeFor: aReceptiveAccount ! !
 
 
 !classDefinition: #NetTransfer category: 'Portfolio-Solucion'!
 Report subclass: #NetTransfer
-	instanceVariableNames: 'account response'
+	instanceVariableNames: 'response'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!NetTransfer methodsFor: 'initialization' stamp: 'lp 5/30/2023 17:37:18'!
+!NetTransfer methodsFor: 'initialization' stamp: 'jb 5/30/2023 19:50:18'!
 initializeFor: aReceptiveAccount 
-	account := aReceptiveAccount.
+	super  initializeFor:  aReceptiveAccount .
 	response := 0.! !
 
 
-!NetTransfer methodsFor: 'report' stamp: 'lp 5/30/2023 17:38:21'!
+!NetTransfer methodsFor: 'report' stamp: 'jb 5/30/2023 20:30:12'!
 report
-	 account netTransferFor: self.
+	 super report .
 	^response ! !
 
-!NetTransfer methodsFor: 'report' stamp: 'lp 5/30/2023 17:44:12'!
+
+!NetTransfer methodsFor: 'report a transaction' stamp: 'lp 5/30/2023 17:44:12'!
 reportDeposit: aDeposit 
 	! !
 
-!NetTransfer methodsFor: 'report' stamp: 'lp 5/30/2023 17:36:25'!
-reportDepositLegWith: aNetTransferValue 
-	response := response + aNetTransferValue .! !
+!NetTransfer methodsFor: 'report a transaction' stamp: 'jb 5/30/2023 20:06:10'!
+reportDepositTransfer: aDepositTransfer 
+	response := response + aDepositTransfer  value.! !
 
-!NetTransfer methodsFor: 'report' stamp: 'lp 5/30/2023 17:39:31'!
-reportExtractionLegWith: aNetTransferValue 
-	response := response  - aNetTransferValue ! !
+!NetTransfer methodsFor: 'report a transaction' stamp: 'jb 5/30/2023 20:06:45'!
+reportExtractionTransfer:anExtractionTransfer 
+	response := response  - anExtractionTransfer  value! !
 
-!NetTransfer methodsFor: 'report' stamp: 'lp 5/30/2023 17:44:55'!
+!NetTransfer methodsFor: 'report a transaction' stamp: 'lp 5/30/2023 17:44:55'!
 reportWithdraw: aWithdraw 
 	! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'NetTransfer class' category: 'Portfolio-Solucion'!
-NetTransfer class
-	instanceVariableNames: ''!
-
-!NetTransfer class methodsFor: 'instance creation' stamp: 'lp 5/30/2023 17:24:40'!
-for: aReceptiveAccount 
-	^self new initializeFor: aReceptiveAccount ! !
 
 
 !classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion'!
@@ -1522,24 +1357,24 @@ named: aNameForThePortfolio
 
 !classDefinition: #ReceptiveAccountTreeReport category: 'Portfolio-Solucion'!
 Report subclass: #ReceptiveAccountTreeReport
-	instanceVariableNames: 'nameforTheAccount account'
+	instanceVariableNames: 'nameforTheAccount accountF'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReceptiveAccountTreeReport methodsFor: 'initializing' stamp: 'jb 5/28/2023 12:55:51'!
+!ReceptiveAccountTreeReport methodsFor: 'initializing' stamp: 'jb 5/30/2023 19:51:59'!
 initializeNamed: aNameforTheAccount 
-	account := ReceptiveAccount  new. 
+	accountF := ReceptiveAccount  new. 
 	nameforTheAccount := aNameforTheAccount.! !
 
 
-!ReceptiveAccountTreeReport methodsFor: 'adding' stamp: 'jb 5/28/2023 12:56:42'!
+!ReceptiveAccountTreeReport methodsFor: 'adding' stamp: 'jb 5/30/2023 19:51:59'!
 addedTo: aPortfolio 
-	account  addedTo:  aPortfolio ! !
+	accountF  addedTo:  aPortfolio ! !
 
-!ReceptiveAccountTreeReport methodsFor: 'adding' stamp: 'jb 5/28/2023 13:04:58'!
+!ReceptiveAccountTreeReport methodsFor: 'adding' stamp: 'jb 5/30/2023 19:51:59'!
 isComposedBy: anAccount 
-	^account  isComposedBy:  anAccount ! !
+	^accountF  isComposedBy:  anAccount ! !
 
 
 !ReceptiveAccountTreeReport methodsFor: 'report' stamp: 'jb 5/28/2023 14:42:25'!

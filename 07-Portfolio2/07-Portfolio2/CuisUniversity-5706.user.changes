@@ -90023,3 +90023,3734 @@ PASSED!
 ----SNAPSHOT----(30 May 2023 17:45:58) CuisUniversity-5706.image priorSource: 12369260!
 
 ----SNAPSHOT----(30 May 2023 17:47:25) CuisUniversity-5706.image priorSource: 12371524!
+
+----STARTUP---- (30 May 2023 19:46:07) as /home/juan/Escritorio/facultad/1C23/IS1/linux64 (copia)/CuisUniversity-5706.image!
+
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 19:47:04' prior: 50714702!
+report
+
+	
+	receptiveAccount calculateAccountSummaryFor: self.
+	report add:'balance = ',  receptiveAccount balance asString .
+	^report
+	! !
+!AccountSummary methodsFor: 'initialization' stamp: 'jb 5/30/2023 19:47:09' prior: 50714435!
+initializeFor: aReceptiveAccount 
+	receptiveAccount := aReceptiveAccount.
+	report := OrderedCollection new.! !
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 19:47:51' prior: 50718271!
+report
+	report  ifNotNil: [
+		receptiveAccount calculateAccountSummaryFor: self.
+		].
+	
+	report add:'balance = ',  receptiveAccount balance asString .
+	^report
+	! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:47:53'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:47:56'!
+PASSED!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'jb 5/30/2023 19:48:16'!
+Report subclass: #AccountSummary
+	instanceVariableNames: 'account report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'jb 5/30/2023 19:48:16' prior: 50718286!
+report
+	report  ifNotNil: [
+		account calculateAccountSummaryFor: self.
+		].
+	
+	report add:'balance = ',  account balance asString .
+	^report
+	! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'jb 5/30/2023 19:48:16' prior: 50718279!
+initializeFor: aReceptiveAccount 
+	account := aReceptiveAccount.
+	report := OrderedCollection new.! !
+
+!classDefinition: #Report category: 'Portfolio-Solucion' stamp: 'jb 5/30/2023 19:49:09'!
+Object subclass: #Report
+	instanceVariableNames: 'account_'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Report methodsFor: 'nil' stamp: 'jb 5/30/2023 19:49:16'!
+initializeFor: anAccount
+	account_  := anAccount ! !
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 19:49:34' prior: 50718438!
+report
+	report  ifNotNil: [
+		account_ calculateAccountSummaryFor: self.
+		].
+	
+	report add:'balance = ',  account balance asString .
+	^report
+	! !
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 19:49:38' prior: 50718464!
+report
+	report  ifNotNil: [
+		account_ calculateAccountSummaryFor: self.
+		].
+	
+	report add:'balance = ',  account_ balance asString .
+	^report
+	! !
+!AccountSummary methodsFor: 'initialization' stamp: 'jb 5/30/2023 19:49:56' prior: 50718446 overrides: 50718459!
+initializeFor: aReceptiveAccount 
+	super initializeFor:  aReceptiveAccount  . 
+	report := OrderedCollection new.! !
+!NetTransfer methodsFor: 'report' stamp: 'jb 5/30/2023 19:50:05' prior: 50717807!
+report
+	 account_ netTransferFor: self.
+	^response ! !
+!NetTransfer methodsFor: 'initialization' stamp: 'jb 5/30/2023 19:50:18' prior: 50717730 overrides: 50718459!
+initializeFor: aReceptiveAccount 
+	super  initializeFor:  aReceptiveAccount .
+	response := 0.! !
+
+!classDefinition: #NetTransfer category: 'Portfolio-Solucion' stamp: 'jb 5/30/2023 19:50:35'!
+Report subclass: #NetTransfer
+	instanceVariableNames: 'response'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummary category: 'Portfolio-Solucion' stamp: 'jb 5/30/2023 19:50:41'!
+Report subclass: #AccountSummary
+	instanceVariableNames: 'report'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:50:47'!
+PASSED!
+!Report methodsFor: 'initializing' stamp: 'jb 5/30/2023 19:51:13'!
+report
+	self subclassResponsibility ! !
+
+!classDefinition: #ReceptiveAccountTreeReport category: 'Portfolio-Solucion' stamp: 'jb 5/30/2023 19:51:59'!
+Report subclass: #ReceptiveAccountTreeReport
+	instanceVariableNames: 'nameforTheAccount accountF'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReceptiveAccountTreeReport methodsFor: 'as yet unclassified' stamp: 'jb 5/30/2023 19:51:59' prior: 50709329!
+isComposedBy: anAccount 
+	^accountF  isComposedBy:  anAccount ! !
+!ReceptiveAccountTreeReport methodsFor: 'as yet unclassified' stamp: 'jb 5/30/2023 19:51:59' prior: 50709221!
+addedTo: aPortfolio 
+	accountF  addedTo:  aPortfolio ! !
+!ReceptiveAccountTreeReport methodsFor: 'as yet unclassified' stamp: 'jb 5/30/2023 19:51:59' prior: 50709189!
+initializeNamed: aNameforTheAccount 
+	accountF := ReceptiveAccount  new. 
+	nameforTheAccount := aNameforTheAccount.! !
+
+!classDefinition: #Report category: 'Portfolio-Solucion' stamp: 'jb 5/30/2023 19:52:05'!
+Object subclass: #Report
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!Report methodsFor: 'as yet unclassified' stamp: 'jb 5/30/2023 19:52:05' prior: 50718459!
+initializeFor: anAccount
+	account  := anAccount ! !
+!NetTransfer methodsFor: 'as yet unclassified' stamp: 'jb 5/30/2023 19:52:05' prior: 50718488 overrides: 50718583!
+report
+	 account netTransferFor: self.
+	^response ! !
+!AccountSummary methodsFor: 'as yet unclassified' stamp: 'jb 5/30/2023 19:52:05' prior: 50718472 overrides: 50718583!
+report
+	report  ifNotNil: [
+		account calculateAccountSummaryFor: self.
+		].
+	
+	report add:'balance = ',  account balance asString .
+	^report
+	! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 19:52:08'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:52:09'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:52:09'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:52:09'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:52:09'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:52:09'!
+PASSED!
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 19:52:49'!
+reportDepositLe: aDepositLeg
+	report add: 'Entrada por Transferencia de ', aDepositLeg  value asString,'.'.! !
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 19:53:35'!
+reportDepositLeg: aDepositLeg
+	report add: 'Entrada por Transferencia de ', aDepositLeg  value asString,'.'.! !
+
+!methodRemoval: AccountSummary #reportDepositLe: stamp: 'jb 5/30/2023 19:53:35'!
+reportDepositLe: aDepositLeg
+	report add: 'Entrada por Transferencia de ', aDepositLeg  value asString,'.'.!
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 19:53:58'!
+reportExtractionTransfer: aExtracionLeg 
+	report add: 'Salida por Transferencia de ', aExtracionLeg  value asString,'.'.! !
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 19:54:40'!
+reportWithdraw: aWithdraw 
+	report add: 'Extraccion por ', aWithdraw  value asString,'.'.! !
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 19:55:08'!
+reportDeposit:aDeposit 
+	report add: 'Deposito por ', aDeposit  value asString,'.'.! !
+!AccountSummary methodsFor: 'report a transaction' stamp: 'jb 5/30/2023 19:56:49'!
+reportDepositTransfer: aDepositLeg
+	report add: 'Entrada por Transferencia de ', aDepositLeg  value asString,'.'.! !
+
+!methodRemoval: AccountSummary #reportDepositLeg: stamp: 'jb 5/30/2023 19:56:49'!
+reportDepositLeg: aDepositLeg
+	report add: 'Entrada por Transferencia de ', aDepositLeg  value asString,'.'.!
+!DepositLeg methodsFor: 'report' stamp: 'jb 5/30/2023 19:57:25' prior: 50715211!
+reportToAccountSummary: anAccountSummary 
+	anAccountSummary reportDeposit:  self.! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 19:57:30'!
+FAILURE!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:57:30'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 19:57:30'!
+FAILURE!
+
+response!
+
+ (AccountSummary for: accountDeposit ) report!
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 19:58:30' prior: 50718635 overrides: 50718583!
+report
+	report  ifNill: [
+		account calculateAccountSummaryFor: self.
+		].
+	
+	report add:'balance = ',  account balance asString .
+	^report
+	! !
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 19:58:40'!
+ERROR!
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 19:59:07' prior: 50718839 overrides: 50718583!
+report
+	report  ifNil: [
+		account calculateAccountSummaryFor: self.
+		].
+	
+	report add:'balance = ',  account balance asString .
+	^report
+	! !
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 19:59:09'!
+FAILURE!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 19:59:21'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 19:59:21'!
+FAILURE!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 19:59:21'!
+FAILURE!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 19:59:21'!
+FAILURE!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 19:59:21'!
+FAILURE!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 19:59:21'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 19:59:21'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 19:59:21'!
+FAILURE!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 19:59:21'!
+FAILURE!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 19:59:21'!
+FAILURE!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 19:59:21'!
+FAILURE!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 19:59:21'!
+FAILURE!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:59:21'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 19:59:21'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:59:21'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 19:59:22'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:59:22'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:59:22'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 19:59:22'!
+PASSED!
+
+response!
+
+ (AccountSummary for: accountDeposit ) report!
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 20:00:06' prior: 50718850 overrides: 50718583!
+report
+	report  ifEmpty: [
+		account calculateAccountSummaryFor: self.
+		].
+	
+	report add:'balance = ',  account balance asString .
+	^report
+	! !
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:00:09'!
+FAILURE!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:00:13'!
+FAILURE!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:00:13'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:00:13'!
+FAILURE!
+
+(AccountSummary for: accountDeposit ) report!
+
+response!
+!Deposit methodsFor: 'report' stamp: 'jb 5/30/2023 20:01:05' prior: 50718141!
+reportToNetTransfer: aNetTransfer 
+	aNetTransfer reportDepositTransfer: self.! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:01:12'!
+FAILURE!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:01:12'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:01:12'!
+ERROR!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:01:17'!
+FAILURE!
+
+response!
+
+ (AccountSummary for: accountDeposit ) report!
+!Deposit methodsFor: 'report' stamp: 'lp 5/30/2023 17:43:26' prior: 50719016!
+reportToNetTransfer: aNetTransfer 
+	aNetTransfer reportDeposit: self.! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:02:27'!
+FAILURE!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:02:27'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:02:27'!
+FAILURE!
+!DepositLeg methodsFor: 'report' stamp: 'jb 5/30/2023 20:02:58' prior: 50718760!
+reportToAccountSummary: anAccountSummary 
+	anAccountSummary reportDepositTransfer:  self.! !
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:03:00'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:01'!
+PASSED!
+!ExtractionLeg methodsFor: 'report' stamp: 'jb 5/30/2023 20:03:28' prior: 50715314!
+reportToAccountSummary: anAccountSummary 
+	anAccountSummary reportExtractionTransfer: self.! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:32'!
+PASSED!
+!Deposit methodsFor: 'report' stamp: 'jb 5/30/2023 20:03:48' prior: 50714786!
+reportToAccountSummary: anAccountSummary 
+	anAccountSummary reportDeposit:  self .! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:52'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:03:56'!
+PASSED!
+!Withdraw methodsFor: 'report' stamp: 'jb 5/30/2023 20:04:13' prior: 50715008!
+reportToAccountSummary: anAccountSummary 
+	anAccountSummary reportWithdraw: self.! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:04:16'!
+PASSED!
+!NetTransfer methodsFor: 'report a transaction vaue' stamp: 'jb 5/30/2023 20:06:10'!
+reportDepositTransfer: aDepositTransfer 
+	response := response + aDepositTransfer  value.! !
+!NetTransfer methodsFor: 'report a transaction vaue' stamp: 'jb 5/30/2023 20:06:45'!
+reportExtractionTransfer:anExtractionTransfer 
+	response := response  - anExtractionTransfer  value! !
+!DepositLeg methodsFor: 'report' stamp: 'jb 5/30/2023 20:07:33' prior: 50717693!
+reportToNetTransfer: aNetTransfer 
+	aNetTransfer reportDepositTransfer: self! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:07:38'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:07:39'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:07:39'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:07:39'!
+PASSED!
+!ExtractionLeg methodsFor: 'report' stamp: 'jb 5/30/2023 20:08:15' prior: 50717888!
+reportToNetTransfer: aNetTransfer 
+	aNetTransfer reportExtractionTransfer: self.! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:08:20'!
+PASSED!
+
+!methodRemoval: NetTransfer #reportDepositLegWith: stamp: 'jb 5/30/2023 20:08:51'!
+reportDepositLegWith: aNetTransferValue 
+	response := response + aNetTransferValue .!
+
+!methodRemoval: NetTransfer #reportExtractionLegWith: stamp: 'jb 5/30/2023 20:08:51'!
+reportExtractionLegWith: aNetTransferValue 
+	response := response  - aNetTransferValue !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:08:58'!
+PASSED!
+
+!methodRemoval: AccountSummary #reportDepositLegWith: stamp: 'jb 5/30/2023 20:09:04'!
+reportDepositLegWith: aDepositLegValue
+	report add: 'Entrada por Transferencia de ', aDepositLegValue asString,'.'.!
+
+!methodRemoval: AccountSummary #reportExtractionTransferWith: stamp: 'jb 5/30/2023 20:09:04'!
+reportExtractionTransferWith: aExtracionLegValue 
+	report add: 'Salida por Transferencia de ', aExtracionLegValue asString,'.'.!
+
+!methodRemoval: AccountSummary #reportThisDepositWith: stamp: 'jb 5/30/2023 20:09:04'!
+reportThisDepositWith: aValue 
+	report add: 'Deposito por ', aValue asString,'.'.!
+
+!methodRemoval: AccountSummary #reportThisWithdrawWith: stamp: 'jb 5/30/2023 20:09:04'!
+reportThisWithdrawWith: aValue 
+	report add: 'Extraccion por ', aValue asString,'.'.!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:09:07'!
+PASSED!
+!Report methodsFor: 'report' stamp: 'jb 5/30/2023 20:09:51'!
+reportDeposit: aDeposit
+	self subclassResponsibility ! !
+!Report methodsFor: 'report' stamp: 'jb 5/30/2023 20:10:12'!
+reportWithdraw: aWithdraw
+	self subclassResponsibility ! !
+!Report methodsFor: 'report' stamp: 'jb 5/30/2023 20:10:24'!
+reportExtractionTransfer: aWithdraw
+	self subclassResponsibility ! !
+!Report methodsFor: 'report' stamp: 'jb 5/30/2023 20:10:36' prior: 50719875!
+reportExtractionTransfer: aExtractionTransfer
+	self subclassResponsibility ! !
+!Report methodsFor: 'report' stamp: 'jb 5/30/2023 20:10:52'!
+reportDepositTransfer: aDepositTransfer
+	self subclassResponsibility ! !
+!Report class methodsFor: 'no messages' stamp: 'jb 5/30/2023 20:12:37'!
+for: anAccount 
+	^self new initializeFor: anAccount 
+	! !
+
+!methodRemoval: AccountSummary class #for: stamp: 'jb 5/30/2023 20:12:57'!
+for: aReceptiveAccount 
+	^self new initializeFor: aReceptiveAccount !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:03'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:06'!
+PASSED!
+
+!methodRemoval: NetTransfer class #for: stamp: 'jb 5/30/2023 20:13:10'!
+for: aReceptiveAccount 
+	^self new initializeFor: aReceptiveAccount !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:14'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:13:17'!
+PASSED!
+!ReportTest methodsFor: 'net transfer test' stamp: 'jb 5/30/2023 20:19:01' prior: 50716764!
+assertTheNetTransferOf: portfolio isEqualToTheNetTransferOf: account
+
+	^ self assert: (NetTransfer  for: account)  netTransfer  equals: (NetTransfer  for: portfolio) netTransfer! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:19:02'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:19:03'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:19:03'!
+ERROR!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:19:03'!
+ERROR!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:19:03'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:19:09'!
+ERROR!
+!ReportTest methodsFor: 'net transfer test' stamp: 'jb 5/30/2023 20:19:24' prior: 50720176!
+assertTheNetTransferOf: portfolio isEqualToTheNetTransferOf: account
+
+	^ self assert: (NetTransfer  for: account)  report  equals: (NetTransfer  for: portfolio) report! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:19:26'!
+PASSED!
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 20:21:37' prior: 50718932 overrides: 50718583!
+report
+	report  ifEmpty: [
+		account reportTo: self.
+		].
+	
+	report add:'balance = ',  account balance asString .
+	^report
+	! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:21:39'!
+ERROR!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:21:39'!
+ERROR!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:21:39'!
+ERROR!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:21:39'!
+ERROR!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:21:39'!
+ERROR!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:21:39'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:21:39'!
+ERROR!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:21:39'!
+ERROR!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:21:39'!
+ERROR!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:21:39'!
+ERROR!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:21:39'!
+ERROR!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:21:39'!
+ERROR!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:21:39'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:21:39'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:21:39'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:21:39'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:21:39'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:21:39'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:21:39'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:21:41'!
+ERROR!
+!ReceptiveAccount methodsFor: 'report' stamp: 'jb 5/30/2023 20:21:50'!
+reportTo: anAccountSummary 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'report' stamp: 'jb 5/30/2023 20:22:44' prior: 50720412!
+reportTo: anAccountSummary 
+	transactions  do: [:aTransaction | 
+		aTransaction reportToAccountSummary:anAccountSummary .
+		].
+! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:22:45'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:22:47'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:22:47'!
+ERROR!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:22:47'!
+ERROR!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:22:47'!
+ERROR!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:22:47'!
+ERROR!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:22:47'!
+ERROR!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:22:47'!
+ERROR!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:22:49'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:22:49'!
+ERROR!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:22:49'!
+ERROR!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:22:49'!
+ERROR!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:22:49'!
+ERROR!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:22:49'!
+ERROR!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:22:49'!
+ERROR!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:22:51'!
+ERROR!
+!Portfolio methodsFor: 'report' stamp: 'jb 5/30/2023 20:22:56'!
+reportTo: anAccountSummary 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'report' stamp: 'jb 5/30/2023 20:23:28' prior: 50720566!
+reportTo: anAccountSummary 
+	accounts do: [ :anAccount |
+		  anAccount  calculateAccountSummaryFor:anAccountSummary 
+		
+		] .! !
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:23:30'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:23:34'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:23:35'!
+PASSED!
+!ReceptiveAccount methodsFor: 'report' stamp: 'jb 5/30/2023 20:24:06' prior: 50720417!
+reportTo: anAccountSummary 
+	transactions  do: [:aTransaction | 
+		aTransaction reportTo: anAccountSummary .
+		].
+! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jb 5/30/2023 20:24:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jb 5/30/2023 20:24:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jb 5/30/2023 20:24:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jb 5/30/2023 20:24:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jb 5/30/2023 20:24:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jb 5/30/2023 20:24:09'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jb 5/30/2023 20:24:09'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:24:24'!
+ERROR!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:24:24'!
+ERROR!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:24:24'!
+ERROR!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:24:24'!
+ERROR!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:24:24'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:24:28'!
+ERROR!
+!Deposit methodsFor: 'report' stamp: 'jb 5/30/2023 20:24:35'!
+reportTo: anAccountSummary 
+	self shouldBeImplemented.! !
+!Deposit methodsFor: 'report' stamp: 'jb 5/30/2023 20:25:13' prior: 50720753!
+reportTo: anAccountSummary 
+	anAccountSummary reportDepositTransfer:  self.! !
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:25:14'!
+FAILURE!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:25:21'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:25:21'!
+FAILURE!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:25:21'!
+ERROR!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:25:21'!
+ERROR!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:25:21'!
+ERROR!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:25:25'!
+FAILURE!
+
+response!
+
+(AccountSummary for: accountDeposit ) report!
+!Deposit methodsFor: 'report' stamp: 'jb 5/30/2023 20:26:11' prior: 50720758!
+reportTo: anAccountSummary 
+	anAccountSummary reportDeposit:   self.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:26:12'!
+ERROR!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:26:12'!
+ERROR!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:26:12'!
+ERROR!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'jb 5/30/2023 20:26:12'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:26:22'!
+ERROR!
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jb 5/30/2023 20:26:29'!
+reportTo: anAccountSummary 
+	self shouldBeImplemented.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jb 5/30/2023 20:26:44' prior: 50720999!
+reportTo: anAccountSummary 
+	anAccountSummary  reportWithdraw:  self ! !
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:26:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:26:46'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:26:46'!
+ERROR!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:26:46'!
+ERROR!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:26:49'!
+ERROR!
+!ExtractionLeg methodsFor: 'report' stamp: 'jb 5/30/2023 20:26:55'!
+reportTo: anAccountSummary 
+	self shouldBeImplemented.! !
+!ExtractionLeg methodsFor: 'report' stamp: 'jb 5/30/2023 20:27:10' prior: 50721167!
+reportTo: anAccountSummary 
+	anAccountSummary  reportExtractionTransfer:  self! !
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:27:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:27:13'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:27:13'!
+ERROR!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:27:13'!
+ERROR!
+!DepositLeg methodsFor: 'report' stamp: 'jb 5/30/2023 20:27:23'!
+reportTo: anAccountSummary 
+	self shouldBeImplemented.! !
+!DepositLeg methodsFor: 'report' stamp: 'jb 5/30/2023 20:27:36' prior: 50721335!
+reportTo: anAccountSummary 
+	anAccountSummary  reportDepositTransfer:  self! !
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:27:39'!
+PASSED!
+!Portfolio methodsFor: 'report' stamp: 'jb 5/30/2023 20:28:05' prior: 50720571!
+reportTo: anAccountSummary 
+	accounts do: [ :anAccount |
+		  anAccount  reportTo: anAccountSummary 
+		
+		] .! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'jb 5/30/2023 20:28:13'!
+PASSED!
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'jb 5/30/2023 20:28:18'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:28:22'!
+PASSED!
+!NetTransfer methodsFor: 'report' stamp: 'jb 5/30/2023 20:29:32' prior: 50718629 overrides: 50718583!
+report
+	 account reportTo: self.
+	^response ! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:29:33'!
+PASSED!
+!Report methodsFor: 'report' stamp: 'jb 5/30/2023 20:29:58' prior: 50718583!
+report
+	account  reportTo: self! !
+!NetTransfer methodsFor: 'report' stamp: 'jb 5/30/2023 20:30:12' prior: 50721633 overrides: 50721705!
+report
+	 super report .
+	^response ! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:30:13'!
+PASSED!
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 20:30:26' prior: 50720334 overrides: 50721705!
+report
+	report  ifEmpty: [
+		super  report 
+		].
+	
+	report add:'balance = ',  account balance asString .
+	^report
+	! !
+!AccountSummary methodsFor: 'report' stamp: 'jb 5/30/2023 20:30:28' prior: 50721783 overrides: 50721705!
+report
+	report  ifEmpty: [
+		super  report .
+		].
+	
+	report add:'balance = ',  account balance asString .
+	^report
+	! !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:30:29'!
+PASSED!
+
+!methodRemoval: Deposit #reportToNetTransfer: stamp: 'jb 5/30/2023 20:31:02'!
+reportToNetTransfer: aNetTransfer 
+	aNetTransfer reportDeposit: self.!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:31:18'!
+PASSED!
+
+!methodRemoval: Deposit #reportToAccountSummary: stamp: 'jb 5/30/2023 20:31:37'!
+reportToAccountSummary: anAccountSummary 
+	anAccountSummary reportDeposit:  self .!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:31:42'!
+PASSED!
+
+!methodRemoval: DepositLeg #reportToAccountSummary: stamp: 'jb 5/30/2023 20:31:50'!
+reportToAccountSummary: anAccountSummary 
+	anAccountSummary reportDepositTransfer:  self.!
+
+!methodRemoval: DepositLeg #reportToNetTransfer: stamp: 'jb 5/30/2023 20:31:52'!
+reportToNetTransfer: aNetTransfer 
+	aNetTransfer reportDepositTransfer: self!
+
+!methodRemoval: ExtractionLeg #reportToNetTransfer: stamp: 'jb 5/30/2023 20:31:56'!
+reportToNetTransfer: aNetTransfer 
+	aNetTransfer reportExtractionTransfer: self.!
+
+!methodRemoval: ExtractionLeg #reportToAccountSummary: stamp: 'jb 5/30/2023 20:31:57'!
+reportToAccountSummary: anAccountSummary 
+	anAccountSummary reportExtractionTransfer: self.!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:00'!
+PASSED!
+
+!methodRemoval: Withdraw #reportToAccountSummary: stamp: 'jb 5/30/2023 20:32:06'!
+reportToAccountSummary: anAccountSummary 
+	anAccountSummary reportWithdraw: self.!
+
+!methodRemoval: Withdraw #reportToNetTransfer: stamp: 'jb 5/30/2023 20:32:08'!
+reportToNetTransfer: aNetTransfer 
+	aNetTransfer reportWithdraw: self!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:32:12'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:32:12'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:13'!
+PASSED!
+
+!methodRemoval: Withdraw #affectAccountSummary: stamp: 'jb 5/30/2023 20:32:21'!
+affectAccountSummary: anAccountSummary 
+	^  anAccountSummary add: 'Extraccion por ' , (self) value asString ,'.', String crString!
+
+!methodRemoval: Withdraw #reportAccountSummary: stamp: 'jb 5/30/2023 20:32:21'!
+reportAccountSummary: response 
+	response  add: 'Extraccion por ' , self  value asString ,'.'.!
+
+!methodRemoval: Withdraw #affectNetTransfer: stamp: 'jb 5/30/2023 20:32:35'!
+affectNetTransfer: netTransfer 
+	^netTransfer !
+
+!methodRemoval: Withdraw #reportNetTransfer: stamp: 'jb 5/30/2023 20:32:35'!
+reportNetTransfer: response 
+	^0!
+
+!methodRemoval: Deposit #affectAccountSummary: stamp: 'jb 5/30/2023 20:32:40'!
+affectAccountSummary: anAccountSummary 
+	anAccountSummary  add: 'Deposito por ' ,  self value asString ,'.', String crString!
+
+!methodRemoval: Deposit #reportAccountSummary: stamp: 'jb 5/30/2023 20:32:40'!
+reportAccountSummary: response 
+	response  add: 'Deposito por ' , self  value asString ,'.'.!
+
+!methodRemoval: Deposit #affectNetTransfer: stamp: 'jb 5/30/2023 20:32:43'!
+affectNetTransfer: netTransfer 
+	^netTransfer !
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:32:46'!
+ERROR!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:32:46'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:32:46'!
+ERROR!
+!ReportTest methodsFor: 'account summary test' stamp: 'jb 5/30/2023 20:34:11' prior: 50713399!
+test06AccountSummaryGivesMany
+|account accountToExtract accountToDeposit response |
+account := ReceptiveAccount  new.
+accountToExtract := ReceptiveAccount new.
+accountToDeposit := ReceptiveAccount new.
+
+Deposit register: 100 on: account. 
+Withdraw register: 50 on:account .
+
+Transfer theAmmount: 20 from: account  to: accountToDeposit .
+Transfer theAmmount: 30 from: accountToExtract  to: account .
+
+response := OrderedCollection with:'Deposito por 100.' with:'Extraccion por 50.' with:'Salida por Transferencia de 20.' with: 'Entrada por Transferencia de 30.' with:'balance = 60'.
+
+
+self assert: response
+	equals: (AccountSummary  for: account  ) report 
+
+! !
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:34:13'!
+PASSED!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:34:17'!
+PASSED!
+
+!methodRemoval: Deposit #reportNetTransfer: stamp: 'jb 5/30/2023 20:34:23'!
+reportNetTransfer: response 
+	^0!
+
+!methodRemoval: DepositLeg #affectAccountSummary: stamp: 'jb 5/30/2023 20:34:35'!
+affectAccountSummary: anAccountSummary 
+	^anAccountSummary add: 'Entrada por Transferencia de ' ,  self value  asString ,'.', String crString!
+
+!methodRemoval: DepositLeg #reportAccountSummary: stamp: 'jb 5/30/2023 20:34:35'!
+reportAccountSummary: response 
+	response  add: 'Entrada por Transferencia de ' , self  value asString ,'.'.!
+
+!methodRemoval: DepositLeg #reportNetTransfer: stamp: 'jb 5/30/2023 20:34:37'!
+reportNetTransfer: response 
+	^response + transferHead value!
+
+!methodRemoval: ExtractionLeg #affectAccountSummary: stamp: 'jb 5/30/2023 20:34:41'!
+affectAccountSummary: anAccountSummary 
+	^anAccountSummary add: 'Salida por Transferencia de ' ,self  value asString ,'.', String crString!
+
+!methodRemoval: ExtractionLeg #reportAccountSummary: stamp: 'jb 5/30/2023 20:34:41'!
+reportAccountSummary: response 
+	response  add: 'Salida por Transferencia de ' , self  value asString ,'.'.!
+
+!methodRemoval: ExtractionLeg #reportNetTransfer: stamp: 'jb 5/30/2023 20:34:43'!
+reportNetTransfer: response 
+	^ response - transferHead value.!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:34:46'!
+PASSED!
+
+!methodRemoval: Portfolio #accountSummary stamp: 'jb 5/30/2023 20:35:01'!
+accountSummary
+|accountSummary|
+	accountSummary := OrderedCollection new.
+	accountSummary addAll: self calculateAccountSummary .
+	accountSummary add: 'balance = ', self balance asString.
+	^accountSummary !
+
+!methodRemoval: Portfolio #accumulate:andReport: stamp: 'jb 5/30/2023 20:35:21'!
+accumulate: anAccumulator andReport: aBlockWithAnAccumulatorAndAAccount  
+	^accounts inject:  anAccumulator into: [:anAcc :anAccount |
+		aBlockWithAnAccumulatorAndAAccount  value:  anAcc  value:  anAccount 
+		]  !
+
+!methodRemoval: Portfolio #calculateAccountSummary stamp: 'jb 5/30/2023 20:35:52'!
+calculateAccountSummary
+	|report|
+
+	report := OrderedCollection new.
+	accounts do: [ :anAccount |
+		report  addAll:  anAccount  calculateAccountSummary 
+		
+		] .
+	^ report.!
+
+!methodRemoval: Portfolio #netTransfer stamp: 'jb 5/30/2023 20:36:02'!
+netTransfer
+^accounts inject:  0  into: [:netTransfer :anAccount |
+	netTransfer +  anAccount  netTransfer 
+	
+	]!
+
+!methodRemoval: Portfolio #report: stamp: 'jb 5/30/2023 20:36:02'!
+report: aBlockWithAccountAndAccumulator 
+	^accounts inject:  '' into: [:anAccountSummary :anAccount |
+		anAccountSummary  , anAccount  calculateAccountSummary 
+		
+		]  !
+
+!methodRemoval: Portfolio #showTree stamp: 'jb 5/30/2023 20:36:02'!
+showTree
+	^''!
+
+!methodRemoval: Portfolio #calculateAccountSummaryFor: stamp: 'jb 5/30/2023 20:36:07'!
+calculateAccountSummaryFor: anAccountSummary 
+	accounts do: [ :anAccount |
+		  anAccount  calculateAccountSummaryFor:anAccountSummary 
+		
+		] .!
+
+!methodRemoval: Portfolio #netTransferFor: stamp: 'jb 5/30/2023 20:36:09'!
+netTransferFor: aNetTransfer 
+	accounts do: [ :anAccount |
+		  anAccount  netTransferFor: aNetTransfer 
+		
+		] .!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:36:12'!
+PASSED!
+
+!methodRemoval: ReceptiveAccount #netTransferFor: stamp: 'jb 5/30/2023 20:36:20'!
+netTransferFor: aNetTransfer 
+	
+^transactions do: 	[ :aTransaction | 
+	aTransaction reportToNetTransfer: aNetTransfer .
+	].!
+
+!methodRemoval: ReceptiveAccount #accountSummary stamp: 'jb 5/30/2023 20:36:27'!
+accountSummary
+	|response|
+	response := OrderedCollection new.
+	response addAll: self calculateAccountSummary .
+	response add:'balance = ',  self balance asString .
+	^response!
+
+!methodRemoval: ReceptiveAccount #calculateAccountSummary stamp: 'jb 5/30/2023 20:36:27'!
+calculateAccountSummary
+	|response|
+	response := OrderedCollection new.
+	transactions  do: [:aTransaction | 
+		aTransaction reportAccountSummary: response.
+		].
+	^response!
+
+!methodRemoval: ReceptiveAccount #calculateAccountSummaryFor: stamp: 'jb 5/30/2023 20:36:27'!
+calculateAccountSummaryFor: anAccountSummary 
+	transactions  do: [:aTransaction | 
+		aTransaction reportToAccountSummary:anAccountSummary .
+		].
+!
+
+!methodRemoval: ReceptiveAccount #netTransfer stamp: 'jb 5/30/2023 20:36:27'!
+netTransfer
+
+^transactions  inject:0 into: 	[:response :aTransaction | 
+	aTransaction reportNetTransfer: response.
+	].!
+
+!testRun: #ReportTest #test01empyAccountSummaryReportGivesOnlyTheBalance stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test02AccountSummaryGivesADeposit stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test03AccountSummaryGivesAWithdraw stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test04AccountSummaryGivesAExitTransfer stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test05AccountSummaryGivesAInTransfer stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test06AccountSummaryGivesMany stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test07emptyPortfolioAccountSumaryGivesBalance0 stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test08PortfolioWithAnAccountAccountSumary stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test09PortfolioWithAnotherPortfolioAccountSumary stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test10PortfolioWithTwoAccountsAccountSumary stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test11PortfolioWithaPortfolioWithAnotherPortfolioInsideAccountSumary stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test12PortfolioWithPortfolioAndAnAccountGiveCorrectAccountSummary stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test13emptyAccountShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test14anAccountWithAnOnlyTransferGivesCorrectNetTransfer stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test15AccountWithTwoTransfersGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test16emptyPortfolioShouldGive0NetTransfer stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test17PortfolioWithAnAccountWithTransfersShoulGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test18PortfolioWithAnInnerPortfolioWithOneAccountShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+!testRun: #ReportTest #test19PortfolioWithMultiplesAccountAndPortfoliosShouldGiveCorrectNetTransfer stamp: 'jb 5/30/2023 20:36:30'!
+PASSED!
+
+----SNAPSHOT----(30 May 2023 20:36:42) CuisUniversity-5706.image priorSource: 12371613!
+!Portfolio methodsFor: 'report' stamp: 'jb 5/30/2023 20:37:00' prior: 50721349!
+reportTo: aReport 
+	accounts do: [ :anAccount |
+		  anAccount  reportTo: aReport 
+		
+		] .! !
+!TransferLegs methodsFor: 'as yet unclassified' stamp: 'jb 5/30/2023 20:38:45'!
+reportTo: aReport
+	self subclassResponsibility ! !
+
+!methodRemoval: TransferLegs #reportTo: stamp: 'jb 5/30/2023 20:38:57'!
+reportTo: aReport
+	self subclassResponsibility !
+!AccountTransaction methodsFor: 'value' stamp: 'jb 5/30/2023 20:39:16'!
+reportTo: aReport
+	self subclassResponsibility ! !
+
+!methodRemoval: DepositLeg #affectNetTransfer: stamp: 'jb 5/30/2023 20:40:06'!
+affectNetTransfer: netTransfer 
+	^netTransfer  + self value !
+
+!methodRemoval: ExtractionLeg #affectBalance: stamp: 'jb 5/30/2023 20:40:13'!
+affectBalance: aBalanceAmmount
+	^ aBalanceAmmount - transferHead value.!
+
+!methodRemoval: ExtractionLeg #affectNetTransfer: stamp: 'jb 5/30/2023 20:40:13'!
+affectNetTransfer: netTransfer 
+	^netTransfer  - self value .!
+
+!methodRemoval: DepositLeg #affectBalance: stamp: 'jb 5/30/2023 20:40:18'!
+affectBalance: aBalanceAmmount
+	^ aBalanceAmmount +  transferHead value.!
+
+!methodRemoval: TransferLegs #transferHead stamp: 'jb 5/30/2023 20:40:39'!
+transferHead
+	^ transferHead !
+
+!methodRemoval: TransferLegs #affectBalance: stamp: 'jb 5/30/2023 20:40:46'!
+affectBalance: aBalance
+	self subclassResponsibility !
+
+----SNAPSHOT----(30 May 2023 20:42:53) CuisUniversity-5706.image priorSource: 12513983!
+
+----QUIT----(30 May 2023 20:51:46) CuisUniversity-5706.image priorSource: 12515504!
