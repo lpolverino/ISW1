@@ -751,6 +751,32 @@ test33PortfolioWithAnAccountAndAPortfolioShouldMakeTheCorrectEspecialReport
 	
 	self assert: 	responseCollection    equals:  ( EspecialReport  for:portfolio  ) report! !
 
+!ReportTest methodsFor: 'especial report test' stamp: 'jb 6/1/2023 11:11:48'!
+test34PortfolioWithAccountsWithTransactionShouldReportCorrectly
+	|johnsAccount childrenPortfolio myAccount familyPortfolio responseCollection |
+	
+	johnsAccount := ReceptiveAccount  named: 'Cuenta de Juan'. 	Deposit  register:  100 on: johnsAccount . 
+
+	childrenPortfolio := Portfolio  named:'Portfolio de hijos'  with: johnsAccount .
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.	Deposit  register:  100 on:  myAccount .
+
+	familyPortfolio := Portfolio  named: 'Portfolio de la familia' with: childrenPortfolio  with:  myAccount .
+	responseCollection := OrderedCollection
+	 with: 'Portfolio de la familia'
+		 with:  String  tab, 'Portfolio de hijos'
+	 		with: String  tab, String  tab,  'Cuenta de Juan'
+				with:  String  tab, String  tab,String  tab,  'Depósito por 100'
+				with: String  tab, String  tab, String  tab,'Balance = 100'.
+	 		responseCollection  add: String  tab, String  tab,  'Balance = 100'.
+	
+		responseCollection  add:  String  tab,  'Cuenta mia'.
+			responseCollection   add: String  tab,String  tab,  'Depósito por 100'.
+			responseCollection  add:  String  tab, String  tab,'Balance = 100'.
+		responseCollection  add:  String  tab,  'Balance = 200'.
+	
+	self  assert: responseCollection  
+	 equals:  (EspecialReport  for: familyPortfolio ) report. ! !
+
 
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
 TestCase subclass: #TransferTest
@@ -1384,13 +1410,13 @@ report
 	account  reportTo: self! !
 
 
-!Report methodsFor: 'report an account' stamp: 'jb 5/31/2023 15:56:02'!
+!Report methodsFor: 'report an account' stamp: 'jb 6/1/2023 11:14:22'!
 reportPortfolio: aPortfolio 
-	aPortfolio  reportAllAccountsTo:  self ! !
+	self subclassResponsibility ! !
 
-!Report methodsFor: 'report an account' stamp: 'jb 5/31/2023 15:54:39'!
+!Report methodsFor: 'report an account' stamp: 'jb 6/1/2023 11:14:30'!
 reportReceptiveAccount: anReceptiveAccount 
-	anReceptiveAccount reportAllTransactionsTo: self! !
+	self subclassResponsibility ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1444,6 +1470,15 @@ report
 	^report
 	! !
 
+
+!AccountSummary methodsFor: 'report an account' stamp: 'jb 6/1/2023 11:15:37'!
+reportPortfolio: aPortfolio 
+	aPortfolio  reportAllAccountsTo:  self! !
+
+!AccountSummary methodsFor: 'report an account' stamp: 'jb 6/1/2023 11:15:08'!
+reportReceptiveAccount: aReceptiveAccount 
+	aReceptiveAccount  reportAllTransactionsTo:  self! !
+
 
 !classDefinition: #NetTransfer category: 'Portfolio-Solucion'!
 Report subclass: #NetTransfer
@@ -1479,6 +1514,15 @@ reportExtractionTransfer:anExtractionTransfer
 !NetTransfer methodsFor: 'report a transaction' stamp: 'lp 5/30/2023 17:44:55'!
 reportWithdraw: aWithdraw 
 	! !
+
+
+!NetTransfer methodsFor: 'report an account' stamp: 'jb 6/1/2023 11:16:29'!
+reportPortfolio: aPortfolio 
+	aPortfolio  reportAllAccountsTo:  self! !
+
+!NetTransfer methodsFor: 'report an account' stamp: 'jb 6/1/2023 11:16:02'!
+reportReceptiveAccount: aReceptiveAccount 
+	aReceptiveAccount  reportAllTransactionsTo:  self! !
 
 
 !classDefinition: #TreeReport category: 'Portfolio-Solucion'!
