@@ -1,77 +1,3 @@
-!classDefinition: #PortfolioReportTest category: 'Portfolio-Solucion'!
-TestCase subclass: #PortfolioReportTest
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'jb 5/28/2023 10:40:46'!
-test01EmptyPortfolioShouldNotPrintAnything
-	
-	self assert: ''  equals: Portfolio  new showTree! !
-
-!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'jb 5/28/2023 10:54:06'!
-test02PortfolioNamedShouldTellItsName
-	|portfolio|
-	portfolio  :=PortfolioTreeReport named: 'Portfolio de la familia'.   
-	self assert: 'Portfolio de la familia'  equals: portfolio  report! !
-
-!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'jb 5/28/2023 12:47:24'!
-test03PortfolioWithPortfolioShouldMakeTheCorrectReport
-	|portfolio|
-	portfolio  := (PortfolioTreeReport named: 'Portfolio de la familia') with: (PortfolioTreeReport named:  'Portfolio de los hijos') .   
-	self assert: 
-	'Portfolio de la familia',String crString,String tab,
-	'Portfolio de los hijos'  equals: portfolio  report! !
-
-!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'jb 5/28/2023 12:53:39'!
-test04PortfolioWithAnAccountShouldMakeTheCorrectReport
-	|portfolio|
-	portfolio  := (PortfolioTreeReport named: 'Portfolio de la familia') with: (ReceptiveAccountTreeReport  named:  'Cuenta de Angeles') .   
-	self assert: 
-	'Portfolio de la familia',String crString,String tab,
-	'Cuenta de Angeles'  equals: portfolio  report! !
-
-!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'jb 5/28/2023 12:59:08'!
-test05PortfolioWithAnAccountAndAPortfolioShouldMakeTheCorrectReport
-	|portfolio|
-	portfolio  := (PortfolioTreeReport named: 'Portfolio de la familia') with: (ReceptiveAccountTreeReport  named:  'Cuenta de Angeles') with: (PortfolioTreeReport  named:  'Portfolio de los hijos').   
-	self assert: 
-	'Portfolio de la familia',String crString,String tab,
-	'Cuenta de Angeles',String crString,String tab,
-	'Portfolio de los hijos'
-	   equals: portfolio  report! !
-
-!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'jb 5/28/2023 14:23:32'!
-test06PortfolioWithPortfolioWithAccountShouldMakeTheCorrectReport
-	|portfolio|
-	portfolio  := (PortfolioTreeReport named: 'Portfolio de la familia') with: ((PortfolioTreeReport  named:  'Portfolio de los hijos') with: (ReceptiveAccountTreeReport named: 'Cuenta de Angeles')).   
-	self assert: 
-	'Portfolio de la familia',String crString,String tab,
-	'Portfolio de los hijos' ,String crString,String tab,String tab,
-	'Cuenta de Angeles'
-	   equals: portfolio  report ! !
-
-!PortfolioReportTest methodsFor: 'as yet unclassified' stamp: 'jb 5/28/2023 14:19:53'!
-_test06PortfolioWithManyAccountsAndPortfoliosShouldMakeTheCorrectReport
-	|johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio |
-	
-	johnsAccount := ReceptiveAccountTreeReport  named: 'Cuenta de Juan'. 
-	angiesAccount := ReceptiveAccountTreeReport named: 'Cuenta de Angeles'.
-	childrenPortfolio := (PortfolioTreeReport  named:'Portfolio de hijos' )with:
-johnsAccount with: angiesAccount.
-	myAccount := ReceptiveAccountTreeReport named: 'Cuenta mia'.
-	familyPortfolio := (PortfolioTreeReport  named: 'Portfolio de la familia') with: myAccount with: childrenPortfolio.
-	
-	self  assert: 'Portfolio de la familia', String  crString , String  tab, 
-	'Cuenta mia', 	String  crString, String  tab, 
-	'Portfolio de hijos', String  crString , String  tab, String  tab, 
-	'Cuenta de Juan' , String  crString , String  tab, String  tab, 
-	'Cuenta de Angeles'
-	 equals: familyPortfolio report. 
-! !
-
-
 !classDefinition: #PortfolioTest category: 'Portfolio-Solucion'!
 TestCase subclass: #PortfolioTest
 	instanceVariableNames: ''
@@ -386,11 +312,6 @@ TestCase subclass: #ReportTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportTest methodsFor: 'account summary test' stamp: 'lp 5/30/2023 17:07:18'!
-assertIfThisReport: response isTheAccountSummaryOf: accountDeposit
-
-	^ self assert: response equals:  (AccountSummary for: accountDeposit ) report! !
-
 !ReportTest methodsFor: 'account summary test' stamp: 'lp 5/30/2023 16:14:10'!
 test01empyAccountSummaryReportGivesOnlyTheBalance
 
@@ -573,16 +494,6 @@ self assertIfThisReport: report isTheAccountSummaryOf: portfolio
 ! !
 
 
-!ReportTest methodsFor: 'net transfer test' stamp: 'lp 5/30/2023 17:24:24'!
-assertTheNetTransferOf: anAccount isEqualTo:aNetTransferValue
-
-	^ self assert: aNetTransferValue   equals: (NetTransfer  for: anAccount ) report! !
-
-!ReportTest methodsFor: 'net transfer test' stamp: 'jb 5/30/2023 20:19:24'!
-assertTheNetTransferOf: portfolio isEqualToTheNetTransferOf: account
-
-	^ self assert: (NetTransfer  for: account)  report  equals: (NetTransfer  for: portfolio) report! !
-
 !ReportTest methodsFor: 'net transfer test' stamp: 'lp 5/30/2023 17:21:49'!
 test13emptyAccountShouldGive0NetTransfer
 self assertTheNetTransferOf: ( ReceptiveAccount new) isEqualTo: 0.
@@ -647,6 +558,198 @@ innerPortfolio  :=  Portfolio  new  add: account2 .
 portfolio  add: innerPortfolio  .
 self assertTheNetTransferOf: portfolio isEqualTo: 50 
 ! !
+
+
+!ReportTest methodsFor: 'net transfer private' stamp: 'lp 5/30/2023 17:24:24'!
+assertTheNetTransferOf: anAccount isEqualTo:aNetTransferValue
+
+	^ self assert: aNetTransferValue   equals: (NetTransfer  for: anAccount ) report! !
+
+!ReportTest methodsFor: 'net transfer private' stamp: 'jb 5/30/2023 20:19:24'!
+assertTheNetTransferOf: portfolio isEqualToTheNetTransferOf: account
+
+	^ self assert: (NetTransfer  for: account)  report  equals: (NetTransfer  for: portfolio) report! !
+
+
+!ReportTest methodsFor: 'account summary private' stamp: 'lp 5/30/2023 17:07:18'!
+assertIfThisReport: response isTheAccountSummaryOf: accountDeposit
+
+	^ self assert: response equals:  (AccountSummary for: accountDeposit ) report! !
+
+
+!ReportTest methodsFor: 'tree report test' stamp: 'jb 5/31/2023 16:41:41'!
+test20PortfoilioWithoutANameShouldMakeException
+
+! !
+
+!ReportTest methodsFor: 'tree report test' stamp: 'jb 5/31/2023 16:41:47'!
+test21PortfolioNamedShouldTellItsName
+	|portfolio|
+	portfolio  :=Portfolio named: 'Portfolio de la familia'.   
+	self assert: (OrderedCollection  with: 'Portfolio de la familia')  equals: (TreeReport for: portfolio )  report! !
+
+!ReportTest methodsFor: 'tree report test' stamp: 'jb 5/31/2023 16:41:54'!
+test22PortfolioWithPortfolioShouldMakeTheCorrectReport
+	|portfolio reportCollection |
+	portfolio  :=  Portfolio named: 'Portfolio de la familia' with: (Portfolio named:  'Portfolio de los hijos') .   	reportCollection  := OrderedCollection  with:  'Portfolio de la familia' with: String tab, 'Portfolio de los hijos'. 
+
+	self assert: reportCollection  equals: (TreeReport  for:  portfolio  ) report! !
+
+!ReportTest methodsFor: 'tree report test' stamp: 'jb 5/31/2023 16:41:57'!
+test23PortfolioWithAnAccountShouldMakeTheCorrectReport
+	|portfolio 	reportCollection|
+	portfolio  := Portfolio named: 'Portfolio de la familia' with: (ReceptiveAccount named:  'Cuenta de Angeles' ) .   	reportCollection := OrderedCollection with:  'Portfolio de la familia'  with: String tab, 'Cuenta de Angeles'. 
+
+
+	self assert:  reportCollection equals:  (TreeReport for:  portfolio)  report! !
+
+!ReportTest methodsFor: 'tree report test' stamp: 'jb 5/31/2023 16:42:00'!
+test24PortfolioWithAnAccountAndAPortfolioShouldMakeTheCorrectReport
+	|portfolio responseCollection|
+	portfolio  := Portfolio named: 'Portfolio de la familia' with: (ReceptiveAccount  named:  'Cuenta de Angeles') with: (Portfolio  named:  'Portfolio de los hijos' ).   	responseCollection  := OrderedCollection  with: 'Portfolio de la familia' with: String tab, 'Cuenta de Angeles'  with: String tab,'Portfolio de los hijos'   .
+
+	self assert: 	responseCollection    equals:  ( TreeReport  for:portfolio  ) report! !
+
+!ReportTest methodsFor: 'tree report test' stamp: 'jb 5/31/2023 16:42:04'!
+test25PortfolioWithPortfolioWithAccountShouldMakeTheCorrectReport
+	|portfolio  responseCollection|
+	portfolio  := Portfolio named: 'Portfolio de la familia' with: (Portfolio  named:  'Portfolio de los hijos' with: (ReceptiveAccount  named: 'Cuenta de Angeles')).   	responseCollection  := OrderedCollection  with:'Portfolio de la familia'  with: String tab, 'Portfolio de los hijos'   with: String tab, String tab,'Cuenta de Angeles' .
+
+
+	self assert: responseCollection   equals: (TreeReport  for: portfolio ) report ! !
+
+!ReportTest methodsFor: 'tree report test' stamp: 'jb 5/31/2023 16:42:08'!
+test26PortfolioWithManyAccountsShouldMakeTheCorrectReport
+	|johnsAccount angiesAccount childrenPortfolio myAccount familyPortfolio responseCollection |
+	
+	johnsAccount := ReceptiveAccount  named: 'Cuenta de Juan'. 
+	angiesAccount := ReceptiveAccount named: 'Cuenta de Angeles'.
+	childrenPortfolio := Portfolio  named:'Portfolio de hijos'  with: johnsAccount with: angiesAccount.
+	myAccount := ReceptiveAccount named: 'Cuenta mia'.
+	familyPortfolio := Portfolio  named: 'Portfolio de la familia' with: childrenPortfolio  with:  myAccount .
+	responseCollection := OrderedCollection with: 'Portfolio de la familia'
+	 with:  String  tab, 'Portfolio de hijos'
+	  with: String  tab, String  tab,  'Cuenta de Juan'
+	 with:  String  tab, String  tab,  'Cuenta de Angeles'
+	 with:  String  tab, 	'Cuenta mia'.
+
+	
+	self  assert: responseCollection  
+	 equals:  (TreeReport  for: familyPortfolio ) report. 
+! !
+
+
+!ReportTest methodsFor: 'especial report test' stamp: 'jb 5/31/2023 17:19:04'!
+test27PortfolioWithANameShouldReportItsNameAndItsBalance
+	|portfolio|
+	portfolio  :=Portfolio named: 'Portfolio de la familia'.   
+	self assert: (OrderedCollection  with: 'Portfolio de la familia' with: String tab,'Balance = 0' )  equals: (EspecialReport for: portfolio )  report! !
+
+!ReportTest methodsFor: 'especial report test' stamp: 'jb 5/31/2023 17:18:54'!
+test28PortfolioWithAccountShouldGiveBothOfItsNamesAndBalances
+	|portfolio 	reportCollection|
+	portfolio  := Portfolio named: 'Portfolio de la familia' with: (ReceptiveAccount named:  'Cuenta de Angeles' ) .   	reportCollection := OrderedCollection with:  'Portfolio de la familia'  with: String tab, 'Cuenta de Angeles' with: String tab,String tab,'Balance = 0' with: String tab, 'Balance = 0'
+	
+	. 
+
+
+	self assert:  reportCollection equals:  (EspecialReport  for:  portfolio)  report! !
+
+!ReportTest methodsFor: 'especial report test' stamp: 'jb 5/31/2023 17:33:31'!
+test28PortfolioWithAccountWithDepositShouldReportCorrectly
+	|portfolio 	reportCollection angelsAccount |	
+	angelsAccount :=  ReceptiveAccount named:  'Cuenta de Angeles'. 
+	portfolio  := Portfolio named: 'Portfolio de la familia' with: (angelsAccount) .   
+	Deposit  register:  100  on: angelsAccount.  	
+	reportCollection := OrderedCollection 
+	with:  'Portfolio de la familia'  
+		with: String tab, 'Cuenta de Angeles'
+			with: String tab,String tab,'Depósito por 100'  
+			with: String tab,String tab,'Balance = 100'
+		 with: String tab, 'Balance = 100'. 
+
+
+	self assert:  reportCollection equals:  (EspecialReport  for:  portfolio)  report! !
+
+!ReportTest methodsFor: 'especial report test' stamp: 'jb 5/31/2023 17:57:11'!
+test29PortfolioWithAccountWithWithdrawShouldReportCorrectly
+	|portfolio 	reportCollection angelsAccount |	
+	angelsAccount :=  ReceptiveAccount named:  'Cuenta de Angeles'. 
+	portfolio  := Portfolio named: 'Portfolio de la familia' with: (angelsAccount) .   
+	Withdraw  register:  100  on: angelsAccount.  	
+	reportCollection := OrderedCollection 
+	with:  'Portfolio de la familia'  
+		with: String tab, 'Cuenta de Angeles'
+			with: String tab,String tab,'Extracción por 100'  
+			with: String tab,String tab,'Balance = -100'
+		 with: String tab, 'Balance = -100'. 
+
+
+	self assert:  reportCollection equals:  (EspecialReport  for:  portfolio)  report! !
+
+!ReportTest methodsFor: 'especial report test' stamp: 'jb 5/31/2023 18:17:51'!
+test30PortfolioWithAccountWithExitTransferShouldReportCorrectly
+	|portfolio 	reportCollection angelsAccount |	
+	angelsAccount :=  ReceptiveAccount named:  'Cuenta de Angeles'. 
+	portfolio  := Portfolio named: 'Portfolio de la familia' with: (angelsAccount) .   
+	Transfer  	theAmmount: 100  from:   angelsAccount to: ReceptiveAccount  new.	
+	reportCollection := OrderedCollection 
+	with:  'Portfolio de la familia'  
+		with: String tab, 'Cuenta de Angeles'
+			with: String tab,String tab,'Salida por extracción de 100'  
+			with: String tab,String tab,'Balance = -100'
+		 with: String tab, 'Balance = -100'. 
+
+
+	self assert:  reportCollection equals:  (EspecialReport  for:  portfolio)  report! !
+
+!ReportTest methodsFor: 'especial report test' stamp: 'jb 5/31/2023 18:16:38'!
+test31PortfolioWithAccountWithInTransferShouldReportCorrectly
+	|portfolio 	reportCollection angelsAccount |	
+	angelsAccount :=  ReceptiveAccount named:  'Cuenta de Angeles'. 
+	portfolio  := Portfolio named: 'Portfolio de la familia' with: (angelsAccount) .   
+	Transfer  	theAmmount: 100  from:   ReceptiveAccount  new to: angelsAccount.	
+	reportCollection := OrderedCollection 
+	with:  'Portfolio de la familia'  
+		with: String tab, 'Cuenta de Angeles'
+			with: String tab,String tab,'Entrada por depósito de 100'  
+			with: String tab,String tab,'Balance = 100'
+		 with: String tab, 'Balance = 100'. 
+
+
+	self assert:  reportCollection equals:  (EspecialReport  for:  portfolio)  report! !
+
+!ReportTest methodsFor: 'especial report test' stamp: 'jb 5/31/2023 18:22:01'!
+test32PortfolioWithAnAccountWithManyTransactionsShouldReportCorrectly
+	|portfolio 	reportCollection angelsAccount |	
+	angelsAccount :=  ReceptiveAccount named:  'Cuenta de Angeles'. 
+	portfolio  := Portfolio named: 'Portfolio de la familia' with: (angelsAccount) .   
+
+	Deposit register:   100 on: angelsAccount .  
+	Transfer  	theAmmount: 100  from:   ReceptiveAccount  new to: angelsAccount.	
+	reportCollection := OrderedCollection 
+	with:  'Portfolio de la familia'  
+		with: String tab, 'Cuenta de Angeles'
+			with: String tab,String tab,'Depósito por 100'  
+			with: String tab,String tab,'Entrada por depósito de 100'  
+			with: String tab,String tab,'Balance = 200'
+		 with: String tab, 'Balance = 200'. 
+
+
+	self assert:  reportCollection equals:  (EspecialReport  for:  portfolio)  report! !
+
+!ReportTest methodsFor: 'especial report test' stamp: 'jb 5/31/2023 18:29:27'!
+test33PortfolioWithAnAccountAndAPortfolioShouldMakeTheCorrectEspecialReport
+	|portfolio responseCollection|
+	portfolio  := Portfolio named: 'Portfolio de la familia' with: (ReceptiveAccount  named:  'Cuenta de Angeles') with: (Portfolio  named:  'Portfolio de los hijos' ).   	responseCollection  := OrderedCollection 
+	with: 'Portfolio de la familia' 
+		with: String tab, 'Cuenta de Angeles'  
+			with:  String tab,String tab, 'Balance = 0' 
+		with: String tab,'Portfolio de los hijos' . 
+			responseCollection  add:  String tab,  String tab, 'Balance = 0' . 
+		responseCollection  add: String tab, 'Balance = 0'.  
+	
+	self assert: 	responseCollection    equals:  ( EspecialReport  for:portfolio  ) report! !
 
 
 !classDefinition: #TransferTest category: 'Portfolio-Solucion'!
@@ -784,7 +887,7 @@ netTransfer
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
 Account subclass: #Portfolio
-	instanceVariableNames: 'accounts parents'
+	instanceVariableNames: 'accounts parents nameForThePortfolio'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -829,6 +932,11 @@ initialize
 
 	accounts := OrderedCollection new.
 	parents := OrderedCollection new.! !
+
+!Portfolio methodsFor: 'initialization' stamp: 'jb 5/31/2023 14:36:10'!
+initializeNamed: aNameForThePortfolio 
+	
+	nameForThePortfolio := aNameForThePortfolio.! !
 
 
 !Portfolio methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:19:36'!
@@ -894,12 +1002,20 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'report' stamp: 'jb 5/30/2023 20:37:00'!
-reportTo: aReport 
+!Portfolio methodsFor: 'report' stamp: 'jb 5/31/2023 14:39:36'!
+name 
+	^ nameForThePortfolio ! !
+
+!Portfolio methodsFor: 'report' stamp: 'jb 5/31/2023 15:24:20'!
+reportAllAccountsTo: aReport 
 	accounts do: [ :anAccount |
 		  anAccount  reportTo: aReport 
 		
 		] .! !
+
+!Portfolio methodsFor: 'report' stamp: 'jb 5/31/2023 15:20:13'!
+reportTo: aReport 	aReport  reportPortfolio: self. 
+	! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -927,10 +1043,26 @@ with: anAccount with: anotherAccount
 		add: anotherAccount;
 		yourself! !
 
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'jb 5/31/2023 14:35:53'!
+named: aNameForThePortfolio 
+	^self new initializeNamed: aNameForThePortfolio ! !
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'jb 5/31/2023 14:42:18'!
+named: aNameForThePortfolio with: anAccount 
+	
+	^(self new initializeNamed: aNameForThePortfolio  )  add: anAccount ! !
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'jb 5/31/2023 16:01:59'!
+named: aNameForThePortfolio with: anAccount with: anotherAccount 
+	^ (self named:  aNameForThePortfolio  with: anAccount ) add:anotherAccount
+
+	! !
+
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion'!
 Account subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions'
+	instanceVariableNames: 'transactions nameForTheReceptiveAccount'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -940,6 +1072,10 @@ initialize
 
 	super initialize.
 	transactions := OrderedCollection new.! !
+
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'jb 5/31/2023 15:45:43'!
+initializeNamed: aNameForTheReceptiveAccount 
+	nameForTheReceptiveAccount := aNameForTheReceptiveAccount.! !
 
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:38:52'!
@@ -985,12 +1121,31 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'report' stamp: 'jb 5/30/2023 20:24:06'!
-reportTo: anAccountSummary 
-	transactions  do: [:aTransaction | 
-		aTransaction reportTo: anAccountSummary .
-		].
+!ReceptiveAccount methodsFor: 'report' stamp: 'jb 5/31/2023 15:52:10'!
+name 
+	^nameForTheReceptiveAccount ! !
+
+!ReceptiveAccount methodsFor: 'report' stamp: 'jb 5/31/2023 15:55:27'!
+reportAllTransactionsTo: anAccountSummary 
+	transactions  do:[:aTransaction|
+		aTransaction  reportTo:  anAccountSummary 
+		]! !
+
+!ReceptiveAccount methodsFor: 'report' stamp: 'jb 5/31/2023 15:48:48'!
+reportTo: aReport 	aReport reportReceptiveAccount:  self. 
+
 ! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ReceptiveAccount class' category: 'Portfolio-Solucion'!
+ReceptiveAccount class
+	instanceVariableNames: ''!
+
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'jb 5/31/2023 15:45:31'!
+named: aNameForTheReceptiveAccount 
+
+	^self new initializeNamed: aNameForTheReceptiveAccount ! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -1124,6 +1279,12 @@ navigate
 reportTo: anAccountSummary 
 	anAccountSummary  reportDepositTransfer:  self! !
 
+
+!DepositLeg methodsFor: 'balance' stamp: 'jb 5/31/2023 14:30:04'!
+affectBalance: aBalance
+
+	^aBalance + self value ! !
+
 
 !classDefinition: #ExtractionLeg category: 'Portfolio-Solucion'!
 TransferLegs subclass: #ExtractionLeg
@@ -1140,6 +1301,12 @@ navigate
 !ExtractionLeg methodsFor: 'report' stamp: 'jb 5/30/2023 20:27:10'!
 reportTo: anAccountSummary 
 	anAccountSummary  reportExtractionTransfer:  self! !
+
+
+!ExtractionLeg methodsFor: 'balance' stamp: 'jb 5/31/2023 14:30:33'!
+affectBalance: aBalance
+
+	^aBalance - self  value ! !
 
 
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
@@ -1185,7 +1352,7 @@ for: aValue
 
 !classDefinition: #Report category: 'Portfolio-Solucion'!
 Object subclass: #Report
-	instanceVariableNames: 'account'
+	instanceVariableNames: 'account nameHirarchy'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -1215,6 +1382,15 @@ reportWithdraw: aWithdraw
 !Report methodsFor: 'report' stamp: 'jb 5/30/2023 20:29:58'!
 report
 	account  reportTo: self! !
+
+
+!Report methodsFor: 'report an account' stamp: 'jb 5/31/2023 15:56:02'!
+reportPortfolio: aPortfolio 
+	aPortfolio  reportAllAccountsTo:  self ! !
+
+!Report methodsFor: 'report an account' stamp: 'jb 5/31/2023 15:54:39'!
+reportReceptiveAccount: anReceptiveAccount 
+	anReceptiveAccount reportAllTransactionsTo: self! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1305,91 +1481,111 @@ reportWithdraw: aWithdraw
 	! !
 
 
-!classDefinition: #PortfolioTreeReport category: 'Portfolio-Solucion'!
-Report subclass: #PortfolioTreeReport
-	instanceVariableNames: 'nameForThePortfolio portfolio'
+!classDefinition: #TreeReport category: 'Portfolio-Solucion'!
+Report subclass: #TreeReport
+	instanceVariableNames: 'tabCounter'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!PortfolioTreeReport methodsFor: 'initializing' stamp: 'jb 5/28/2023 11:03:23'!
-initializeNamed: aNameForThePortfolio 
-	portfolio := Portfolio  new. 
-	nameForThePortfolio := aNameForThePortfolio.! !
+!TreeReport methodsFor: 'tabular' stamp: 'jb 5/31/2023 16:21:38'!
+addTabs
+	|tabString|
+	tabString := ''.  
+	  1  to:  tabCounter do: [:iter|
+		tabString  := tabString,String tab.
+		].
+	^tabString 
+	! !
 
-!PortfolioTreeReport methodsFor: 'initializing' stamp: 'jb 5/28/2023 13:02:48'!
-with: anAccount1 with: anAccount2 
-	 portfolio  add: anAccount1. 
-	portfolio  add: anAccount2 .! !
+
+!TreeReport methodsFor: 'initializing' stamp: 'jb 5/31/2023 17:45:43'!
+initializeFor: anAccount
+	nameHirarchy  := OrderedCollection  new.
+	tabCounter  :=0.
+	super  initializeFor:  anAccount . 
+! !
 
 
-!PortfolioTreeReport methodsFor: 'reports' stamp: 'jb 5/28/2023 14:42:16'!
+!TreeReport methodsFor: 'report' stamp: 'jb 5/31/2023 15:33:31'!
 report
-	
-	
-	^portfolio  accumulate:  nameForThePortfolio  andReport:  [:anAccumulator :anAccount |
-		anAccumulator , String crString  ,String  tab ,anAccount  report
-		]! !
+	  super report. 
+	^nameHirarchy  ! !
 
 
-!PortfolioTreeReport methodsFor: 'adding' stamp: 'jb 5/28/2023 11:10:46'!
-addedTo: aPortfolio 
-	portfolio  addedTo:  aPortfolio ! !
+!TreeReport methodsFor: 'report an account' stamp: 'jb 5/31/2023 22:33:29'!
+reportPortfolio: aPortfolio 
+	self reportTheNameOfTheAccount: aPortfolio 
+	 andIndentTheFolowingBLock: 	[aPortfolio  reportAllAccountsTo:self]. 
+	! !
 
-!PortfolioTreeReport methodsFor: 'adding' stamp: 'jb 5/28/2023 13:05:29'!
-isComposedBy: composedAccount 
-	^portfolio  isComposedBy:  composedAccount ! !
+!TreeReport methodsFor: 'report an account' stamp: 'jb 5/31/2023 16:17:09'!
+reportReceptiveAccount:  aReceptiveAccount 
+		nameHirarchy add: self addTabs ,aReceptiveAccount  name. 
+			! !
 
-!PortfolioTreeReport methodsFor: 'adding' stamp: 'jb 5/28/2023 11:02:44'!
-with: aPortfolioReport
-	portfolio add: aPortfolioReport ! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'PortfolioTreeReport class' category: 'Portfolio-Solucion'!
-PortfolioTreeReport class
-	instanceVariableNames: ''!
-
-!PortfolioTreeReport class methodsFor: 'instance creation' stamp: 'jb 5/28/2023 10:55:05'!
-named: aNameForThePortfolio
-	^self new initializeNamed: aNameForThePortfolio ! !
+!TreeReport methodsFor: 'report an account' stamp: 'jb 5/31/2023 22:32:44'!
+reportTheNameOfTheAccount: anAccount andIndentTheFolowingBLock: aBlockToIndent 
+	nameHirarchy add:  self addTabs, anAccount  name. 
+	tabCounter := tabCounter + 1. 
+	aBlockToIndent value. 
+	tabCounter  :=  tabCounter  - 1. ! !
 
 
-!classDefinition: #ReceptiveAccountTreeReport category: 'Portfolio-Solucion'!
-Report subclass: #ReceptiveAccountTreeReport
-	instanceVariableNames: 'nameforTheAccount accountF'
+!classDefinition: #EspecialReport category: 'Portfolio-Solucion'!
+TreeReport subclass: #EspecialReport
+	instanceVariableNames: 'responseCollection'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReceptiveAccountTreeReport methodsFor: 'initializing' stamp: 'jb 5/30/2023 19:51:59'!
-initializeNamed: aNameforTheAccount 
-	accountF := ReceptiveAccount  new. 
-	nameforTheAccount := aNameforTheAccount.! !
+!EspecialReport methodsFor: 'report an account' stamp: 'jb 5/31/2023 22:36:22'!
+reportPortfolio:aPortfolio
+	self reportTheNameOfTheAccount:  aPortfolio 
+	 	andIndentTheFolowingBLock: 
+		[aPortfolio  reportAllAccountsTo:  self. 
+		self reportTheBalanceOf:  aPortfolio ].
+! !
+
+!EspecialReport methodsFor: 'report an account' stamp: 'jb 5/31/2023 22:35:33'!
+reportReceptiveAccount: aReceptiveAccount 
+	self reportTheNameOfTheAccount:  aReceptiveAccount  
+	 andIndentTheFolowingBLock: [
+		aReceptiveAccount  reportAllTransactionsTo:  self.
+		self reportTheBalanceOf: aReceptiveAccount.
+
+		]
+! !
 
 
-!ReceptiveAccountTreeReport methodsFor: 'adding' stamp: 'jb 5/30/2023 19:51:59'!
-addedTo: aPortfolio 
-	accountF  addedTo:  aPortfolio ! !
+!EspecialReport methodsFor: 'report a transaction' stamp: 'jb 5/31/2023 18:12:22'!
+reportDeposit: aDeposit 
+	self reportTheMessage: 'Depósito por ' withTheAmmountOf: aDeposit ! !
 
-!ReceptiveAccountTreeReport methodsFor: 'adding' stamp: 'jb 5/30/2023 19:51:59'!
-isComposedBy: anAccount 
-	^accountF  isComposedBy:  anAccount ! !
+!EspecialReport methodsFor: 'report a transaction' stamp: 'jb 5/31/2023 18:15:36'!
+reportDepositTransfer: aDepositLeg 
+	self reportTheMessage:  'Entrada por depósito de ' withTheAmmountOf: aDepositLeg! !
+
+!EspecialReport methodsFor: 'report a transaction' stamp: 'jb 5/31/2023 18:12:22'!
+reportExtractionTransfer: anExtractionLeg 
+	self reportTheMessage:   'Salida por extracción de ' withTheAmmountOf: anExtractionLeg! !
+
+!EspecialReport methodsFor: 'report a transaction' stamp: 'jb 5/31/2023 18:12:22'!
+reportWithdraw: aWithdraw 
+	self reportTheMessage:  'Extracción por '  withTheAmmountOf: aWithdraw 
+! !
 
 
-!ReceptiveAccountTreeReport methodsFor: 'report' stamp: 'jb 5/28/2023 14:42:25'!
-report
-	^nameforTheAccount ! !
+!EspecialReport methodsFor: 'report a transaction private' stamp: 'jb 5/31/2023 18:37:38'!
+reportTheMessage: aString withTheAmmountOf: aDeposit
 
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+	^ nameHirarchy  add: self addTabs , aString ,aDeposit  value  asString! !
 
-!classDefinition: 'ReceptiveAccountTreeReport class' category: 'Portfolio-Solucion'!
-ReceptiveAccountTreeReport class
-	instanceVariableNames: ''!
 
-!ReceptiveAccountTreeReport class methodsFor: 'instance creation' stamp: 'jb 5/28/2023 12:54:11'!
-named: aNameforTheAccount 
-	^self new initializeNamed: aNameforTheAccount ! !
+!EspecialReport methodsFor: 'report an account private' stamp: 'jb 5/31/2023 22:35:33'!
+reportTheBalanceOf: aReceptiveAccount
+
+	^ nameHirarchy add:  self addTabs ,   'Balance = ', aReceptiveAccount  balance  asString! !
 
 
 !classDefinition: #Transfer category: 'Portfolio-Solucion'!
