@@ -105,13 +105,14 @@ test02InitializeWindowWithPosition
 	
 	self assert: marsRoverPositionWindow show equals:1@2.! !
 
-!MarsRoverObservantsTest methodsFor: 'position Observers' stamp: 'lp 6/3/2023 11:48:13'!
+!MarsRoverObservantsTest methodsFor: 'position Observers' stamp: 'jb 6/3/2023 19:48:43'!
 test03havingWindowAndLogPosition
 
-	|marsRover marsRoverPositionWindow marsRoverPositionLog |
+	|marsRover marsRoverPositionWindow marsRoverPositionLog marsRoverObserver|
 	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
-	marsRoverPositionWindow := MarsRoverPositionWindow listenTo: marsRover .
-	marsRoverPositionLog :=MarsRoverPositionLog listenTo:marsRover.
+	marsRoverObserver := MarsRoverObserver for: marsRover.
+	marsRoverPositionWindow := MarsRoverPositionWindow listenTo: marsRoverObserver .
+	marsRoverPositionLog :=MarsRoverPositionLog listenTo:marsRoverObserver .
 	marsRover process: 'f'.
 	
 	self assert: marsRoverPositionWindow show equals:1@2.
@@ -436,7 +437,7 @@ moveForward
 	
 	head moveForward! !
 
-!MarsRover methodsFor: 'moving' stamp: 'lp 6/3/2023 11:53:55'!
+!MarsRover methodsFor: 'moving' stamp: 'jb 6/3/2023 20:30:44'!
 moveNorth
 	
 	position := position + (0@1).
@@ -476,10 +477,10 @@ processCommand: aCommand
 addListener: aMarsRoverObserver 
 	observer := aMarsRoverObserver ! !
 
-!MarsRover methodsFor: 'observer' stamp: 'lp 6/3/2023 12:15:49'!
+!MarsRover methodsFor: 'observer' stamp: 'lp 6/3/2023 11:53:55'!
 notifyObserver: aTypeObserved
 
-	^ observer notifyObservers: aTypeObserved ! !
+	^ observer notify: aTypeObserved ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -810,14 +811,14 @@ notifyObservers: aTypeObserved
 		]! !
 
 
-!MarsRoverObserver methodsFor: 'initialization' stamp: 'lp 6/3/2023 12:10:44'!
+!MarsRoverObserver methodsFor: 'initialization' stamp: 'jb 6/3/2023 21:45:09'!
 initializeFor: aMarsRover 
 	 aMarsRover addListener: self.
-	observers := Dictionary new.! !
+	observers := OrderedCollection new.! !
 
-!MarsRoverObserver methodsFor: 'initialization' stamp: 'lp 6/3/2023 12:12:01'!
+!MarsRoverObserver methodsFor: 'initialization' stamp: 'jb 6/3/2023 21:45:31'!
 subscribeObservator: aMarsRoverPositionLog for: varaibleToObserv 
-	observers at: varaibleToObserv asString put: aMarsRoverPositionLog ! !
+	observers  add: aMarsRoverPositionLog ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 

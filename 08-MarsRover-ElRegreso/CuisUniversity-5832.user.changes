@@ -3370,3 +3370,612 @@ test12WindowHeadingWhenNotTurnCommand
 ----SNAPSHOT----(3 June 2023 12:31:43) CuisUniversity-5832.image priorSource: 9512098!
 
 ----SNAPSHOT----(3 June 2023 12:39:09) CuisUniversity-5832.image priorSource: 9521975!
+
+----STARTUP---- (3 June 2023 18:51:03) as /home/juan/Escritorio/facultad/1C23/IS1/linux64/CuisUniversity-5832.image!
+
+
+!testRun: #MarsRoverObservantsTest #test01InitializeLogWithPosition stamp: 'jb 6/3/2023 18:56:59'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test01InitializeLogWithPosition stamp: 'jb 6/3/2023 18:56:59'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test02InitializeWindowWithPosition stamp: 'jb 6/3/2023 18:56:59'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 18:56:59'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test04PositionLoggerShowAllPosiblesMovements stamp: 'jb 6/3/2023 18:56:59'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test06LogHeadingInitialize stamp: 'jb 6/3/2023 18:56:59'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test07LogHeadingUpdateWhenReceivedRCommand stamp: 'jb 6/3/2023 18:56:59'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test08LogHeadingUpdateWhenReceivedManyRCommand stamp: 'jb 6/3/2023 18:56:59'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test09LogHeadingUpdateWhenReceivedManyLCommand stamp: 'jb 6/3/2023 18:56:59'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test10WindowHeadingInitialize stamp: 'jb 6/3/2023 18:56:59'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test11WindowHeadingAllDirections stamp: 'jb 6/3/2023 18:56:59'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test12WindowHeadingWhenNotTurnCommand stamp: 'jb 6/3/2023 18:56:59'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 18:56:59'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test01InitializeLogWithPosition stamp: 'jb 6/3/2023 18:57:07'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test02InitializeWindowWithPosition stamp: 'jb 6/3/2023 18:57:07'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 18:57:07'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test04PositionLoggerShowAllPosiblesMovements stamp: 'jb 6/3/2023 18:57:07'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test06LogHeadingInitialize stamp: 'jb 6/3/2023 18:57:07'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test07LogHeadingUpdateWhenReceivedRCommand stamp: 'jb 6/3/2023 18:57:07'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test08LogHeadingUpdateWhenReceivedManyRCommand stamp: 'jb 6/3/2023 18:57:07'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test09LogHeadingUpdateWhenReceivedManyLCommand stamp: 'jb 6/3/2023 18:57:07'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test10WindowHeadingInitialize stamp: 'jb 6/3/2023 18:57:07'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test11WindowHeadingAllDirections stamp: 'jb 6/3/2023 18:57:07'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test12WindowHeadingWhenNotTurnCommand stamp: 'jb 6/3/2023 18:57:07'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 18:57:07'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 19:06:08'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 19:06:34'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test01InitializeLogWithPosition stamp: 'jb 6/3/2023 19:17:43'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test02InitializeWindowWithPosition stamp: 'jb 6/3/2023 19:17:43'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 19:17:43'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test04PositionLoggerShowAllPosiblesMovements stamp: 'jb 6/3/2023 19:17:43'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test06LogHeadingInitialize stamp: 'jb 6/3/2023 19:17:43'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test07LogHeadingUpdateWhenReceivedRCommand stamp: 'jb 6/3/2023 19:17:43'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test08LogHeadingUpdateWhenReceivedManyRCommand stamp: 'jb 6/3/2023 19:17:43'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test09LogHeadingUpdateWhenReceivedManyLCommand stamp: 'jb 6/3/2023 19:17:43'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test10WindowHeadingInitialize stamp: 'jb 6/3/2023 19:17:43'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test11WindowHeadingAllDirections stamp: 'jb 6/3/2023 19:17:43'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test12WindowHeadingWhenNotTurnCommand stamp: 'jb 6/3/2023 19:17:43'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 19:17:43'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 19:18:01'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 19:18:23'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test01InitializeLogWithPosition stamp: 'jb 6/3/2023 19:19:38'!
+PASSED!
+
+marsRoverPositionLog show!
+
+!testRun: #MarsRoverObservantsTest #test01InitializeLogWithPosition stamp: 'jb 6/3/2023 19:47:03'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test02InitializeWindowWithPosition stamp: 'jb 6/3/2023 19:47:03'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 19:47:03'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test04PositionLoggerShowAllPosiblesMovements stamp: 'jb 6/3/2023 19:47:03'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test06LogHeadingInitialize stamp: 'jb 6/3/2023 19:47:03'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test07LogHeadingUpdateWhenReceivedRCommand stamp: 'jb 6/3/2023 19:47:03'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test08LogHeadingUpdateWhenReceivedManyRCommand stamp: 'jb 6/3/2023 19:47:03'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test09LogHeadingUpdateWhenReceivedManyLCommand stamp: 'jb 6/3/2023 19:47:03'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test10WindowHeadingInitialize stamp: 'jb 6/3/2023 19:47:03'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test11WindowHeadingAllDirections stamp: 'jb 6/3/2023 19:47:03'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test12WindowHeadingWhenNotTurnCommand stamp: 'jb 6/3/2023 19:47:03'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 19:47:03'!
+ERROR!
+!MarsRoverObservantsTest methodsFor: 'position Observers' stamp: 'jb 6/3/2023 19:48:43' prior: 50628378!
+test03havingWindowAndLogPosition
+
+	|marsRover marsRoverPositionWindow marsRoverPositionLog marsRoverObserver|
+	marsRover := MarsRover at: 1@1 heading: MarsRoverHeadingNorth .
+	marsRoverObserver := MarsRoverObserver for: marsRover.
+	marsRoverPositionWindow := MarsRoverPositionWindow listenTo: marsRoverObserver .
+	marsRoverPositionLog :=MarsRoverPositionLog listenTo:marsRoverObserver .
+	marsRover process: 'f'.
+	
+	self assert: marsRoverPositionWindow show equals:1@2.
+	self assert: marsRoverPositionLog show equals:(OrderedCollection with:1@2).! !
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 19:48:44'!
+ERROR!
+!MarsRoverObserver methodsFor: 'initialization' stamp: 'jb 6/3/2023 19:58:14' prior: 50628742!
+subscribeObservator: aMarsRoverPositionLog for: varaibleToObserv 
+	observers  at:   varaibleToObserv asString 
+		ifPresent:[:value | 
+			observers  at: varaibleToObserv asString put: ( value add: aMarsRoverPositionLog ) 
+			]
+		  ifAbsent: [
+			observers  at: varaibleToObserv asString put: (  OrderedCollection with: aMarsRoverPositionLog ) 
+			
+			].
+
+
+! !
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 19:58:16'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 19:58:41'!
+ERROR!
+
+observers!
+!MarsRoverObserver methodsFor: 'as yet unclassified' stamp: 'jb 6/3/2023 20:03:35' prior: 50628227!
+notifyObservers: aTypeObserved
+	observers  at:  aTypeObserved  asString  ifPresent: [:aCollectionOfObservers|
+			aCollectionOfObservers  do:[:anObserver|
+					anObserver updateObserver:aTypeObserved.
+					]
+		]
+
+
+! !
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 20:03:51'!
+ERROR!
+
+observers!
+
+varaibleToObserv asString!
+
+value!
+
+observers!
+
+( value add: aMarsRoverPositionLog ) !
+!MarsRoverObserver methodsFor: 'initialization' stamp: 'jb 6/3/2023 20:06:12' prior: 50629437!
+subscribeObservator: aMarsRoverPositionLog for: varaibleToObserv 
+	observers  at:   varaibleToObserv asString 
+		ifPresent:[:value | 
+			 value add: aMarsRoverPositionLog 
+			]
+		  ifAbsent: [
+			observers  at: varaibleToObserv asString put: (  OrderedCollection with: aMarsRoverPositionLog ) 
+			
+			].
+
+
+! !
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 20:06:16'!
+ERROR!
+
+observers!
+
+marsRoverPosition!
+
+aTypeObserved  asString!
+!MarsRover methodsFor: 'moving' stamp: 'jb 6/3/2023 20:08:52' prior: 50628538!
+moveNorth
+	
+	position := position + (0@1).
+	self notifyObserver: 'position'! !
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 20:08:53'!
+FAILURE!
+
+marsRoverPositionWindow show !
+
+aTypeObserved!
+
+aTypeObserved  asString  !
+
+aCollectionOfObservers!
+
+anObserver!
+!MarsRover methodsFor: 'moving' stamp: 'jb 6/3/2023 20:30:44' prior: 50629494!
+moveNorth
+	
+	position := position + (0@1).
+	self notifyObserver: position! !
+!MarsRoverObserver methodsFor: 'initialization' stamp: 'jb 6/3/2023 21:45:09' prior: 50628727!
+initializeFor: aMarsRover 
+	 aMarsRover addListener: self.
+	observers := OrderedCollection new.! !
+!MarsRoverObserver methodsFor: 'initialization' stamp: 'jb 6/3/2023 21:45:31' prior: 50629476!
+subscribeObservator: aMarsRoverPositionLog for: varaibleToObserv 
+	observers  add: aMarsRoverPositionLog ! !
+!MarsRoverObserver methodsFor: 'as yet unclassified' stamp: 'lp 6/3/2023 11:42:39' prior: 50629459!
+notifyObservers: aTypeObserved
+
+	^ observers do:[:anObserver|
+		anObserver updateObserver:aTypeObserved.
+		]! !
+
+!testRun: #MarsRoverObservantsTest #test01InitializeLogWithPosition stamp: 'jb 6/3/2023 21:45:53'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test02InitializeWindowWithPosition stamp: 'jb 6/3/2023 21:45:53'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 21:45:53'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test04PositionLoggerShowAllPosiblesMovements stamp: 'jb 6/3/2023 21:45:53'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test06LogHeadingInitialize stamp: 'jb 6/3/2023 21:45:53'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test07LogHeadingUpdateWhenReceivedRCommand stamp: 'jb 6/3/2023 21:45:53'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test08LogHeadingUpdateWhenReceivedManyRCommand stamp: 'jb 6/3/2023 21:45:53'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test09LogHeadingUpdateWhenReceivedManyLCommand stamp: 'jb 6/3/2023 21:45:53'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test10WindowHeadingInitialize stamp: 'jb 6/3/2023 21:45:53'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test11WindowHeadingAllDirections stamp: 'jb 6/3/2023 21:45:53'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test12WindowHeadingWhenNotTurnCommand stamp: 'jb 6/3/2023 21:45:53'!
+PASSED!
+
+----QUIT----(3 June 2023 21:54:57) CuisUniversity-5832.image priorSource: 9522063!
+
+----STARTUP---- (3 June 2023 21:56:32) as /home/juan/Escritorio/facultad/1C23/IS1/linux64/CuisUniversity-5832.image!
+
+
+!testRun: #MarsRoverObservantsTest #test01InitializeLogWithPosition stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test02InitializeWindowWithPosition stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test04PositionLoggerShowAllPosiblesMovements stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test06LogHeadingInitialize stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test07LogHeadingUpdateWhenReceivedRCommand stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test08LogHeadingUpdateWhenReceivedManyRCommand stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test09LogHeadingUpdateWhenReceivedManyLCommand stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test10WindowHeadingInitialize stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test11WindowHeadingAllDirections stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test12WindowHeadingWhenNotTurnCommand stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'jb 6/3/2023 21:56:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'jb 6/3/2023 21:56:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'jb 6/3/2023 21:56:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'jb 6/3/2023 21:56:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'jb 6/3/2023 21:56:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'jb 6/3/2023 21:56:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'jb 6/3/2023 21:56:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'jb 6/3/2023 21:56:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'jb 6/3/2023 21:56:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'jb 6/3/2023 21:56:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'jb 6/3/2023 21:56:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'jb 6/3/2023 21:56:39'!
+ERROR!
+
+!testRun: #MarsRoverObservantsTest #test01InitializeLogWithPosition stamp: 'jb 6/3/2023 21:56:56'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test02InitializeWindowWithPosition stamp: 'jb 6/3/2023 21:56:56'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test03havingWindowAndLogPosition stamp: 'jb 6/3/2023 21:56:56'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test04PositionLoggerShowAllPosiblesMovements stamp: 'jb 6/3/2023 21:56:56'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test06LogHeadingInitialize stamp: 'jb 6/3/2023 21:56:56'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test07LogHeadingUpdateWhenReceivedRCommand stamp: 'jb 6/3/2023 21:56:56'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test08LogHeadingUpdateWhenReceivedManyRCommand stamp: 'jb 6/3/2023 21:56:56'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test09LogHeadingUpdateWhenReceivedManyLCommand stamp: 'jb 6/3/2023 21:56:56'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test10WindowHeadingInitialize stamp: 'jb 6/3/2023 21:56:56'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test11WindowHeadingAllDirections stamp: 'jb 6/3/2023 21:56:56'!
+PASSED!
+
+!testRun: #MarsRoverObservantsTest #test12WindowHeadingWhenNotTurnCommand stamp: 'jb 6/3/2023 21:56:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'jb 6/3/2023 21:57:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'jb 6/3/2023 21:57:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'jb 6/3/2023 21:57:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'jb 6/3/2023 21:57:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'jb 6/3/2023 21:57:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'jb 6/3/2023 21:57:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'jb 6/3/2023 21:57:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'jb 6/3/2023 21:57:02'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'jb 6/3/2023 21:57:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'jb 6/3/2023 21:57:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'jb 6/3/2023 21:57:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'jb 6/3/2023 21:57:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'jb 6/3/2023 21:57:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'jb 6/3/2023 21:57:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'jb 6/3/2023 21:57:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'jb 6/3/2023 21:57:07'!
+ERROR!
+
+observers!
+!MarsRover methodsFor: 'observer' stamp: 'jb 6/3/2023 21:58:25' prior: 50628749!
+notifyObserver: aTypeObserved
+	observer  ifNil: [] ifNotNil: [
+			observer notifyObservers: aTypeObserved 		
+		]
+
+
+! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'jb 6/3/2023 21:58:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'jb 6/3/2023 21:58:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'jb 6/3/2023 21:58:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'jb 6/3/2023 21:58:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'jb 6/3/2023 21:58:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'jb 6/3/2023 21:58:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'jb 6/3/2023 21:58:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'jb 6/3/2023 21:58:26'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'jb 6/3/2023 21:58:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'jb 6/3/2023 21:58:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'jb 6/3/2023 21:58:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'jb 6/3/2023 21:58:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'jb 6/3/2023 21:58:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'jb 6/3/2023 21:58:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'jb 6/3/2023 21:58:26'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'jb 6/3/2023 21:58:30'!
+ERROR!
+!MarsRover methodsFor: 'observer' stamp: 'jb 6/3/2023 21:59:10' prior: 50629766!
+notifyObserver: aTypeObserved
+	observer  ifEmpty: [] ifNotEmpty: [
+		
+		]
+
+
+! !
+!MarsRover methodsFor: 'observer' stamp: 'jb 6/3/2023 21:59:13' prior: 50629830!
+notifyObserver: aTypeObserved
+	observer  ifEmpty: [] ifNotEmpty: [
+		observer notifyObservers: aTypeObserved 		
+		]
+
+
+! !
+
+!testRun: #MarsRoverTest #test01DoesNotMoveWhenNoCommand stamp: 'jb 6/3/2023 21:59:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02IsAtFailsForDifferentPosition stamp: 'jb 6/3/2023 21:59:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03IsAtFailsForDifferentHeading stamp: 'jb 6/3/2023 21:59:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'jb 6/3/2023 21:59:14'!
+ERROR!
+
+!testRun: #MarsRoverTest #test06DecrementsYAfterMovingBackwardsWhenHeadingNorth stamp: 'jb 6/3/2023 21:59:14'!
+ERROR!
+
+!testRun: #MarsRoverTest #test07PointToEashAfterRotatingRightWhenHeadingNorth stamp: 'jb 6/3/2023 21:59:14'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08PointsToWestAfterRotatingLeftWhenPointingNorth stamp: 'jb 6/3/2023 21:59:15'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09DoesNotProcessInvalidCommand stamp: 'jb 6/3/2023 21:59:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10CanProcessMoreThanOneCommand stamp: 'jb 6/3/2023 21:59:15'!
+ERROR!
+
+!testRun: #MarsRoverTest #test11IncrementsXAfterMovingForwareWhenHeadingEast stamp: 'jb 6/3/2023 21:59:15'!
+ERROR!
+
+!testRun: #MarsRoverTest #test12DecrementsXAfterMovingBackwardWhenHeadingEast stamp: 'jb 6/3/2023 21:59:15'!
+ERROR!
+
+!testRun: #MarsRoverTest #test13PointsToSouthAfterRotatingRightWhenHeadingEast stamp: 'jb 6/3/2023 21:59:15'!
+ERROR!
+
+!testRun: #MarsRoverTest #test14PointsToNorthAfterRotatingLeftWhenPointingEast stamp: 'jb 6/3/2023 21:59:15'!
+ERROR!
+
+!testRun: #MarsRoverTest #test15ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingSouth stamp: 'jb 6/3/2023 21:59:15'!
+ERROR!
+
+!testRun: #MarsRoverTest #test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest stamp: 'jb 6/3/2023 21:59:15'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04IncrementsYAfterMovingForwardWhenHeadingNorth stamp: 'jb 6/3/2023 21:59:18'!
+ERROR!
+!MarsRover methodsFor: 'observer' stamp: 'lp 6/3/2023 11:53:55' prior: 50629836!
+notifyObserver: aTypeObserved
+
+	^ observer notify: aTypeObserved ! !
+
+----QUIT----(3 June 2023 22:02:14) CuisUniversity-5832.image priorSource: 9533453!
