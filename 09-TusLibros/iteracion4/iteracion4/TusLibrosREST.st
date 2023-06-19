@@ -173,11 +173,12 @@ heightOfButtons
 	^ 66! !
 
 
-!TusLibrosClientTestWindow methodsFor: 'initialization' stamp: 'lp 6/18/2023 17:55:54'!
+!TusLibrosClientTestWindow methodsFor: 'initialization' stamp: 'jb 6/18/2023 21:09:34'!
 initializeWith: aTitle
 
 	self setLabel: aTitle.
-	self model: (TusLibrosClientTestWindowModel new).
+	self model: (TusLibrosModelAsincronicDecorator to: TusLibrosModelErrorSignalingDecorator new   ).
+
 	self morphExtent: (self defaultExtent).
 	self buildMorphicWindow.
 	self openInWorld.
@@ -352,44 +353,35 @@ cartIdsIndex: anIndex
 	! !
 
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'lp 6/18/2023 19:28:06'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NR 6/13/2022 07:07:36'!
 addToCart
 
 	| cartId bookIsbn |
 
-	[(self areCartIdAndBookSelected) ifTrue:[
+	(self areCartIdAndBookSelected) ifTrue:[
 		cartId := self selectedCartId.
 		bookIsbn := self selectedBook.
-		self try:[restInterface add: 1 of: bookIsbn toCartIdentifiedAs: cartId.
-			self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)
-			] ]]fork.! !
+		restInterface add: 1 of: bookIsbn toCartIdentifiedAs: cartId.
+		self triggerEvent: #bookAddedToCart withArguments: (Array with: bookIsbn with: cartId)]! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'lp 6/18/2023 19:25:39'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NR 6/9/2022 08:13:07'!
 createCart
 
 	| newCartId |
-	semaphore := Semaphore new.
-	[self try: [newCartId := restInterface createCartFor: 'hernan' password: 'smalltalk'.
-		cartIds add: newCartId.
-		self triggerEvent: #newCartIdArrived.
-		].
-	semaphore signal ]fork.! !
+	
+	newCartId := restInterface createCartFor: 'hernan' password: 'smalltalk'.
+	cartIds add: newCartId.
+	self triggerEvent: #newCartIdArrived! !
 
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'lp 6/18/2023 19:29:13'!
+!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'NR 6/13/2022 07:08:06'!
 listCart
 
 	| cartId |
 	
-	[(self isCartIdSelected) ifTrue:[
+	(self isCartIdSelected) ifTrue:[
 		cartId := self selectedCartId.
-		self try: [currentSelectedCartContent := restInterface listCart: cartId.
-			self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId
-			]]]fork.! !
-
-!TusLibrosClientTestWindowModel methodsFor: 'buttonSelectors' stamp: 'lp 6/18/2023 18:43:18'!
-try:aBlock
-	[aBlock value] on: Error do:[:anError | ^self triggerEvent: #errorSignal withArguments:(Array with: anError messageText)].
-	! !
+		currentSelectedCartContent := restInterface listCart: cartId.
+		self triggerEvent: #newCurrentSelectedCartContentArrived with: cartId ].! !
 
 
 !TusLibrosClientTestWindowModel methodsFor: 'initialization' stamp: 'NR 6/9/2022 08:13:11'!
@@ -409,6 +401,94 @@ initialize
 	selectedCartIdsIndex := 0.
 	selectedBookCatalogIndex := 0.
 	restInterface := TusLibrosClientRestInterface new.! !
+
+
+!classDefinition: #TusLibrosClientTestWindowModelDecorator category: 'TusLibrosREST'!
+Object subclass: #TusLibrosClientTestWindowModelDecorator
+	instanceVariableNames: 'tusLibrosModel'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibrosREST'!
+
+!TusLibrosClientTestWindowModelDecorator methodsFor: 'decorator' stamp: 'jb 6/18/2023 21:13:20'!
+decorate: aBlock
+	self subclassResponsibility ! !
+
+
+!TusLibrosClientTestWindowModelDecorator methodsFor: 'initializing' stamp: 'jb 6/18/2023 20:58:47'!
+initialize
+	tusLibrosModel := TusLibrosClientTestWindowModel  new.! !
+
+!TusLibrosClientTestWindowModelDecorator methodsFor: 'initializing' stamp: 'jb 6/18/2023 21:00:39'!
+initializeWith: aModelToDecorate
+	tusLibrosModel := aModelToDecorate.! !
+
+
+!TusLibrosClientTestWindowModelDecorator methodsFor: 'buttom selector' stamp: 'jb 6/18/2023 21:12:14'!
+addToCart
+	self decorate: [ tusLibrosModel  addToCart ] .! !
+
+!TusLibrosClientTestWindowModelDecorator methodsFor: 'buttom selector' stamp: 'jb 6/18/2023 21:12:18'!
+createCart
+	self decorate: [ tusLibrosModel  createCart. ] .! !
+
+!TusLibrosClientTestWindowModelDecorator methodsFor: 'buttom selector' stamp: 'jb 6/18/2023 21:12:23'!
+listCart
+	self decorate:  [ tusLibrosModel  listCart ] .! !
+
+
+!TusLibrosClientTestWindowModelDecorator methodsFor: 'object overrading' stamp: 'jb 6/18/2023 20:50:36'!
+addDependent: anObject
+	^tusLibrosModel addDependent:  anObject! !
+
+!TusLibrosClientTestWindowModelDecorator methodsFor: 'object overrading' stamp: 'jb 6/18/2023 20:50:30'!
+doesNotUnderstand: aMessage 
+	 ^aMessage  sendTo: tusLibrosModel  ! !
+
+!TusLibrosClientTestWindowModelDecorator methodsFor: 'object overrading' stamp: 'jb 6/18/2023 20:50:19'!
+when: anEventSelector
+send: aMessageSelector
+to: anObject
+ 	
+	^tusLibrosModel  when: anEventSelector
+send: aMessageSelector
+to: anObject
+! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TusLibrosClientTestWindowModelDecorator class' category: 'TusLibrosREST'!
+TusLibrosClientTestWindowModelDecorator class
+	instanceVariableNames: ''!
+
+!TusLibrosClientTestWindowModelDecorator class methodsFor: 'as yet unclassified' stamp: 'jb 6/18/2023 21:05:22'!
+to: aModelToDecorate
+	^self new initializeWith: aModelToDecorate ! !
+
+
+!classDefinition: #TusLibrosModelAsincronicDecorator category: 'TusLibrosREST'!
+TusLibrosClientTestWindowModelDecorator subclass: #TusLibrosModelAsincronicDecorator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibrosREST'!
+
+!TusLibrosModelAsincronicDecorator methodsFor: 'decorator' stamp: 'jb 6/18/2023 21:10:27'!
+decorate:aBlock
+	[ aBlock value ] fork.! !
+
+
+!classDefinition: #TusLibrosModelErrorSignalingDecorator category: 'TusLibrosREST'!
+TusLibrosClientTestWindowModelDecorator subclass: #TusLibrosModelErrorSignalingDecorator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibrosREST'!
+
+!TusLibrosModelErrorSignalingDecorator methodsFor: 'decorator' stamp: 'jb 6/18/2023 21:12:03'!
+decorate:aBlock
+	[aBlock value] on: Error do:[:anError | ^tusLibrosModel triggerEvent: #errorSignal withArguments:(Array with: anError messageText)].
+	! !
 
 
 !classDefinition: #TusLibrosServerRestInterface category: 'TusLibrosREST'!
