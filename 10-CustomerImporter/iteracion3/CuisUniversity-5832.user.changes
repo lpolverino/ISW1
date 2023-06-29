@@ -1,0 +1,1180 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (29 June 2023 19:31:08) as /home/clinux01/Descargas/linux64/linux64/CuisUniversity-5832.image!
+
+
+----End fileIn of /home/clinux01/Escritorio/ISW1-2023-1c/10-CustomerImporter/iteracion2/CustomerImporter.st----!
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'jb 6/29/2023 19:34:21'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'session customerSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentCustomerSystem category: 'CustomerImporter' stamp: 'jb 6/29/2023 19:34:24'!
+Object subclass: #PersistentCustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 19:34:29' prior: 50624623 overrides: 16961394!
+setUp
+	customerSystem := PersistentCustomerSystem.
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.
+! !
+!ImportTest methodsFor: 'assertions' stamp: 'jb 6/29/2023 19:35:03' prior: 50624509!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: (self session selectAllOfType: Customer) size! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 19:35:07'!
+ERROR!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 19:35:08'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 19:35:08'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 19:35:08'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 19:35:08'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 19:35:08'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:35:09'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 19:35:09'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 19:35:10'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:35:11'!
+PASSED!
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 19:35:11'!
+ERROR!
+!ImportTest methodsFor: 'category-name' stamp: 'jb 6/29/2023 19:35:19'!
+session
+	self shouldBeImplemented.
+	^session! !
+!ImportTest methodsFor: 'category-name' stamp: 'jb 6/29/2023 19:35:22' prior: 50625220!
+session
+	
+	^session! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 19:35:24'!
+PASSED!
+!ImportTest methodsFor: 'assertions' stamp: 'jb 6/29/2023 19:35:33' prior: 50624572!
+assertThatDoesNotModifyTheSessionWhenImportedTheEmptyInput: aEmptyInputStream
+
+	CustomerImporter valueFrom: aEmptyInputStream into: self session. 		
+			self assert:  self isSessionEmpty! !
+!ImportTest methodsFor: 'customer' stamp: 'jb 6/29/2023 19:35:37' prior: 50624634!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (self session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+!ImportTest methodsFor: 'assertions' stamp: 'jb 6/29/2023 19:35:41' prior: 50624603!
+isSessionEmpty
+
+	^ (self session  selectAllOfType: Customer) isEmpty! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 19:35:46' prior: 50624630 overrides: 16961402!
+tearDown
+
+	self session commit.
+	session close.
+	! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 19:35:48' prior: 50625258 overrides: 16961402!
+tearDown
+
+	self session commit.
+	self session close.
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'jb 6/29/2023 19:35:53' prior: 50624380!
+test01aValidInputStreamIsImportedCorrectlyToTheSession
+
+	CustomerImporter valueFrom: self validImportData into: self session..
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedWithAddresses ! !
+!ImportTest methodsFor: 'assertions' stamp: 'jb 6/29/2023 19:35:59' prior: 50624608!
+whenImportingTheInvalidStream: anInvalidInputStream assert: aBlockWithAssertions andShouldRaisesAnErrorWithMessage: anErrorMessage
+
+	^ self  should:  [
+		CustomerImporter valueFrom:  anInvalidInputStream  into: self session. 				
+		] raise: Error
+	  withExceptionDo:[:anError|
+				self assert: anErrorMessage equals: anError messageText. 
+				aBlockWithAssertions  value.
+		]! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 19:36:03' prior: 50625165 overrides: 16961394!
+setUp
+	customerSystem := PersistentCustomerSystem.
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	self session beginTransaction.
+! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 19:36:07'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 19:36:08'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 19:36:08'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 19:36:08'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 19:36:08'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 19:36:08'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:36:09'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 19:36:09'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 19:36:10'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:36:10'!
+PASSED!
+
+!classDefinition: #PersistentCustomerSystem category: 'CustomerImporter' stamp: 'jb 6/29/2023 19:36:36'!
+Object subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!PersistentCustomerSystem methodsFor: 'no messages' stamp: 'jb 6/29/2023 19:36:34' overrides: 16920235!
+initialize
+	session := DataBaseSession for: (Array with: Address with: Customer).! !
+!ImportTest methodsFor: 'category-name' stamp: 'jb 6/29/2023 19:37:04' prior: 50625225!
+session
+	
+	^customerSystem  session! !
+!PersistentCustomerSystem class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 19:37:12'!
+session
+	self shouldBeImplemented.! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 19:38:22'!
+session 
+	^session! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 19:39:17' prior: 50625297 overrides: 16961394!
+setUp
+	customerSystem := PersistentCustomerSystem new.
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	self session beginTransaction.
+! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 19:39:19'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 19:39:19'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 19:39:19'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 19:39:20'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 19:39:20'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 19:39:20'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:39:20'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 19:39:21'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 19:39:21'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:39:22'!
+PASSED!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 19:41:27' prior: 50625371 overrides: 16961394!
+setUp
+	customerSystem := PersistentCustomerSystem new.	customerSystem  start.
+	
+	self session beginTransaction.
+! !
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 19:41:38'!
+start
+	self shouldBeImplemented.! !
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 19:41:40' prior: 50625424!
+start
+	! !
+!PersistentCustomerSystem methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 19:41:50' prior: 50625350 overrides: 16920235!
+initialize
+	! !
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 19:41:54' prior: 50625429!
+start
+	session := DataBaseSession for: (Array with: Address with: Customer).! !
+
+!methodRemoval: PersistentCustomerSystem #initialize stamp: 'jb 6/29/2023 19:41:57'!
+initialize
+	!
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 19:42:00'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 19:42:01'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 19:42:01'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 19:42:01'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 19:42:01'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 19:42:01'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:42:02'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 19:42:02'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 19:42:03'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:42:03'!
+PASSED!
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'jb 6/29/2023 19:42:22'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'customerSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 19:47:05'!
+selectAllOfType: Customer
+	^session  selectAllOfType:  Customer ! !
+!ImportTest methodsFor: 'assertions' stamp: 'jb 6/29/2023 19:47:25' prior: 50625173!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: (customerSystem selectAllOfType: Customer) size! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 19:47:29'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 19:47:30'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 19:47:30'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 19:47:30'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 19:47:30'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 19:47:30'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:47:31'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 19:47:31'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 19:47:32'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:47:33'!
+PASSED!
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 19:49:41'!
+select: aBlock  ofType: aType
+	^session select: aBlock 
+		ofType: aType! !
+!ImportTest methodsFor: 'customer' stamp: 'jb 6/29/2023 19:49:48' prior: 50625242!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (customerSystem 
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 19:49:52'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 19:49:52'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 19:49:52'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 19:49:52'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 19:49:52'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 19:49:52'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:49:53'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 19:49:53'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 19:49:54'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:49:55'!
+PASSED!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 19:59:45' prior: 50625417 overrides: 16961394!
+setUp
+		"customerSystem:= Enviroment current: createCustomerSystem"
+
+	customerSystem := PersistentCustomerSystem new.	customerSystem  start.
+	
+	self session beginTransaction.
+! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 19:59:47'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 19:59:47'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 19:59:48'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 19:59:48'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 19:59:48'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 19:59:48'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:59:49'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 19:59:49'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 19:59:50'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 19:59:50'!
+PASSED!
+!ImportTest methodsFor: 'assertions' stamp: 'jb 6/29/2023 20:00:08' prior: 50625252!
+isSessionEmpty
+
+	^ (customerSystem  selectAllOfType: Customer) isEmpty! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:00:11'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:00:11'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:00:11'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:00:11'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:00:12'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:00:12'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:00:12'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:00:13'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:00:13'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:00:14'!
+PASSED!
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:00:42'!
+beginTransaction
+	session beginTransaction! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 20:00:52' prior: 50625592 overrides: 16961394!
+setUp
+		"customerSystem:= Enviroment current: createCustomerSystem"
+
+	customerSystem := PersistentCustomerSystem new.	customerSystem  start.
+	
+	customerSystem  beginTransaction.
+! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:00:59'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:01:00'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:01:00'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:01:00'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:01:00'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:01:00'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:01:01'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:01:01'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:01:02'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:01:03'!
+PASSED!
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:01:39'!
+commit
+	session commit
+	! !
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:01:45'!
+close 
+	session close
+	! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 20:02:03' prior: 50625264 overrides: 16961402!
+tearDown
+
+	customerSystem  commit .
+	self session close.
+	! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 20:02:08' prior: 50625738 overrides: 16961402!
+tearDown
+
+	customerSystem  commit .
+	customerSystem close.
+	! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:02:11'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:02:12'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:02:12'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:02:12'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:02:12'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:02:12'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:02:13'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:02:13'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:02:14'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:02:15'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jb 6/29/2023 20:03:16' prior: 50625269!
+test01aValidInputStreamIsImportedCorrectlyToTheSession
+
+	CustomerImporter valueFrom: self validImportData into: customerSystem .
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedWithAddresses ! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:03:20'!
+ERROR!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:03:20'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:03:20'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:03:20'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:03:20'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:03:20'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:03:21'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:03:21'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:03:22'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:03:23'!
+PASSED!
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:03:23'!
+ERROR!
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:03:33'!
+persist: aNewCustomer 
+	self shouldBeImplemented.! !
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:03:35' prior: 50625838!
+persist: aNewCustomer 
+	! !
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:03:57' prior: 50625843!
+persist: aNewCustomer 
+	session  persist: aNewCustomer  ! !
+!PersistentCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:04:02' prior: 50625848!
+persist: anObject 
+	session  persist: anObject  ! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:04:04'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:04:04'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:04:04'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:04:04'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:05'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:05'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:05'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:06'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:04:06'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:07'!
+PASSED!
+!ImportTest methodsFor: 'assertions' stamp: 'jb 6/29/2023 20:04:25' prior: 50625233!
+assertThatDoesNotModifyTheSessionWhenImportedTheEmptyInput: aEmptyInputStream
+
+	CustomerImporter valueFrom: aEmptyInputStream into: customerSystem . 		
+			self assert:  self isSessionEmpty! !
+!ImportTest methodsFor: 'assertions' stamp: 'jb 6/29/2023 20:04:32' prior: 50625281!
+whenImportingTheInvalidStream: anInvalidInputStream assert: aBlockWithAssertions andShouldRaisesAnErrorWithMessage: anErrorMessage
+
+	^ self  should:  [
+		CustomerImporter valueFrom:  anInvalidInputStream  into: customerSystem . 				
+		] raise: Error
+	  withExceptionDo:[:anError|
+				self assert: anErrorMessage equals: anError messageText. 
+				aBlockWithAssertions  value.
+		]! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:04:35'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:04:36'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:04:36'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:04:36'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:36'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:36'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:37'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:37'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:04:38'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:38'!
+PASSED!
+
+!methodRemoval: ImportTest #session stamp: 'jb 6/29/2023 20:04:49'!
+session
+	
+	^customerSystem  session!
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:04:56'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:04:56'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:04:56'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:04:56'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:56'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:57'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:57'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:58'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:04:58'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:04:59'!
+PASSED!
+
+!methodRemoval: PersistentCustomerSystem #session stamp: 'jb 6/29/2023 20:07:17'!
+session 
+	^session!
+
+!classDefinition: #CustomerSystem category: 'CustomerImporter' stamp: 'jb 6/29/2023 20:08:32'!
+Object subclass: #CustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentCustomerSystem category: 'CustomerImporter' stamp: 'jb 6/29/2023 20:08:32'!
+CustomerSystem subclass: #PersistentCustomerSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerSystem methodsFor: 'nil' stamp: 'jb 6/29/2023 20:09:37'!
+persist: anObject	self subclassResponsibility ! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:09:44'!
+beginTransaction	self subclassResponsibility ! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:09:53'!
+close 	self subclassResponsibility ! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:09:58'!
+commit	self subclassResponsibility ! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:10:06'!
+select: aBlock  ofType: aType	self subclassResponsibility ! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:10:12'!
+selectAllOfType: Customer	self subclassResponsibility ! !
+!CustomerSystem methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:10:19'!
+start	self subclassResponsibility ! !
+
+!classDefinition: #TranscientCustomerSystem category: 'CustomerImporter' stamp: 'jb 6/29/2023 20:12:21'!
+CustomerSystem subclass: #TranscientCustomerSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 20:12:01' prior: 50625684 overrides: 16961394!
+setUp
+		"customerSystem:= Enviroment current: createCustomerSystem"
+
+	customerSystem := TranscientCustomerSystem new.	customerSystem  start.
+	
+	customerSystem  beginTransaction.
+! !
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:13:16' overrides: 50626042!
+start
+	self shouldBeImplemented.! !
+
+!classDefinition: #TranscientCustomerSystem category: 'CustomerImporter' stamp: 'jb 6/29/2023 20:13:37'!
+CustomerSystem subclass: #TranscientCustomerSystem
+	instanceVariableNames: 'customer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:13:34' prior: 50626065 overrides: 50626042!
+start
+	customer := OrderedCollection  new.! !
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:13:47' overrides: 50626019!
+beginTransaction
+	self shouldBeImplemented.! !
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:13:49' prior: 50626084 overrides: 50626019!
+beginTransaction
+	! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:13:54'!
+ERROR!
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:14:01' overrides: 50626014!
+persist: aNewCustomer 
+	self shouldBeImplemented.! !
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:14:17' prior: 50626098 overrides: 50626014!
+persist: aNewCustomer 
+	customer add: aNewCustomer ! !
+
+!classDefinition: #TranscientCustomerSystem category: 'CustomerImporter' stamp: 'jb 6/29/2023 20:14:22'!
+CustomerSystem subclass: #TranscientCustomerSystem
+	instanceVariableNames: 'customers'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TranscientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:14:22' prior: 50626104 overrides: 50626014!
+persist: aNewCustomer 
+	customers add: aNewCustomer ! !
+!TranscientCustomerSystem methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:14:22' prior: 50626079 overrides: 50626042!
+start
+	customers := OrderedCollection  new.! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:14:25'!
+ERROR!
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:14:32' overrides: 50626037!
+selectAllOfType: Customer 
+	self shouldBeImplemented.! !
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:14:52' prior: 50626134 overrides: 50626037!
+selectAllOfType: Customer 
+	^customers! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:15:10'!
+ERROR!
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:15:16' overrides: 50626032!
+select: aRenameMe1 ofType: Customer 
+	self shouldBeImplemented.! !
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:15:58' prior: 50626149 overrides: 50626032!
+select: aBlock ofType: Customer 
+	self shouldBeImplemented.! !
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:16:47' prior: 50626155 overrides: 50626032!
+select: aBlock ofType: Customer 
+	^customers  select:  [:aCustomer|
+		aBlock value: aCustomer 
+		
+		] ! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:16:51'!
+PASSED!
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:16:58' overrides: 50626028!
+commit
+	self shouldBeImplemented.! !
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:17:07' prior: 50626172 overrides: 50626028!
+commit
+! !
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:17:25' overrides: 50626024!
+close
+	self shouldBeImplemented.! !
+!TranscientCustomerSystem methodsFor: 'category-name' stamp: 'jb 6/29/2023 20:17:28' prior: 50626181 overrides: 50626024!
+close
+	! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:31'!
+PASSED!
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:17:48'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:17:48'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:17:48'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:17:48'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:48'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:48'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:48'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:48'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:17:48'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:17:48'!
+PASSED!
+!TranscientCustomerSystem methodsFor: 'nil' stamp: 'jb 6/29/2023 20:23:40'!
+
+	ss
+	! !
+
+!methodRemoval: TranscientCustomerSystem #ss stamp: 'jb 6/29/2023 20:23:50'!
+ss
+	!
+
+!classDefinition: #Enviroment category: 'CustomerImporter' stamp: 'jb 6/29/2023 20:24:47'!
+Object subclass: #Enviroment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 20:24:42' prior: 50626055 overrides: 16961394!
+setUp
+		customerSystem:= Enviroment current createCustomerSystem.
+
+		customerSystem  start.
+	
+	customerSystem  beginTransaction.
+! !
+!Enviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:25:01'!
+current
+	self shouldBeImplemented.! !
+!Enviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:25:20' prior: 50626320!
+current
+	^(self subclasses) detect: [:aSubclass | aSubclass isCurrent] new.  ! !
+!Enviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:25:30' prior: 50626325!
+current
+	^((self subclasses) detect: [:aSubclass | aSubclass isCurrent] )new.  ! !
+
+Object subclass: #DevelopmentEnviroment 
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #DevelopmentEnviroment category: 'CustomerImporter' stamp: 'jb 6/29/2023 20:26:17'!
+Object subclass: #DevelopmentEnviroment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Enviroment subclass: #DevelopmentEnviroment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #DevelopmentEnviroment category: 'CustomerImporter' stamp: 'jb 6/29/2023 20:26:28'!
+Enviroment subclass: #DevelopmentEnviroment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Enviroment subclass: #IntegrationEnviroment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #IntegrationEnviroment category: 'CustomerImporter' stamp: 'jb 6/29/2023 20:26:52'!
+Enviroment subclass: #IntegrationEnviroment
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!Enviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:27:17'!
+isCurrent 
+	self subclassResponsibility ! !
+!DevelopmentEnviroment class methodsFor: 'no messages' stamp: 'jb 6/29/2023 20:27:37' overrides: 50626374!
+isCurrent
+	^(Smalltalk getSystemAttribute:'ENV' = 'DEV')
+! !
+!IntegrationEnviroment class methodsFor: 'no messages' stamp: 'jb 6/29/2023 20:27:50' overrides: 50626374!
+isCurrent
+		^(Smalltalk getSystemAttribute:'ENV' = 'INT')! !
+!Enviroment methodsFor: 'no messages' stamp: 'jb 6/29/2023 20:28:17'!
+createCustomerSystem
+	self subclassResponsibility ! !
+!DevelopmentEnviroment methodsFor: 'nil' stamp: 'jb 6/29/2023 20:28:46' overrides: 50626390!
+createCustomerSystem
+	^TranscientCustomerSystem  new.! !
+!IntegrationEnviroment methodsFor: 'nil' stamp: 'jb 6/29/2023 20:29:02' overrides: 50626390!
+createCustomerSystem
+	^PersistentCustomerSystem ! !
+!IntegrationEnviroment methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:29:05' prior: 50626400 overrides: 50626390!
+createCustomerSystem
+	^PersistentCustomerSystem new! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 20:31:31' prior: 50626313 overrides: 16961394!
+setUp
+		customerSystem:= Enviroment current createCustomerSystem.
+self halt. 
+		customerSystem  start.
+	
+	customerSystem  beginTransaction.
+! !
+
+self subclasses!
+
+aSubclass isCurrent!
+
+(Smalltalk getSystemAttribute:'ENV' = 'DEV')!
+
+Smalltalk getSystemAttribute:'ENV'!
+
+Smalltalk getSystemAttribute:  'ENV'!
+
+Smalltalk!
+!DevelopmentEnviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:38:39' prior: 50626379 overrides: 50626374!
+isCurrent
+	^true
+! !
+!IntegrationEnviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:39:04' prior: 50626385 overrides: 50626374!
+isCurrent
+		^false! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 20:39:19' prior: 50626412 overrides: 16961394!
+setUp
+		customerSystem:= Enviroment current createCustomerSystem.
+
+		customerSystem  start.
+	
+	customerSystem  beginTransaction.
+! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:39:21'!
+PASSED!
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:39:22'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:39:22'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:39:22'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:39:23'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:39:23'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:39:23'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:39:23'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:39:23'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:39:23'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:39:23'!
+PASSED!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jb 6/29/2023 20:39:50' prior: 50626437 overrides: 16961394!
+setUp
+	customerSystem:= Enviroment current createCustomerSystem.
+
+		customerSystem  start.
+	
+	customerSystem  beginTransaction.
+! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:40:15'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:40:15'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:40:15'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:40:15'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:40:15'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:40:15'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:40:15'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:40:15'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:40:15'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:40:15'!
+PASSED!
+!IntegrationEnviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:40:32' prior: 50626432 overrides: 50626374!
+isCurrent
+		^true! !
+!DevelopmentEnviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:40:42' prior: 50626427 overrides: 50626374!
+isCurrent
+	^false
+! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:40:48'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:40:49'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:40:49'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:40:49'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:40:49'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:40:49'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:40:50'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:40:50'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:40:51'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:40:52'!
+PASSED!
+!DevelopmentEnviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:41:01' prior: 50626535 overrides: 50626374!
+isCurrent
+	^true
+! !
+!DevelopmentEnviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:41:10' prior: 50626577 overrides: 50626374!
+isCurrent
+	^false
+! !
+
+!testRun: #ImportTest #test01aValidInputStreamIsImportedCorrectlyToTheSession stamp: 'jb 6/29/2023 20:41:24'!
+PASSED!
+
+!testRun: #ImportTest #test02importWithNilDataRaisesAnError stamp: 'jb 6/29/2023 20:41:25'!
+PASSED!
+
+!testRun: #ImportTest #test03importEmptyDataShouldNotModifySession stamp: 'jb 6/29/2023 20:41:25'!
+PASSED!
+
+!testRun: #ImportTest #test04importDataWithALineJumpShouldNotModifySession stamp: 'jb 6/29/2023 20:41:25'!
+PASSED!
+
+!testRun: #ImportTest #test05importAnAddressBeforACustomerShouldRaiseAnError stamp: 'jb 6/29/2023 20:41:25'!
+PASSED!
+
+!testRun: #ImportTest #test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError stamp: 'jb 6/29/2023 20:41:25'!
+PASSED!
+
+!testRun: #ImportTest #test07importDataWithWrongSizedAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:41:26'!
+PASSED!
+
+!testRun: #ImportTest #test08importDataWithInvalidDataTypeShouldRaiseAnError stamp: 'jb 6/29/2023 20:41:26'!
+PASSED!
+
+!testRun: #ImportTest #test09importDataWithWrongAddressNumberShouldRaisAnError stamp: 'jb 6/29/2023 20:41:27'!
+PASSED!
+
+!testRun: #ImportTest #test10importDataWithWrongZipCodeAddressShouldRaiseAnError stamp: 'jb 6/29/2023 20:41:27'!
+PASSED!
+!DevelopmentEnviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:41:38' prior: 50626582 overrides: 50626374!
+isCurrent
+	^true
+! !
+!IntegrationEnviroment class methodsFor: 'as yet unclassified' stamp: 'jb 6/29/2023 20:41:44' prior: 50626530 overrides: 50626374!
+isCurrent
+		^true! !
+
+----SNAPSHOT----(29 June 2023 20:45:17) CuisUniversity-5832.image priorSource: 9366758!
