@@ -5,52 +5,40 @@ TestCase subclass: #ImportTest
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!ImportTest methodsFor: 'tests' stamp: 'JB 6/28/2023 19:25:26'!
+!ImportTest methodsFor: 'tests' stamp: 'lp 6/29/2023 14:53:49'!
 test01aValidInputStreamIsImportedCorrectlyToTheSession
 
 	CustomerImporter valueFrom: self validImportData into: session..
 
 	self assertImportedRightNumberOfCustomers.
 	self assertPepeSanchezWasImportedCorrecty.
-	self assertJuanPerezWasImportedCorrectly ! !
+	self assertJuanPerezWasImportedWithAddresses ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'JB 6/28/2023 19:18:56'!
+!ImportTest methodsFor: 'tests' stamp: 'lp 6/29/2023 14:48:25'!
 test02importWithNilDataRaisesAnError
-self assertSessionIsNotModifyByImporting: self nilImportData   andRaisesAnErrorWithMessage: CustomerImporter  nilStreamErrorMessage 
+	self assertSessionIsNotModifyByImporting: self nilImportData
+		andRaisesAnErrorWithMessage: CustomerImporter  nilStreamErrorMessage 
 
 ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'JB 6/28/2023 16:39:03'!
+!ImportTest methodsFor: 'tests' stamp: 'lp 6/29/2023 14:46:17'!
 test03importEmptyDataShouldNotModifySession
-
-			 CustomerImporter valueFrom: self importEmptyData into: session. 		
-			self assert:  self isSessionEmpty  .  
+	 self assertThatDoesNotModifyTheSessionWhenImportedTheEmptyInput: self emptyImportData  .  
 
 
 ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'JB 6/28/2023 16:43:53'!
+!ImportTest methodsFor: 'tests' stamp: 'lp 6/29/2023 14:46:43'!
 test04importDataWithALineJumpShouldNotModifySession
-
-			 CustomerImporter valueFrom:  self importDataLineJump into: session. 		
-			self assert:  self isSessionEmpty  .  
+			self assertThatDoesNotModifyTheSessionWhenImportedTheEmptyInput: self importDataWithOnlyALineJump 
 
 
 ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'JB 6/28/2023 19:12:36'!
-test05importAnAddressBeforACustomerShouldRaiseAnError	self assertSessionIsNotModifyByImporting: self importDataOnlyAnAdress andRaisesAnErrorWithMessage: CustomerImporter  cannotImportAddressWithoutCustomer 
-
-
-
-
-
-
-
-! !
-
-!ImportTest methodsFor: 'tests' stamp: 'JB 6/28/2023 19:09:28'!
-test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError	self assertPepeSanchezWasImportedCorrectlyWithTheInvalidInputStream: self invalidDataWrongSizeCustomer thenRaisesAnErrorWithMessage: CustomerImporter  notEnoughDataToImport 
+!ImportTest methodsFor: 'tests' stamp: 'lp 6/29/2023 14:48:12'!
+test05importAnAddressBeforACustomerShouldRaiseAnError
+	self assertSessionIsNotModifyByImporting: self importDataWithOnlyAnAdress
+		andRaisesAnErrorWithMessage: CustomerImporter  cannotImportAddressWithoutCustomer 
 
 
 
@@ -60,8 +48,10 @@ test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError	self assertPepeS
 
 ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'JB 6/28/2023 19:04:00'!
-test07importDataWithWrongSizedAddressShouldRaiseAnError	self assertImportsUntilAnErrorAppearsWithTheInputStream: self invalidDatawrongSizedAddress raisesAnErrorWithMessage: CustomerImporter  notEnoughDataToImport 
+!ImportTest methodsFor: 'tests' stamp: 'lp 6/29/2023 14:51:50'!
+test06importDataWithWrongSizedCustomerRecordShouldRaiseAnError
+	self assertPepeSanchezWasImportedCorrectlyWithTheInvalidInputStream: self invalidImportDataWrongSizeCustomer
+		thenRaisesAnErrorWithMessage: CustomerImporter  notEnoughDataToImport 
 
 
 
@@ -71,10 +61,22 @@ test07importDataWithWrongSizedAddressShouldRaiseAnError	self assertImportsUntil
 
 ! !
 
-!ImportTest methodsFor: 'tests' stamp: 'JB 6/28/2023 19:09:28'!
-test08importDataWithInvalidDataTypeShouldRaiseAnError	
-	
-	self assertPepeSanchezWasImportedCorrectlyWithTheInvalidInputStream:  self invalidDataWrongType    thenRaisesAnErrorWithMessage: CustomerImporter  inputTypeNotSupported
+!ImportTest methodsFor: 'tests' stamp: 'lp 6/29/2023 14:51:02'!
+test07importDataWithWrongSizedAddressShouldRaiseAnError	self assertThatTheFieldsAreImportedUntilAnErrorAppearsWithTheInputStream: self invalidDatawrongSizedAddress 
+		raisesAnErrorWithMessage: CustomerImporter  notEnoughDataToImport 
+
+
+
+
+
+
+
+! !
+
+!ImportTest methodsFor: 'tests' stamp: 'lp 6/29/2023 14:51:34'!
+test08importDataWithInvalidDataTypeShouldRaiseAnError
+	self assertPepeSanchezWasImportedCorrectlyWithTheInvalidInputStream:  self invalidDataWrongType
+		thenRaisesAnErrorWithMessage: CustomerImporter  inputTypeNotSupported
 
 
 
@@ -141,19 +143,13 @@ assertImportedRightNumberOfCustomers
 
 	^ self assert: 2 equals: (session selectAllOfType: Customer) size! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'JB 6/28/2023 19:22:33'!
-assertImportsUntilAnErrorAppearsWithTheInputStream: invalidInputStream raisesAnErrorWithMessage: messageError 
-
-	self assertThatImportingTheInvalidStream: invalidInputStream   ensures: [ self assertPepeSanchezWasImportedCorrecty.  
-				self assertJuanPerezWasImported .] andRaisesAnErrorWithMessage: messageError ! !
-
 !ImportTest methodsFor: 'assertions' stamp: 'JB 6/28/2023 17:50:05'!
 assertJuanPerezWasImported
 
 	^ self assertCustomerWithIdentificationType: 'C' number: '23-25666777-9' hasFirstName: 'Juan' lastName: 'Perez'! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'JB 6/28/2023 17:50:05'!
-assertJuanPerezWasImportedCorrectly
+!ImportTest methodsFor: 'assertions' stamp: 'lp 6/29/2023 14:53:49'!
+assertJuanPerezWasImportedWithAddresses
 
 	| importedCustomer |
 
@@ -161,10 +157,10 @@ assertJuanPerezWasImportedCorrectly
 	self assertAddressOf: importedCustomer at: 'Alem' hasNumber: 1122 town: 'CABA' zipCode: 1001 province: 'CABA'
 	! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'JB 6/28/2023 19:16:41'!
-assertPepeSanchezWasImportedCorrectlyWithTheInvalidInputStream: anInvalidStream thenRaisesAnErrorWithMessage: anErrorMessage 
+!ImportTest methodsFor: 'assertions' stamp: 'lp 6/29/2023 15:00:35'!
+assertPepeSanchezWasImportedCorrectlyWithTheInvalidInputStream: anInvalidInputStream thenRaisesAnErrorWithMessage: anErrorMessage 
 
-	^self assertThatImportingTheInvalidStream:  anInvalidStream  ensures: [ self assertPepeSanchezWasImportedCorrecty.  		 ]  andRaisesAnErrorWithMessage: anErrorMessage ! !
+	^self whenImportingTheInvalidStream:  anInvalidInputStream  assert: [ self assertPepeSanchezWasImportedCorrecty.]  andShouldRaisesAnErrorWithMessage: anErrorMessage ! !
 
 !ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:28:05'!
 assertPepeSanchezWasImportedCorrecty
@@ -178,30 +174,42 @@ assertPepeSanchezWasImportedCorrecty
 
 	! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'JB 6/28/2023 19:20:39'!
+!ImportTest methodsFor: 'assertions' stamp: 'lp 6/29/2023 14:59:38'!
 assertSessionIsNotModifyByImporting: anInvalidInputStream andRaisesAnErrorWithMessage: anErrorMessage 
-	^ self assertThatImportingTheInvalidStream: anInvalidInputStream ensures: [self assert:  self isSessionEmpty  .  		] andRaisesAnErrorWithMessage: anErrorMessage! !
+	^ self whenImportingTheInvalidStream: anInvalidInputStream assert: [self assert:  self isSessionEmpty  .  		] andShouldRaisesAnErrorWithMessage: anErrorMessage! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'JB 6/28/2023 19:18:37'!
-assertThatImportingTheInvalidStream: anInvalidInputStream ensures: aBlockToEnsure andRaisesAnErrorWithMessage: anErrorMessage
+!ImportTest methodsFor: 'assertions' stamp: 'lp 6/29/2023 15:01:08'!
+assertThatDoesNotModifyTheSessionWhenImportedTheEmptyInput: aEmptyInputStream
+
+	CustomerImporter valueFrom: aEmptyInputStream into: session. 		
+			self assert:  self isSessionEmpty! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'lp 6/29/2023 14:51:02'!
+assertThatImportsUntilInvalidAddressFieldAndRaisesAnError: anInvalidInputStream
+
+	^ self  assertThatTheFieldsAreImportedUntilAnErrorAppearsWithTheInputStream:  anInvalidInputStream  raisesAnErrorWithMessage: CustomerImporter   invalidAddressFields! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'lp 6/29/2023 14:59:38'!
+assertThatTheFieldsAreImportedUntilAnErrorAppearsWithTheInputStream: invalidInputStream raisesAnErrorWithMessage: messageError 
+
+	self whenImportingTheInvalidStream: invalidInputStream   assert: [ self assertPepeSanchezWasImportedCorrecty.  
+				self assertJuanPerezWasImported .] andShouldRaisesAnErrorWithMessage: messageError ! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'JB 6/28/2023 16:37:15'!
+isSessionEmpty
+
+	^ (session  selectAllOfType: Customer) isEmpty! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'lp 6/29/2023 15:01:47'!
+whenImportingTheInvalidStream: anInvalidInputStream assert: aBlockWithAssertions andShouldRaisesAnErrorWithMessage: anErrorMessage
 
 	^ self  should:  [
 		CustomerImporter valueFrom:  anInvalidInputStream  into: session. 				
 		] raise: Error
 	  withExceptionDo:[:anError|
 				self assert: anErrorMessage equals: anError messageText. 
-				aBlockToEnsure  value.
+				aBlockWithAssertions  value.
 		]! !
-
-!ImportTest methodsFor: 'assertions' stamp: 'JB 6/28/2023 19:04:52'!
-assertThatImportsUntilInvalidAddressFieldAndRaisesAnError: anInvalidInputStream
-
-	^ self  assertImportsUntilAnErrorAppearsWithTheInputStream:  anInvalidInputStream  raisesAnErrorWithMessage: CustomerImporter   invalidAddressFields! !
-
-!ImportTest methodsFor: 'assertions' stamp: 'JB 6/28/2023 16:37:15'!
-isSessionEmpty
-
-	^ (session  selectAllOfType: Customer) isEmpty! !
 
 
 !ImportTest methodsFor: 'setUp/tearDown' stamp: 'HAW 5/22/2022 00:27:50'!
@@ -227,29 +235,21 @@ customerWithIdentificationType: anIdType number: anIdNumber
 		ofType: Customer) anyOne! !
 
 
-!ImportTest methodsFor: 'test data' stamp: 'JB 6/28/2023 16:43:40'!
-importDataLineJump
+!ImportTest methodsFor: 'test data' stamp: 'lp 6/29/2023 14:46:17'!
+emptyImportData
+
+	^ ReadStream  on:  ''! !
+
+!ImportTest methodsFor: 'test data' stamp: 'lp 6/29/2023 14:46:42'!
+importDataWithOnlyALineJump
 
 	^ ReadStream  on: '
 	'! !
 
-!ImportTest methodsFor: 'test data' stamp: 'JB 6/28/2023 17:01:06'!
-importDataOnlyAnAdress
+!ImportTest methodsFor: 'test data' stamp: 'lp 6/29/2023 14:47:01'!
+importDataWithOnlyAnAdress
 
 	^ ReadStream on:  'A,San Martin,3322,Olivos,1636,BsAs'! !
-
-!ImportTest methodsFor: 'test data' stamp: 'JB 6/28/2023 16:38:28'!
-importEmptyData
-
-	^ ReadStream  on:  ''! !
-
-!ImportTest methodsFor: 'test data' stamp: 'JB 6/28/2023 17:27:01'!
-invalidDataWrongSizeCustomer
-
-	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444
-A,San Martin,3322,Olivos,1636,BsAs
-A,Maipu,888,Florida,1122,Buenos Aires
-C,Juan,Perez,C'! !
 
 !ImportTest methodsFor: 'test data' stamp: 'JB 6/28/2023 18:31:07'!
 invalidDataWrongType
@@ -267,6 +267,14 @@ A,San Martin,3322,Olivos,1636,BsAs
 A,Maipu,888,Florida,1122,Buenos Aires
 C,Juan,Perez,C,23-25666777-9
 A,Alem,1122,CABA,1001'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'lp 6/29/2023 14:49:07'!
+invalidImportDataWrongSizeCustomer
+
+	^ ReadStream on: 'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C'! !
 
 !ImportTest methodsFor: 'test data' stamp: 'JB 6/28/2023 18:43:03'!
 invalidInputWrongAddressNumber
@@ -286,7 +294,7 @@ A,Maipu,888,Florida,1122,Buenos Aires
 C,Juan,Perez,C,23-25666777-9
 A,Alem,1122,CABA,xxx,CABA'! !
 
-!ImportTest methodsFor: 'test data' stamp: 'JB 6/28/2023 16:32:13'!
+!ImportTest methodsFor: 'test data' stamp: 'lp 6/29/2023 14:46:04'!
 nilImportData
 	^nil! !
 
@@ -461,14 +469,14 @@ value
 	! !
 
 
-!CustomerImporter methodsFor: 'import' stamp: 'JB 6/28/2023 18:23:22'!
+!CustomerImporter methodsFor: 'import' stamp: 'lp 6/29/2023 15:04:56'!
 checkForInvalidInputType
 
-	^ (self thereIsACustomerToImport  or: (self  thereIsAnAddressToImport or: (self isEmptyLine ) )) ifFalse:  [
+	^ (self thereIsACustomerToImport  or: (self  thereIsAnAddressToImport or: self isEmptyLine  )) ifFalse:  [
 		self error: self class  inputTypeNotSupported
 		]! !
 
-!CustomerImporter methodsFor: 'import' stamp: 'JB 6/28/2023 18:55:43'!
+!CustomerImporter methodsFor: 'import' stamp: 'lp 6/29/2023 15:06:04'!
 importAddress: addressData
 
 	|  newAddress |
@@ -477,12 +485,10 @@ importAddress: addressData
 			newCustomer addAddress: newAddress.
 			newAddress streetName: addressData second.
 			[newAddress streetNumber: addressData third asNumber.
-				newAddress zipCode: addressData fifth asNumber
-				]on:  Error
-			
+			newAddress zipCode: addressData fifth asNumber
+			]on:  Error
 			 do:[self error:  self class invalidAddressFields ].
 			newAddress town: addressData fourth.
-			 
 			newAddress province: addressData sixth! !
 
 !CustomerImporter methodsFor: 'import' stamp: 'JB 6/28/2023 16:05:13'!
@@ -495,21 +501,12 @@ importCustomer: customerData
 			newCustomer identificationNumber: customerData fifth.
 			session persist: newCustomer! !
 
-!CustomerImporter methodsFor: 'import' stamp: 'JB 6/28/2023 18:23:22'!
+!CustomerImporter methodsFor: 'import' stamp: 'lp 6/29/2023 15:06:35'!
 importRecord
-
+	
+	self checkForInvalidInputType.
 	self importANewCustomerIfItsACustomerRecord.	self importNewAddressIfItsAnAddressRecord.
-	self checkForInvalidInputType! !
-
-!CustomerImporter methodsFor: 'import' stamp: 'JB 6/28/2023 18:30:30'!
-isEmptyLine
-
-	^( self isReturnCarriegeString) or: (line isEmpty )! !
-
-!CustomerImporter methodsFor: 'import' stamp: 'JB 6/28/2023 18:30:30'!
-isReturnCarriegeString
-
-	^ line = (String with: $	"09")! !
+	! !
 
 
 !CustomerImporter methodsFor: 'data processing' stamp: 'JB 6/28/2023 16:01:04'!
@@ -518,8 +515,8 @@ proccessImportData
 	^ line findTokens: $,! !
 
 
-!CustomerImporter methodsFor: 'import-private' stamp: 'JB 6/28/2023 17:47:13'!
-checkIfTheData:  dataToImport isOfTHeExpectedSize: anExpectedSizeNumber andExecute: aBlockCollaborationWithData
+!CustomerImporter methodsFor: 'import-private' stamp: 'lp 6/29/2023 15:19:36'!
+ifTheData:  dataToImport hasExactlyThisAmmountOfFields: anExpectedSizeNumber do: aBlockCollaborationWithData
 
 
 
@@ -539,17 +536,17 @@ importANewCustomerIfItsACustomerRecord
 	]
 ! !
 
-!CustomerImporter methodsFor: 'import-private' stamp: 'JB 6/28/2023 17:47:13'!
+!CustomerImporter methodsFor: 'import-private' stamp: 'lp 6/29/2023 15:19:49'!
 importAddressIfTheRecordIsOfTheCorrectLenght
 
-	self checkIfTheData:  self proccessImportData  isOfTHeExpectedSize:   6 andExecute:[:addressData |
+	self ifTheData:  self proccessImportData  hasExactlyThisAmmountOfFields: 6 do:[:addressData |
 		self  importAddress:  addressData 
 		] ! !
 
-!CustomerImporter methodsFor: 'import-private' stamp: 'JB 6/28/2023 17:47:13'!
+!CustomerImporter methodsFor: 'import-private' stamp: 'lp 6/29/2023 15:19:36'!
 importDataIfTheRecordIsOfTheCorrectLenght
 
-			self  checkIfTheData:  self  proccessImportData  isOfTHeExpectedSize: 5   andExecute: 
+			self  ifTheData:  self  proccessImportData  hasExactlyThisAmmountOfFields: 5   do: 
 			[:customerData |
 				 self importCustomer:  customerData 
 				]
@@ -561,14 +558,24 @@ importNewAddressIfItsAnAddressRecord
 	self importNewAddressIfThereWasACustomerimportedBefore 
 ]! !
 
-!CustomerImporter methodsFor: 'import-private' stamp: 'JB 6/28/2023 17:33:50'!
+!CustomerImporter methodsFor: 'import-private' stamp: 'lp 6/29/2023 15:15:38'!
 importNewAddressIfThereWasACustomerimportedBefore
 
-	(self thereWasACustomerImportedBefore   ) ifTrue: [
+	(self thereIsNotACustomerBeingImported   ) ifTrue: [
 		self error:  self class cannotImportAddressWithoutCustomer  
 		] ifFalse: [ 
 		self importAddressIfTheRecordIsOfTheCorrectLenght
 			]! !
+
+!CustomerImporter methodsFor: 'import-private' stamp: 'JB 6/28/2023 18:30:30'!
+isEmptyLine
+
+	^( self isReturnCarriegeString) or: (line isEmpty )! !
+
+!CustomerImporter methodsFor: 'import-private' stamp: 'JB 6/28/2023 18:30:30'!
+isReturnCarriegeString
+
+	^ line = (String with: $	"09")! !
 
 !CustomerImporter methodsFor: 'import-private' stamp: 'JB 6/28/2023 16:11:30'!
 thereIsACustomerToImport
@@ -580,16 +587,16 @@ thereIsAnAddressToImport
 
 	^ line beginsWith: 'A'! !
 
+!CustomerImporter methodsFor: 'import-private' stamp: 'lp 6/29/2023 15:15:38'!
+thereIsNotACustomerBeingImported
+
+	^ newCustomer  isNil! !
+
 !CustomerImporter methodsFor: 'import-private' stamp: 'JB 6/28/2023 16:07:06'!
 thereIsRecordsToImport
 
 	line := readStream nextLine.
 		^line notNil! !
-
-!CustomerImporter methodsFor: 'import-private' stamp: 'JB 6/28/2023 16:56:27'!
-thereWasACustomerImportedBefore
-
-	^ newCustomer  isNil! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
